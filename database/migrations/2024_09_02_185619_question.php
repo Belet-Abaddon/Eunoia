@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('question', function (Blueprint $table) {
             $table->id();
             $table->string('question');
+            $table->foreignIdFor(App\Models\Volunteer::class)->constrained->onDelete('cascade');
             $table->unsignedBigInteger('p_id');
             //Add the foreign key constraint
             $table->foreign('p_id')->references('id')->on('psychotherapy_type')->onDelete('cascade');
