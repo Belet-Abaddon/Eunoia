@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('appointment', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->date('a_date');
-            $table->time('a_time');
-            $table->unsignedBigInteger('r_id')->unique();
-            //Add foreign key
-            $table->foreign('r_id')->references('id')->on('record')->onDelete('cascade');
+            $table->timestamp('commentTime');
+            $table->string('comment');
+            $table->foreignIdFor(App\Models\User::class);
+            $table->foreignIdFor(App\Models\Volunteer::class);
         });
     }
 
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('appointment');
+        Schema::dropIfExists('comments');
     }
 };

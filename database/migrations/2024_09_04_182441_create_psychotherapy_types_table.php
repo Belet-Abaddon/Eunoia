@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('record', function (Blueprint $table) {
+        Schema::create('psychotherapy_types', function (Blueprint $table) {
             $table->id();
-            $table->integer('r_persentage');
-            $table->date('r_date');
+            $table->string('psychotherapy_name');
+            $table->string('psychotherapy_description');
+            $table->foreignIdFor(App\Models\User::class);
         });
     }
 
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('record');
+        Schema::dropIfExists('psychotherapy_types');
     }
 };

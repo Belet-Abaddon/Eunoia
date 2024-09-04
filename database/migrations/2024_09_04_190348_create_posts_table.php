@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('post', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->timestamp('currentTime');
             $table->string('caption');
-            $table->string('image')->nullable();
-            $table->string('video')->nullable();
-            $table->unsignedBigInteger('v_id');
-            //Add foreign key
-            $table->foreign('v_id')->references('id')->on('volunteer')->onDelete('cascade');
+            $table->string('image')->nullable(true);
+            $table->string('video')->nullable(true);
+            $table->foreignIdFor(App\Models\Volunteer::class);
         });
     }
 
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('post');
+        Schema::dropIfExists('posts');
     }
 };

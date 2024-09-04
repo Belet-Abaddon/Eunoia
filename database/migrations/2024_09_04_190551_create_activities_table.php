@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('activity', function (Blueprint $table) {
+        Schema::create('activities', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('about');
-            $table->string('file')->nullable();
-            $table->unsignedBigInteger('v_id');
-            //Add foreign key
-            $table->foreign('v_id')->references('id')->on('volunteer')->onDelete('cascade');
+            $table->string('file')->nullable(true);
+            $table->foreignIdFor(App\Models\Volunteer::class);
         });
     }
 
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('activity');
+        Schema::dropIfExists('activities');
     }
 };

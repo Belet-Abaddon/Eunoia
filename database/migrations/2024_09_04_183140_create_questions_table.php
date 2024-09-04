@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('question', function (Blueprint $table) {
+        Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->string('question');
-            $table->foreignIdFor(App\Models\Volunteer::class)->constrained->onDelete('cascade');
-            $table->unsignedBigInteger('p_id');
-            //Add the foreign key constraint
-            $table->foreign('p_id')->references('id')->on('psychotherapy_type')->onDelete('cascade');
+            $table->foreignIdFor(App\Models\Psychotherapy_type::class);
         });
     }
 
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('question');
+        Schema::dropIfExists('questions');
     }
 };

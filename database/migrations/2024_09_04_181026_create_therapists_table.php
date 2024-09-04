@@ -13,8 +13,17 @@ return new class extends Migration
     {
         Schema::create('therapists', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('therapists_name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->integer('age');
+            $table->string('address');
+            $table->string('gender');
+            $table->string('specialists');
+            $table->string('degree');
+            $table->string('university');
         });
+        
     }
 
     /**
