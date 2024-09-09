@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('question_records', function (Blueprint $table) {
+        Schema::create('phychotherapy_types', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(App\Models\Question::class);
-            $table->foreignIdFor(App\Models\Record::class);
+            $table->string('name');
+            $table->string('description');
+            $table->timestamps();
         });
     }
 
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('question_records');
+        Schema::dropIfExists('phychotherapy_types');
     }
 };

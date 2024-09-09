@@ -20,6 +20,8 @@ return new class extends Migration
             $table->integer('age');
             $table->string('gender');
             $table->string('country');
+            $table->string('degree')->nullable(true);
+            $table->integer('experience')->nullable(true);
             $table->rememberToken();
             $table->timestamps();
         });

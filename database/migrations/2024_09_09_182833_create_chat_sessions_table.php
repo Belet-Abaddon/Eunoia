@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('activities', function (Blueprint $table) {
+        Schema::create('chat_sessions', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('about');
-            $table->string('file')->nullable(true);
-            $table->foreignIdFor(App\Models\Volunteer::class);
+            $table->string('message');
+            $table->foreignIdFor(App\Models\Answer::class);
+            $table->foreignIdFor(App\Models\Therapist::class);
+            $table->timestamps();
         });
     }
 
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('activities');
+        Schema::dropIfExists('chat_sessions');
     }
 };

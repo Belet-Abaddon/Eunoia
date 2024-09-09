@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('therapists', function (Blueprint $table) {
             $table->id();
-            $table->string('therapists_name');
+            $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('age');

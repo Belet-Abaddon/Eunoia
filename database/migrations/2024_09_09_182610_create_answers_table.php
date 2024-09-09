@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('psychotherapy_types', function (Blueprint $table) {
+        Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->string('psychotherapy_name');
-            $table->string('psychotherapy_description');
+            $table->string('answer');
+            $table->integer('percentage');
+            $table->foreignIdFor(App\Models\Question::class);
             $table->foreignIdFor(App\Models\User::class);
+            $table->timestamps();
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('psychotherapy_types');
+        Schema::dropIfExists('answers');
     }
 };

@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('currentTime');
+            $table->timestamps();
             $table->string('caption');
             $table->string('image')->nullable(true);
             $table->string('video')->nullable(true);
-            $table->foreignIdFor(App\Models\Volunteer::class);
+            $table->foreignIdFor(App\Models\User::class);
         });
     }
 
