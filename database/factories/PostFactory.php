@@ -5,11 +5,11 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Answer>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
  */
-class AnswerFactory extends Factory
+class PostFactory extends Factory
 {
-    protected $model = App\Models\Answer::class;
+    protected $model = App\Models\Post::class;
     /**
      * Define the model's default state.
      *
@@ -18,10 +18,9 @@ class AnswerFactory extends Factory
     public function definition(): array
     {
         return [
-            'answer' => fake()->name(),
-            'percentage' => random_int(0, 100),
+            'caption' => fake()->name(),
+            'description' => fake()->paragraph(2, true),
             'user_id' => \App\Models\User::factory(),
-            'question_id' => \App\Models\Question::factory(),
         ];
     }
 }
