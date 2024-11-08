@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('country');
             $table->string('degree')->nullable(true);
             $table->integer('experience')->nullable(true);
+            $table->string('specialists')->nullable(true);
+            $table->string('university')->nullable(true);
             $table->rememberToken();
             $table->timestamps();
         });
