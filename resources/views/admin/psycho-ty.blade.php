@@ -26,7 +26,6 @@
     <link rel="icon" type="image/png" href="https://demo.themesberg.com/windster/favicon.ico">
     <link rel="manifest" href="https://demo.themesberg.com/windster/site.webmanifest">
     <link rel="mask-icon" href="https://demo.themesberg.com/windster/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
     <!-- Twitter -->
@@ -241,6 +240,7 @@
                 </div>
             </div>
         </aside>
+
         <div class="bg-gray-900 opacity-50 hidden fixed inset-0 z-10" id="sidebarBackdrop"></div>
 
         <div id="main-content" class="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64">
@@ -249,7 +249,7 @@
                 <div class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5">
                     <div class="mb-1 w-full">
                         <div class="mb-4">
-                            <h1 class="text-xl sm:text-2xl font-semibold text-gray-900">All users</h1>
+                            <h1 class="text-xl sm:text-2xl font-semibold text-gray-900">All psychological type</h1>
                         </div>
                         <div class="sm:flex">
                             <div class="hidden sm:flex items-center sm:divide-x sm:divide-gray-100 mb-3 sm:mb-0">
@@ -258,11 +258,22 @@
                                     <div class="mt-1 relative lg:w-64 xl:w-96">
                                         <input type="text" name="email" id="users-search"
                                             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                            placeholder="Search for users">
+                                            placeholder="Search for psychological type">
                                     </div>
-                                </form> 
+                                </form>
                             </div>
-                            
+                            <div class="flex items-center space-x-2 sm:space-x-3 ml-auto">
+                                <button type="button" data-modal-toggle="add-user-modal"
+                                    class="w-1/2 text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium inline-flex items-center justify-center rounded-lg text-sm px-3 py-2 text-center sm:w-auto">
+                                    <svg class="-ml-1 mr-2 h-6 w-6" fill="currentColor" viewBox="0 0 20 20"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    Add psychological type
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -345,7 +356,7 @@
                                                             d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
                                                             clip-rule="evenodd"></path>
                                                     </svg>
-                                                    Change Admin
+                                                    Edit psychological type
                                                 </button>
                                                 <button type="button" data-modal-toggle="delete-user-modal"
                                                     class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
@@ -355,7 +366,65 @@
                                                             d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
                                                             clip-rule="evenodd"></path>
                                                     </svg>
-                                                    Delete user
+                                                    Delete psychological type
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-100">
+                                            <td class="p-4 w-4">
+                                                <div class="flex items-center">
+                                                    <input id="checkbox-20" aria-describedby="checkbox-1"
+                                                        type="checkbox"
+                                                        class="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-cyan-200 h-4 w-4 rounded">
+                                                    <label for="checkbox-20" class="sr-only">checkbox</label>
+                                                </div>
+                                            </td>
+                                            <td class="p-4 flex items-center whitespace-nowrap space-x-6 mr-12 lg:mr-0">
+                                                <img class="h-10 w-10 rounded-full"
+                                                    src="https://demo.themesberg.com/windster/images/users/robert-brown.png"
+                                                    alt="Robert Brown avatar">
+                                                <div class="text-sm font-normal text-gray-500">
+                                                    <div class="text-base font-semibold text-gray-900">Robert Brown
+                                                    </div>
+                                                    <div class="text-sm font-normal text-gray-500"><a
+                                                            href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                            data-cfemail="a3d1ccc1c6d1d78dc1d1ccd4cde3d4cacdc7d0d7c6d18dc0ccce">[email&#160;protected]</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="p-4 whitespace-nowrap text-base font-medium text-gray-900">
+                                                Laravel developer</td>
+                                            <td class="p-4 whitespace-nowrap text-base font-medium text-gray-900">Russia
+                                            </td>
+                                            <td class="p-4 whitespace-nowrap text-base font-normal text-gray-900">
+                                                <div class="flex items-center">
+                                                    <div class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>
+                                                    Active
+                                                </div>
+                                            </td>
+                                            <td class="p-4 whitespace-nowrap space-x-2">
+                                                <button type="button" data-modal-toggle="user-modal"
+                                                    class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
+                                                    <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z">
+                                                        </path>
+                                                        <path fill-rule="evenodd"
+                                                            d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                                                            clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    Edit psychological type
+                                                </button>
+                                                <button type="button" data-modal-toggle="delete-user-modal"
+                                                    class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
+                                                    <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd"
+                                                            d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                            clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    Delete psychological type
                                                 </button>
                                             </td>
                                         </tr>
@@ -423,7 +492,7 @@
                             <!-- Modal header -->
                             <div class="flex items-start justify-between p-5 border-b rounded-t">
                                 <h3 class="text-xl font-semibold">
-                                    Change Admin
+                                    Edit psychological type data
                                 </h3>
                                 <button type="button"
                                     class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
@@ -441,45 +510,34 @@
                                 <form action="#">
                                     <div class="grid grid-cols-6 gap-6">
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="degree"
-                                                class="text-sm font-medium text-gray-900 block mb-2">Degree</label>
-                                            <input type="text" name="degree" id="degree"
+                                            <label for="caption"
+                                                class="text-sm font-medium text-gray-900 block mb-2">Caption</label>
+                                            <input type="text" name="caption" id="caption"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                placeholder="degree" required>
+                                                placeholder="Bonnie" required>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="experience"
-                                                class="text-sm font-medium text-gray-900 block mb-2">Experience</label>
-                                            <input type="number" name="experience" id="experience"
+                                            <label for="description"
+                                                class="text-sm font-medium text-gray-900 block mb-2">Description</label>
+                                            <input type="text" name="description" id="description"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                placeholder="e.g. 1" required>
+                                                placeholder="description" required>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="specialists"
-                                                class="text-sm font-medium text-gray-900 block mb-2">Specialists</label>
-                                            <input type="text" name="specialists" id="specialists"
+                                            <label for="image-upload"
+                                                class="text-sm font-medium text-gray-900 block mb-2">Image</label>
+                                            <input type="file" name="image" id="image-upload"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                placeholder="specialists" required>
+                                                accept="image/*">
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="university"
-                                                class="text-sm font-medium text-gray-900 block mb-2">University</label>
-                                            <input type="text" name="university" id="university"
+                                            <label for="video-upload"
+                                                class="text-sm font-medium text-gray-900 block mb-2">Video</label>
+                                            <input type="file" name="video" id="video-upload"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                placeholder="university" required>
+                                                accept="video/*" required>
                                         </div>
                                     </div>
-                                    <div class="col-span-6 sm:col-span-3">
-                                            <label for="role"
-                                                class="text-sm font-medium text-gray-900 block mb-2">Role</label>
-                                            <select name="role" id="role"
-                                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                required>
-                                                <option value="" disabled selected>Select Role</option>
-                                                <option value="0">User</option>
-                                                <option value="1">Admin</option>
-                                            </select>
-                                        </div>
                             </div>
                             <!-- Modal footer -->
                             <div class="items-center p-6 border-t border-gray-200 rounded-b">
@@ -491,6 +549,74 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Add User Modal -->
+                <div class="hidden overflow-x-hidden overflow-y-auto fixed top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center h-modal sm:h-full"
+                    id="add-user-modal">
+                    <div class="relative w-full max-w-2xl px-4 h-full md:h-auto">
+                        <!-- Modal content -->
+                        <div class="bg-white rounded-lg shadow relative">
+                            <!-- Modal header -->
+                            <div class="flex items-start justify-between p-5 border-b rounded-t">
+                                <h3 class="text-xl font-semibold">
+                                    Add new psychological type
+                                </h3>
+                                <button type="button"
+                                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                                    data-modal-toggle="add-user-modal">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="p-6 space-y-6">
+                                <form action="#">
+                                    <div class="grid grid-cols-6 gap-6">
+                                    <div class="col-span-6 sm:col-span-3">
+                                            <label for="caption"
+                                                class="text-sm font-medium text-gray-900 block mb-2">Caption</label>
+                                            <input type="text" name="caption" id="caption"
+                                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                                placeholder="Bonnie" required>
+                                        </div>
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="description"
+                                                class="text-sm font-medium text-gray-900 block mb-2">Description</label>
+                                            <input type="text" name="description" id="description"
+                                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                                placeholder="description" required>
+                                        </div>
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="image-upload"
+                                                class="text-sm font-medium text-gray-900 block mb-2">Image</label>
+                                            <input type="file" name="image" id="image-upload"
+                                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                                accept="image/*">
+                                        </div>
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="video-upload"
+                                                class="text-sm font-medium text-gray-900 block mb-2">Video</label>
+                                            <input type="file" name="video" id="video-upload"
+                                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                                accept="video/*" required>
+                                        </div>
+                                    </div>
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="items-center p-6 border-t border-gray-200 rounded-b">
+                                <button
+                                    class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                    type="submit">Add psychological type</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Delete User Modal -->
                 <div class="hidden overflow-x-hidden overflow-y-auto fixed top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center h-modal sm:h-full"
                     id="delete-user-modal">
