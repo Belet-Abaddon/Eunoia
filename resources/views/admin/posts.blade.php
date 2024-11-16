@@ -125,7 +125,6 @@
         </div>
     </nav>
     <div class="flex overflow-hidden bg-white pt-16">
-
         <aside id="sidebar"
             class="fixed hidden z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75"
             aria-label="Sidebar">
@@ -462,7 +461,7 @@
                     <div class="flex items-center space-x-3">
                         <a href="#"
                             class="flex-1 text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium inline-flex items-center justify-center rounded-lg text-sm px-3 py-2 text-center">
-                            <svg class="-ml-1 mr-1 h-5 w-5"" fill=" currentColor" viewBox="0 0 20 20"
+                            <svg class="-ml-1 mr-1 h-5 w-5" fill=" currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
                                     d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
@@ -535,7 +534,7 @@
                                                 class="text-sm font-medium text-gray-900 block mb-2">Video</label>
                                             <input type="file" name="video" id="video-upload"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                accept="video/*" required>
+                                                accept="video/*">
                                         </div>
                                     </div>
                             </div>
