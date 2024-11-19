@@ -223,11 +223,10 @@
                             </li>
                         </ul>
                         <div class="space-y-2 pt-2 ">
-                            <a href=""
-                                target="_blank"
+                            <a href="" target="_blank"
                                 class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 group transition duration-75 flex items-center p-2">
                                 <svg class="w-5 h-5 text-gray-900 flex-shrink-0 transition duration-75"
-                                xmlns="http://www.w3.org/2000/svg"
+                                    xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                                     <path
                                         d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z" />
@@ -283,35 +282,99 @@
                                 <table class="table-fixed min-w-full divide-y divide-gray-200">
                                     <thead class="bg-gray-100">
                                         <tr>
-                                            <th scope="col" class="p-4">
-                                                <div class="flex items-center">
-                                                    <input id="checkbox-all" aria-describedby="checkbox-1"
-                                                        type="checkbox"
-                                                        class="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-cyan-200 h-4 w-4 rounded">
-                                                    <label for="checkbox-all" class="sr-only">checkbox</label>
-                                                </div>
+                                            <th scope="col"
+                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
+                                                Created At
                                             </th>
                                             <th scope="col"
                                                 class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                Name
+                                                Updated At
                                             </th>
                                             <th scope="col"
                                                 class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                Position
+                                                Caption
                                             </th>
                                             <th scope="col"
                                                 class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                Country
+                                                Description
                                             </th>
                                             <th scope="col"
                                                 class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                Status
+                                                Image
                                             </th>
-                                            <th scope="col" class="p-4">
+                                            <th scope="col"
+                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
+                                                Video
+                                            </th>
+                                            <th scope="col"
+                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
+                                                Action
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-200">
+                                        @foreach ($posts as $post)
+                                            <tr>
+                                                <td class="p-4 text-sm text-gray-900">
+                                                    {{ $post->created_at }}
+                                                </td>
+                                                <td class="p-4 text-sm text-gray-900">
+                                                    {{ $post->updated_at }}
+                                                </td>
+                                                <td class="p-4 text-sm text-gray-900">
+                                                    {{ $post->caption }}
+                                                </td>
+                                                <td class="p-4 text-sm text-gray-900">
+                                                    {{ $post->description }}
+                                                </td>
+                                                <td class="p-4 text-sm text-gray-900">
+                                                    @if ($post->image)
+                                                        <img src="{{$post->image}}" alt="Image" class="h-16 w-16 object-cover">
+                                                    @else
+                                                        No Image
+                                                    @endif
+                                                </td>
+                                                <td class="p-4 text-sm text-gray-900">
+                                                    @if ($post->video)
+                                                        <video controls class="w-32 h-24">
+                                                            <source src="{{$post->video }}"
+                                                                type="video/mp4">
+                                                            Your browser does not support the video tag.
+                                                        </video>
+                                                    @else
+                                                        No Video
+                                                    @endif
+                                                </td>
+                                                <td class="p-4 whitespace-nowrap space-x-2">
+                                                    <button type="button" data-modal-toggle="user-modal"
+                                                        class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
+                                                        <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z">
+                                                            </path>
+                                                            <path fill-rule="evenodd"
+                                                                d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                                                                clip-rule="evenodd"></path>
+                                                        </svg>
+                                                        Edit post
+                                                    </button>
+                                                    <button type="button" data-modal-toggle="delete-user-modal"
+                                                        class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
+                                                        <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd"
+                                                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                                clip-rule="evenodd"></path>
+                                                        </svg>
+                                                        Delete post
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+
+                                    <!-- <tbody class="bg-white divide-y divide-gray-200">
 
                                         <tr class="hover:bg-gray-100">
                                             <td class="p-4 w-4">
@@ -427,7 +490,7 @@
                                                 </button>
                                             </td>
                                         </tr>
-                                    </tbody>
+                                    </tbody> -->
                                 </table>
                             </div>
                         </div>
@@ -573,7 +636,9 @@
                             </div>
                             <!-- Modal body -->
                             <div class="p-6 space-y-6">
-                                <form action="#">
+                                <form action="{{ route('admin.postCreate') }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
                                     <div class="grid grid-cols-6 gap-6">
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="caption"
@@ -592,7 +657,7 @@
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="image-upload"
                                                 class="text-sm font-medium text-gray-900 block mb-2">Image</label>
-                                            <input type="file" name="image" id="image-upload"
+                                            <input type="file" name="image" id="image"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                                 accept="image/*">
                                         </div>
@@ -601,7 +666,7 @@
                                                 class="text-sm font-medium text-gray-900 block mb-2">Video</label>
                                             <input type="file" name="video" id="video-upload"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                accept="video/*" required>
+                                                accept="video/*">
                                         </div>
                                     </div>
                             </div>

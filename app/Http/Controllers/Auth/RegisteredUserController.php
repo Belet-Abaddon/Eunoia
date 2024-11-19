@@ -62,4 +62,8 @@ class RegisteredUserController extends Controller
 
         return redirect(route('dashboard', absolute: false));
     }
+    public function show():View{
+        $users=User::where('role',0)->get();
+        return view('admin.user-list',compact('users'));
+    }
 }

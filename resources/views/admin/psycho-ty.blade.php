@@ -523,20 +523,6 @@
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                                 placeholder="description" required>
                                         </div>
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="image-upload"
-                                                class="text-sm font-medium text-gray-900 block mb-2">Image</label>
-                                            <input type="file" name="image" id="image-upload"
-                                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                accept="image/*">
-                                        </div>
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="video-upload"
-                                                class="text-sm font-medium text-gray-900 block mb-2">Video</label>
-                                            <input type="file" name="video" id="video-upload"
-                                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                accept="video/*" required>
-                                        </div>
                                     </div>
                             </div>
                             <!-- Modal footer -->
@@ -574,12 +560,13 @@
                             </div>
                             <!-- Modal body -->
                             <div class="p-6 space-y-6">
-                                <form action="#">
+                                <form action="{{ route('admin.psychoTyCreate') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
                                     <div class="grid grid-cols-6 gap-6">
                                     <div class="col-span-6 sm:col-span-3">
-                                            <label for="caption"
-                                                class="text-sm font-medium text-gray-900 block mb-2">Caption</label>
-                                            <input type="text" name="caption" id="caption"
+                                            <label for="name"
+                                                class="text-sm font-medium text-gray-900 block mb-2">Name</label>
+                                            <input type="text" name="name" id="name"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                                 placeholder="Bonnie" required>
                                         </div>
@@ -589,20 +576,6 @@
                                             <input type="text" name="description" id="description"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                                 placeholder="description" required>
-                                        </div>
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="image-upload"
-                                                class="text-sm font-medium text-gray-900 block mb-2">Image</label>
-                                            <input type="file" name="image" id="image-upload"
-                                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                accept="image/*">
-                                        </div>
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="video-upload"
-                                                class="text-sm font-medium text-gray-900 block mb-2">Video</label>
-                                            <input type="file" name="video" id="video-upload"
-                                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                accept="video/*" required>
                                         </div>
                                     </div>
                             </div>

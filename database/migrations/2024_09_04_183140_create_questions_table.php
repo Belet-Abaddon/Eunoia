@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('question');
             $table->string('description');
             $table->foreignIdFor(App\Models\PhychotherapyType::class);
+            $table->timestamp('updated_at')->nullable();
+            $table->timestamp('created_at')->nullable();
+
         });
     }
 
