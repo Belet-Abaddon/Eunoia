@@ -329,15 +329,15 @@
                                                 </td>
                                                 <td class="p-4 text-sm text-gray-900">
                                                     @if ($post->image)
-                                                        <img src="{{$post->image}}" alt="Image" class="h-16 w-16 object-cover">
+                                                        <img src="{{ $post->image_url }}" alt="Image" class="h-20 w-16 object-cover">
                                                     @else
                                                         No Image
                                                     @endif
                                                 </td>
                                                 <td class="p-4 text-sm text-gray-900">
                                                     @if ($post->video)
-                                                        <video controls class="w-32 h-24">
-                                                            <source src="{{$post->video }}"
+                                                        <video controls class="w-32 h-20">
+                                                            <source src="{{ $post->video_url }}"
                                                                 type="video/mp4">
                                                             Your browser does not support the video tag.
                                                         </video>

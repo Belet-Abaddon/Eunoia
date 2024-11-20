@@ -7,10 +7,11 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
-    public function store(Request $request) : RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
         $imageFilePath = null;
         $videoFilePath = null;
@@ -21,13 +22,13 @@ class PostController extends Controller
             'video' => 'mimes:mp4'
         ]);
 
-        if($request->file('image')) {
+        if ($request->file('image')) {
             $file = $request->file('image');
-            $imageFilePath = $file->store('uploads');
+            $imageFilePath = $file->store('uploads', 'public');
         }
-        if($request->file('video')) {
+        if ($request->file('video')) {
             $file = $request->file('video');
-            $videoFilePath = $file->store('uploads');
+            $videoFilePath = $file->store('uploads', 'public');
         }
 
         $data = [
@@ -40,8 +41,14 @@ class PostController extends Controller
         $post = Post::create($data);
         return redirect()->route('admin.posts');
     }
-    public function show():View{
-        $posts=Post::get();
-        return view('admin.posts',compact('posts'));
+    public function show(): View
+    {
+        $posts = Post::all()->map(function ($post) {
+            $post->image_url = $post->image ? Storage::url($post->image) : null;
+            $post->video_url = $post->video ? Storage::url($post->video) : null;
+            return $post;
+        });
+        return view('admin.posts', compact('posts'));
     }
+
 }

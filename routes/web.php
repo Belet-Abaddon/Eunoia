@@ -29,7 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/post-create', [PostController::class, 'store'])->name('admin.postCreate');
-    Route::post('/psychoTy-create', [PhychotherapyTypeController::class, 'store'])->name('admin.psychoTyCreate');
+    Route::get('/psycho-ty', [PhychotherapyTypeController::class, 'show'])->name('admin.psychoTyList');
+    Route::post('/psycho-ty-create', [PhychotherapyTypeController::class, 'store'])->name('admin.psychoTyCreate');
+    Route::put('/psycho-ty-update', [PhychotherapyTypeController::class, 'update'])->name('admin.psychoTyUpdate');
     Route::get('/question', [QuestionController::class, 'show'])->name('admin.questionList');
     Route::post('/question', [QuestionController::class, 'store'])->name('admin.questionCreate');
     Route::post('/therapist-list', [TherapistController::class, 'store'])->name('admin.therapistCreate');
