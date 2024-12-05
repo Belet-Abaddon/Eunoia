@@ -62,8 +62,25 @@ class RegisteredUserController extends Controller
 
         return redirect(route('dashboard', absolute: false));
     }
-    public function show():View{
-        $users=User::where('role',0)->get();
-        return view('admin.user-list',compact('users'));
+    public function show(): View
+    {
+        $users = User::where('role', 0)->get();
+        return view('admin.user-list', compact('users'));
+    }
+    public function changeRole(Request $request): RedirectResponse
+    {
+        $id = $request->input('id');
+        $user = User::findOrFail($id);
+
+        // Update additional fields
+        $user->degree = $request->input('degree');
+        $user->experience = $request->input('experience');
+        $user->specialists = $request->input('specialists');
+        $user->university = $request->input('university');
+        $user->role = $request->input('role'); // Assign role as Admin (1)
+
+        $user->save();
+
+        return redirect()->back()->with('success', 'User role updated successfully.');
     }
 }

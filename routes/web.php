@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/therapist-list',[TherapistController::class,'show'])->name('admin.therapistLists');
     Route::get('/posts',[PostController::class,'show'])->name('admin.posts');
     Route::get('/user-list',[RegisteredUserController::class,'show'])->name('admin.user-list');
+    Route::post('/user-list',[RegisteredUserController::class,'changeRole'])->name('admin.userRole');
 });
     // post
 

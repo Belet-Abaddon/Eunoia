@@ -127,7 +127,7 @@
     </nav>
     <div class="flex overflow-hidden bg-white pt-16">
 
-    <aside id="sidebar"
+        <aside id="sidebar"
             class="fixed hidden z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75"
             aria-label="Sidebar">
             <div class="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white pt-0">
@@ -225,11 +225,10 @@
                             </li>
                         </ul>
                         <div class="space-y-2 pt-2 ">
-                            <a href=""
-                                target="_blank"
+                            <a href="" target="_blank"
                                 class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 group transition duration-75 flex items-center p-2">
                                 <svg class="w-5 h-5 text-gray-900 flex-shrink-0 transition duration-75"
-                                xmlns="http://www.w3.org/2000/svg"
+                                    xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                                     <path
                                         d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z" />
@@ -260,9 +259,9 @@
                                             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                             placeholder="Search for users">
                                     </div>
-                                </form> 
+                                </form>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -273,7 +272,7 @@
                                 <table class="table-fixed min-w-full divide-y divide-gray-200">
                                     <thead class="bg-gray-100">
                                         <tr>
-                                        <th scope="col"
+                                            <th scope="col"
                                                 class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
                                                 Name
                                             </th>
@@ -309,6 +308,7 @@
                                                 <td class="p-4 text-sm text-gray-900">{{ $user->country }}</td>
                                                 <td class="p-4 whitespace-nowrap space-x-2">
                                                     <button type="button" data-modal-toggle="user-modal"
+                                                    onclick="openModal('{{ $user->id }}', '{{ $user->name }}', '{{ $user->email }}', '{{ $user->age }}', '{{ $user->gender }}', '{{ $user->country }}', '{{ $user->degree }}', '{{ $user->experience }}', '{{ $user->specialists }}', '{{ $user->university }}')"
                                                         class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
                                                         <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
                                                             xmlns="http://www.w3.org/2000/svg">
@@ -413,48 +413,40 @@
                             </div>
                             <!-- Modal body -->
                             <div class="p-6 space-y-6">
-                                <form action="#">
+                            <form action="{{ route('admin.userRole') }}" method="POST">
+                            @csrf
                                     <div class="grid grid-cols-6 gap-6">
+                                        <input type="hidden" name="id" id="model-id" value="">
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="degree"
                                                 class="text-sm font-medium text-gray-900 block mb-2">Degree</label>
-                                            <input type="text" name="degree" id="degree"
+                                            <input type="text" name="degree" id="model-degree"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                                 placeholder="degree" required>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="experience"
                                                 class="text-sm font-medium text-gray-900 block mb-2">Experience</label>
-                                            <input type="number" name="experience" id="experience"
+                                            <input type="number" name="experience" id="model-experience"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                                 placeholder="e.g. 1" required>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="specialists"
                                                 class="text-sm font-medium text-gray-900 block mb-2">Specialists</label>
-                                            <input type="text" name="specialists" id="specialists"
+                                            <input type="text" name="specialists" id="model-specialists"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                                 placeholder="specialists" required>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="university"
                                                 class="text-sm font-medium text-gray-900 block mb-2">University</label>
-                                            <input type="text" name="university" id="university"
+                                            <input type="text" name="university" id="model-university"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                                 placeholder="university" required>
                                         </div>
                                     </div>
-                                    <div class="col-span-6 sm:col-span-3">
-                                            <label for="role"
-                                                class="text-sm font-medium text-gray-900 block mb-2">Role</label>
-                                            <select name="role" id="role"
-                                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                required>
-                                                <option value="" disabled selected>Select Role</option>
-                                                <option value="0">User</option>
-                                                <option value="1">Admin</option>
-                                            </select>
-                                        </div>
+                                    <input type="number" name="role" id="model-role" value="1" hidden>
                             </div>
                             <!-- Modal footer -->
                             <div class="items-center p-6 border-t border-gray-200 rounded-b">
@@ -525,6 +517,40 @@
         integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
         data-cf-beacon='{"rayId":"8e058c9b5aeb4933","version":"2024.10.5","r":1,"token":"3a2c60bab7654724a0f7e5946db4ea5a","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}'
         crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add User Modal
+            const addUserButton = document.querySelector('[data-modal-toggle="add-user-modal"]');
+            const addUserModal = document.getElementById('add-user-modal');
+            const addUserCloseButton = addUserModal.querySelector('[data-modal-toggle="add-user-modal"]');
+
+            addUserButton.addEventListener('click', () => {
+                addUserModal.classList.remove('hidden');
+            });
+
+            addUserCloseButton.addEventListener('click', () => {
+                addUserModal.classList.add('hidden');
+            });
+
+
+        });
+    </script>
+    <script>
+        function openModal(id, name, email, age, gender, country, degree, experience, specialists, university) {
+            document.getElementById('model-id').value = id;
+            document.getElementById('model-degree').value = degree;
+            document.getElementById('model-experience').value = experience;
+            document.getElementById('model-specialists').value = specialists;
+            document.getElementById('model-university').value = university;
+
+            document.getElementById('user-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('user-modal').classList.add('hidden');
+        }
+    </script>
+
 </body>
 
 </html>

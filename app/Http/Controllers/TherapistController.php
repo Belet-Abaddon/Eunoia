@@ -39,7 +39,7 @@ class TherapistController extends Controller
         return redirect()->route('admin.therapistLists');
     }
     public function show():View{
-        $therapists=User::where('role',3)->get();
+        $therapists=User::where('role',2)->get();
         return view('admin.therapist-list',compact('therapists'));
     }
 }
