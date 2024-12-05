@@ -33,9 +33,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/psycho-ty-create', [PhychotherapyTypeController::class, 'store'])->name('admin.psychoTyCreate');
     Route::put('/psycho-ty-update', [PhychotherapyTypeController::class, 'update'])->name('admin.psychoTyUpdate');
     Route::get('/question', [QuestionController::class, 'show'])->name('admin.questionList');
-    Route::post('/question', [QuestionController::class, 'store'])->name('admin.questionCreate');
+    Route::post('/question-create', [QuestionController::class, 'store'])->name('admin.questionCreate');
+    Route::put('/question-update', [QuestionController::class, 'update'])->name('admin.questionUpdate');
     Route::post('/therapist-list', [TherapistController::class, 'store'])->name('admin.therapistCreate');
-    Route::get('/therapist-list',[TherapistController::class,'show'])->name('admin.therapist');
+    Route::get('/therapist-list',[TherapistController::class,'show'])->name('admin.therapistLists');
     Route::get('/posts',[PostController::class,'show'])->name('admin.posts');
     Route::get('/user-list',[RegisteredUserController::class,'show'])->name('admin.user-list');
 });

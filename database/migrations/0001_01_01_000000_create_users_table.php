@@ -24,7 +24,7 @@ return new class extends Migration
             $table->integer('experience')->nullable(true);
             $table->string('specialists')->nullable(true);
             $table->string('university')->nullable(true);
-            $table->integer('role')->default(0);
+            $table->integer('role');
             $table->rememberToken();
             $table->timestamps();
         });

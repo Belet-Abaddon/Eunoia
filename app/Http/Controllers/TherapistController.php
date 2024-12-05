@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class TherapistController extends Controller
 {
@@ -19,21 +20,8 @@ class TherapistController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): View
+    public function store(Request $request): RedirectResponse
     {
-        
-        // $validated = $request->validate([
-        //     'name' => 'required|string|max:255',
-        //     'email' => 'required|string|email|max:255|unique:' . User::class,
-        //     'password' => 'required|string|min:8',
-        //     'age' => 'required|integer',
-        //     'gender' => 'required|string|max:10',
-        //     'country' => 'required|string|max:100',
-        //     'degree' => 'required|string',
-        //     'experience' => 'required|integer',
-        //     'specialists' => 'required|string',
-        //     'university' => 'required|string',
-        // ]);
         $data=[
             'name'=>$request->name,
             'email'=>$request->email,   
@@ -45,10 +33,10 @@ class TherapistController extends Controller
             'experience'=>$request->experience,
             'specialists'=>$request->specialists,
             'university' =>$request->university,
-            'role'=>3,
+            'role'=>$request->role,
         ];
         $therapist=User::create($data);
-        return view('admin.therapist-list',compact('therapist'));
+        return redirect()->route('admin.therapistLists');
     }
     public function show():View{
         $therapists=User::where('role',3)->get();

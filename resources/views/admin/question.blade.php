@@ -321,30 +321,32 @@
                                                     {{ $question->updated_at }}
                                                 </td>
                                                 <td class="p-4 whitespace-nowrap space-x-2">
-                                                <button type="button" data-modal-toggle="user-modal"
-                                                    class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
-                                                    <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z">
-                                                        </path>
-                                                        <path fill-rule="evenodd"
-                                                            d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                                                            clip-rule="evenodd"></path>
-                                                    </svg>
-                                                    Edit question
-                                                </button>
-                                                <button type="button" data-modal-toggle="delete-user-modal"
-                                                    class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
-                                                    <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd"
-                                                            d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                            clip-rule="evenodd"></path>
-                                                    </svg>
-                                                    Delete question
-                                                </button>
-                                            </td>
+                                                    <button type="button" data-modal-toggle="user-modal"
+                                                        onclick="openModal('{{ $question->id }}', '{{ $question->question }}', '{{ $question->description }}', '{{ $question->phychotherapy_type_id }}')"
+                                                        data-modal-toggle="user-modal"
+                                                        class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
+                                                        <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path
+                                                                d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z">
+                                                            </path>
+                                                            <path fill-rule="evenodd"
+                                                                d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                                                                clip-rule="evenodd"></path>
+                                                        </svg>
+                                                        Edit question
+                                                    </button>
+                                                    <button type="button" data-modal-toggle="delete-user-modal"
+                                                        class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
+                                                        <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
+                                                            xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd"
+                                                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                                clip-rule="evenodd"></path>
+                                                        </svg>
+                                                        Delete question
+                                                    </button>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -426,19 +428,22 @@
                             </div>
                             <!-- Modal body -->
                             <div class="p-6 space-y-6">
-                                <form action="#">
+                                <form action="{{route('admin.questionUpdate')}}" method="POST">
+                                    @csrf
+                                    @method('PUT')
                                     <div class="grid grid-cols-6 gap-6">
+                                        <input type="hidden" name="id" id="model-id" value="">
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="question"
                                                 class="text-sm font-medium text-gray-900 block mb-2">Question</label>
-                                            <input type="text" name="question" id="question"
+                                            <input type="text" name="question" id="model-question"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                                 placeholder="Bonnie" required>
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="description"
                                                 class="text-sm font-medium text-gray-900 block mb-2">Description</label>
-                                            <input type="text" name="description" id="description"
+                                            <input type="text" name="description" id="model-des"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                                 placeholder="description" required>
                                         </div>
@@ -447,7 +452,7 @@
                                                 class="text-sm font-medium text-gray-900 block mb-2">
                                                 Psychotherapy Type
                                             </label>
-                                            <select name="psychotherapy_type_id" id="psychotherapy_type"
+                                            <select name="phychotherapy_type_id" id="model-psT"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                                 required>
                                                 <option value="" disabled selected>Select a type</option>
@@ -598,6 +603,39 @@
         integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
         data-cf-beacon='{"rayId":"8e058c9b5aeb4933","version":"2024.10.5","r":1,"token":"3a2c60bab7654724a0f7e5946db4ea5a","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}'
         crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add User Modal
+            const addUserButton = document.querySelector('[data-modal-toggle="add-user-modal"]');
+            const addUserModal = document.getElementById('add-user-modal');
+            const addUserCloseButton = addUserModal.querySelector('[data-modal-toggle="add-user-modal"]');
+
+            addUserButton.addEventListener('click', () => {
+                addUserModal.classList.remove('hidden');
+            });
+
+            addUserCloseButton.addEventListener('click', () => {
+                addUserModal.classList.add('hidden');
+            });
+
+
+        });
+    </script>
+    <script>
+        function openModal(id, question, description, phychotherapy_type_id) {
+            document.getElementById('model-id').value = id;
+            document.getElementById('model-question').value = question;
+            document.getElementById('model-des').value = description;
+            document.getElementById('model-psT').value = phychotherapy_type_id;
+
+
+            document.getElementById('user-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('user-modal').classList.add('hidden');
+        }
+    </script>
 </body>
 
 </html>
