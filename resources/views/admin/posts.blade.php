@@ -329,7 +329,8 @@
                                                 </td>
                                                 <td class="p-4 text-sm text-gray-900">
                                                     @if ($post->image)
-                                                        <img src="{{ $post->image_url }}" alt="Image" class="h-20 w-16 object-cover">
+                                                        <img src="{{ $post->image_url }}" alt="Image"
+                                                            class="h-20 w-16 object-cover">
                                                     @else
                                                         No Image
                                                     @endif
@@ -337,8 +338,7 @@
                                                 <td class="p-4 text-sm text-gray-900">
                                                     @if ($post->video)
                                                         <video controls class="w-32 h-20">
-                                                            <source src="{{ $post->video_url }}"
-                                                                type="video/mp4">
+                                                            <source src="{{ $post->video_url }}" type="video/mp4">
                                                             Your browser does not support the video tag.
                                                         </video>
                                                     @else
@@ -347,6 +347,7 @@
                                                 </td>
                                                 <td class="p-4 whitespace-nowrap space-x-2">
                                                     <button type="button" data-modal-toggle="user-modal"
+                                                        onclick="openModal('{{ $post->id }}', '{{ $post->caption }}', '{{ $post->description }}', '{{ $post->image_url }}', '{{ $post->video_url }}')"
                                                         class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
                                                         <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
                                                             xmlns="http://www.w3.org/2000/svg">
@@ -373,124 +374,6 @@
                                             </tr>
                                         @endforeach
                                     </tbody>
-
-                                    <!-- <tbody class="bg-white divide-y divide-gray-200">
-
-                                        <tr class="hover:bg-gray-100">
-                                            <td class="p-4 w-4">
-                                                <div class="flex items-center">
-                                                    <input id="checkbox-1" aria-describedby="checkbox-1" type="checkbox"
-                                                        class="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-cyan-200 h-4 w-4 rounded">
-                                                    <label for="checkbox-1" class="sr-only">checkbox</label>
-                                                </div>
-                                            </td>
-                                            <td class="p-4 flex items-center whitespace-nowrap space-x-6 mr-12 lg:mr-0">
-                                                <img class="h-10 w-10 rounded-full"
-                                                    src="https://demo.themesberg.com/windster/images/users/neil-sims.png"
-                                                    alt="Neil Sims avatar">
-                                                <div class="text-sm font-normal text-gray-500">
-                                                    <div class="text-base font-semibold text-gray-900">Neil Sims</div>
-                                                    <div class="text-sm font-normal text-gray-500"><a
-                                                            href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                            data-cfemail="5739323e3b79243e3a2417203e3933242332257934383a">[email&#160;protected]</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="p-4 whitespace-nowrap text-base font-medium text-gray-900">
-                                                Front-end developer</td>
-                                            <td class="p-4 whitespace-nowrap text-base font-medium text-gray-900">United
-                                                States</td>
-                                            <td class="p-4 whitespace-nowrap text-base font-normal text-gray-900">
-                                                <div class="flex items-center">
-                                                    <div class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>
-                                                    Active
-                                                </div>
-                                            </td>
-                                            <td class="p-4 whitespace-nowrap space-x-2">
-                                                <button type="button" data-modal-toggle="user-modal"
-                                                    class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
-                                                    <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z">
-                                                        </path>
-                                                        <path fill-rule="evenodd"
-                                                            d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                                                            clip-rule="evenodd"></path>
-                                                    </svg>
-                                                    Edit post
-                                                </button>
-                                                <button type="button" data-modal-toggle="delete-user-modal"
-                                                    class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
-                                                    <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd"
-                                                            d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                            clip-rule="evenodd"></path>
-                                                    </svg>
-                                                    Delete post
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr class="hover:bg-gray-100">
-                                            <td class="p-4 w-4">
-                                                <div class="flex items-center">
-                                                    <input id="checkbox-20" aria-describedby="checkbox-1"
-                                                        type="checkbox"
-                                                        class="bg-gray-50 border-gray-300 focus:ring-3 focus:ring-cyan-200 h-4 w-4 rounded">
-                                                    <label for="checkbox-20" class="sr-only">checkbox</label>
-                                                </div>
-                                            </td>
-                                            <td class="p-4 flex items-center whitespace-nowrap space-x-6 mr-12 lg:mr-0">
-                                                <img class="h-10 w-10 rounded-full"
-                                                    src="https://demo.themesberg.com/windster/images/users/robert-brown.png"
-                                                    alt="Robert Brown avatar">
-                                                <div class="text-sm font-normal text-gray-500">
-                                                    <div class="text-base font-semibold text-gray-900">Robert Brown
-                                                    </div>
-                                                    <div class="text-sm font-normal text-gray-500"><a
-                                                            href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                            data-cfemail="a3d1ccc1c6d1d78dc1d1ccd4cde3d4cacdc7d0d7c6d18dc0ccce">[email&#160;protected]</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="p-4 whitespace-nowrap text-base font-medium text-gray-900">
-                                                Laravel developer</td>
-                                            <td class="p-4 whitespace-nowrap text-base font-medium text-gray-900">Russia
-                                            </td>
-                                            <td class="p-4 whitespace-nowrap text-base font-normal text-gray-900">
-                                                <div class="flex items-center">
-                                                    <div class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>
-                                                    Active
-                                                </div>
-                                            </td>
-                                            <td class="p-4 whitespace-nowrap space-x-2">
-                                                <button type="button" data-modal-toggle="user-modal"
-                                                    class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
-                                                    <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path
-                                                            d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z">
-                                                        </path>
-                                                        <path fill-rule="evenodd"
-                                                            d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                                                            clip-rule="evenodd"></path>
-                                                    </svg>
-                                                    Edit post
-                                                </button>
-                                                <button type="button" data-modal-toggle="delete-user-modal"
-                                                    class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
-                                                    <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd"
-                                                            d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                            clip-rule="evenodd"></path>
-                                                    </svg>
-                                                    Delete post
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </tbody> -->
                                 </table>
                             </div>
                         </div>
@@ -569,159 +452,186 @@
                             </div>
                             <!-- Modal body -->
                             <div class="p-6 space-y-6">
-                                <form action="#">
-                                    <div class="grid grid-cols-6 gap-6">
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="caption"
-                                                class="text-sm font-medium text-gray-900 block mb-2">Caption</label>
-                                            <input type="text" name="caption" id="caption"
-                                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                placeholder="Bonnie" required>
-                                        </div>
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="description"
-                                                class="text-sm font-medium text-gray-900 block mb-2">Description</label>
-                                            <input type="text" name="description" id="description"
-                                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                placeholder="description" required>
-                                        </div>
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="image-upload"
-                                                class="text-sm font-medium text-gray-900 block mb-2">Image</label>
-                                            <input type="file" name="image" id="image-upload"
-                                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                accept="image/*">
-                                        </div>
-                                        <div class="col-span-6 sm:col-span-3">
-                                            <label for="video-upload"
-                                                class="text-sm font-medium text-gray-900 block mb-2">Video</label>
-                                            <input type="file" name="video" id="video-upload"
-                                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                accept="video/*">
-                                        </div>
-                                    </div>
-                            </div>
-                            <!-- Modal footer -->
-                            <div class="items-center p-6 border-t border-gray-200 rounded-b">
-                                <button
-                                    class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                                    type="submit">Save all</button>
-                            </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Add User Modal -->
-                <div class="hidden overflow-x-hidden overflow-y-auto fixed top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center h-modal sm:h-full"
-                    id="add-user-modal">
-                    <div class="relative w-full max-w-2xl px-4 h-full md:h-auto">
-                        <!-- Modal content -->
-                        <div class="bg-white rounded-lg shadow relative">
-                            <!-- Modal header -->
-                            <div class="flex items-start justify-between p-5 border-b rounded-t">
-                                <h3 class="text-xl font-semibold">
-                                    Add new post
-                                </h3>
-                                <button type="button"
-                                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-                                    data-modal-toggle="add-user-modal">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                            clip-rule="evenodd"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                            <!-- Modal body -->
-                            <div class="p-6 space-y-6">
-                                <form action="{{ route('admin.postCreate') }}" method="POST"
-                                    enctype="multipart/form-data">
+                            <form action="{{ route('admin.postUpdate') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="id" id="post-id">
+
                                     <div class="grid grid-cols-6 gap-6">
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="caption"
+                                            <label for="post-caption"
                                                 class="text-sm font-medium text-gray-900 block mb-2">Caption</label>
-                                            <input type="text" name="caption" id="caption"
+                                            <input type="text" name="caption" id="post-caption"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                placeholder="Bonnie" required>
+                                                placeholder="Caption" required>
                                         </div>
+
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="description"
+                                            <label for="post-description"
                                                 class="text-sm font-medium text-gray-900 block mb-2">Description</label>
-                                            <input type="text" name="description" id="description"
+                                            <input type="text" name="description" id="post-description"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                placeholder="description" required>
+                                                placeholder="Description" required>
                                         </div>
+
+                                        <!-- Current Image -->
+                                        <div id="current-image-container" class="col-span-6 sm:col-span-3 hidden">
+                                            <label class="text-sm font-medium text-gray-900 block mb-2">Current
+                                                Image</label>
+                                            <img id="current-image" class="rounded-md w-full h-auto">
+                                        </div>
+
+                                        <!-- Image Upload -->
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="image-upload"
-                                                class="text-sm font-medium text-gray-900 block mb-2">Image</label>
-                                            <input type="file" name="image" id="image"
+                                            <label for="post-image-upload"
+                                                class="text-sm font-medium text-gray-900 block mb-2">Upload
+                                                Image</label>
+                                            <input type="file" name="image" id="post-image-upload"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                                 accept="image/*">
                                         </div>
+
+                                        <!-- Current Video -->
+                                        <div id="current-video-container" class="col-span-6 sm:col-span-3 hidden">
+                                            <label class="text-sm font-medium text-gray-900 block mb-2">Current
+                                                Video</label>
+                                            <video id="current-video" class="rounded-md w-full h-auto" controls></video>
+                                        </div>
+
+                                        <!-- Video Upload -->
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="video-upload"
-                                                class="text-sm font-medium text-gray-900 block mb-2">Video</label>
-                                            <input type="file" name="video" id="video-upload"
+                                            <label for="post-video-upload"
+                                                class="text-sm font-medium text-gray-900 block mb-2">Upload
+                                                Video</label>
+                                            <input type="file" name="video" id="post-video-upload"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                                 accept="video/*">
                                         </div>
                                     </div>
-                            </div>
-                            <!-- Modal footer -->
-                            <div class="items-center p-6 border-t border-gray-200 rounded-b">
-                                <button
-                                    class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                                    type="submit">Add post</button>
-                            </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Delete User Modal -->
-                <div class="hidden overflow-x-hidden overflow-y-auto fixed top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center h-modal sm:h-full"
-                    id="delete-user-modal">
-                    <div class="relative w-full max-w-md px-4 h-full md:h-auto">
-                        <!-- Modal content -->
-                        <div class="bg-white rounded-lg shadow relative">
-                            <!-- Modal header -->
-                            <div class="flex justify-end p-2">
-                                <button type="button"
-                                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-                                    data-modal-toggle="delete-user-modal">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                            clip-rule="evenodd"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                            <!-- Modal body -->
-                            <div class="p-6 pt-0 text-center">
-                                <svg class="w-20 h-20 text-red-600 mx-auto" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <h3 class="text-xl font-normal text-gray-500 mt-5 mb-6">Are you sure you want to delete
-                                    this user?</h3>
-                                <a href="#"
-                                    class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-base inline-flex items-center px-3 py-2.5 text-center mr-2">
-                                    Yes, I'm sure
-                                </a>
-                                <a href="#"
-                                    class="text-gray-900 bg-white hover:bg-gray-100 focus:ring-4 focus:ring-cyan-200 border border-gray-200 font-medium inline-flex items-center rounded-lg text-base px-3 py-2.5 text-center"
-                                    data-modal-toggle="delete-user-modal">
-                                    No, cancel
-                                </a>
+                                    <!-- Modal Footer -->
+                                    <div class="items-center p-6 border-t border-gray-200 rounded-b">
+                                        <button type="submit"
+                                            class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                            Save Changes
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-                </div>
+
+                    <!-- Add User Modal -->
+                    <div class="hidden overflow-x-hidden overflow-y-auto fixed top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center h-modal sm:h-full"
+                        id="add-user-modal">
+                        <div class="relative w-full max-w-2xl px-4 h-full md:h-auto">
+                            <!-- Modal content -->
+                            <div class="bg-white rounded-lg shadow relative">
+                                <!-- Modal header -->
+                                <div class="flex items-start justify-between p-5 border-b rounded-t">
+                                    <h3 class="text-xl font-semibold">
+                                        Add new post
+                                    </h3>
+                                    <button type="button"
+                                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                                        data-modal-toggle="add-user-modal">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <!-- Modal body -->
+                                <div class="p-6 space-y-6">
+                                    <form action="{{ route('admin.postCreate') }}" method="POST"
+                                        enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="grid grid-cols-6 gap-6">
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="caption"
+                                                    class="text-sm font-medium text-gray-900 block mb-2">Caption</label>
+                                                <input type="text" name="caption" id="caption"
+                                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                                    placeholder="Bonnie" required>
+                                            </div>
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="description"
+                                                    class="text-sm font-medium text-gray-900 block mb-2">Description</label>
+                                                <input type="text" name="description" id="description"
+                                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                                    placeholder="description" required>
+                                            </div>
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="image-upload"
+                                                    class="text-sm font-medium text-gray-900 block mb-2">Image</label>
+                                                <input type="file" name="image" id="image"
+                                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                                    accept="image/*">
+                                            </div>
+                                            <div class="col-span-6 sm:col-span-3">
+                                                <label for="video-upload"
+                                                    class="text-sm font-medium text-gray-900 block mb-2">Video</label>
+                                                <input type="file" name="video" id="video-upload"
+                                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                                    accept="video/*">
+                                            </div>
+                                        </div>
+                                </div>
+                                <!-- Modal footer -->
+                                <div class="items-center p-6 border-t border-gray-200 rounded-b">
+                                    <button
+                                        class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                        type="submit">Add post</button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Delete User Modal -->
+                    <div class="hidden overflow-x-hidden overflow-y-auto fixed top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center h-modal sm:h-full"
+                        id="delete-user-modal">
+                        <div class="relative w-full max-w-md px-4 h-full md:h-auto">
+                            <!-- Modal content -->
+                            <div class="bg-white rounded-lg shadow relative">
+                                <!-- Modal header -->
+                                <div class="flex justify-end p-2">
+                                    <button type="button"
+                                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                                        data-modal-toggle="delete-user-modal">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <!-- Modal body -->
+                                <div class="p-6 pt-0 text-center">
+                                    <svg class="w-20 h-20 text-red-600 mx-auto" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    <h3 class="text-xl font-normal text-gray-500 mt-5 mb-6">Are you sure you want to
+                                        delete
+                                        this user?</h3>
+                                    <a href="#"
+                                        class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-base inline-flex items-center px-3 py-2.5 text-center mr-2">
+                                        Yes, I'm sure
+                                    </a>
+                                    <a href="#"
+                                        class="text-gray-900 bg-white hover:bg-gray-100 focus:ring-4 focus:ring-cyan-200 border border-gray-200 font-medium inline-flex items-center rounded-lg text-base px-3 py-2.5 text-center"
+                                        data-modal-toggle="delete-user-modal">
+                                        No, cancel
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
             </main>
@@ -740,6 +650,51 @@
         integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
         data-cf-beacon='{"rayId":"8e058c9b5aeb4933","version":"2024.10.5","r":1,"token":"3a2c60bab7654724a0f7e5946db4ea5a","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}'
         crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add User Modal
+            const addUserButton = document.querySelector('[data-modal-toggle="add-user-modal"]');
+            const addUserModal = document.getElementById('add-user-modal');
+            const addUserCloseButton = addUserModal.querySelector('[data-modal-toggle="add-user-modal"]');
+
+            addUserButton.addEventListener('click', () => {
+                addUserModal.classList.remove('hidden');
+            });
+
+            addUserCloseButton.addEventListener('click', () => {
+                addUserModal.classList.add('hidden');
+            });
+
+
+        });
+    </script>
+    <script>
+        function openModal(id, caption, description, imageUrl, videoUrl) {
+            document.getElementById('post-id').value = id;
+            document.getElementById('post-caption').value = caption;
+            document.getElementById('post-description').value = description;
+
+            if (imageUrl) {
+                document.getElementById('current-image').src = imageUrl;
+                document.getElementById('current-image-container').classList.remove('hidden');
+            } else {
+                document.getElementById('current-image-container').classList.add('hidden');
+            }
+
+            if (videoUrl) {
+                document.getElementById('current-video').src = videoUrl;
+                document.getElementById('current-video-container').classList.remove('hidden');
+            } else {
+                document.getElementById('current-video-container').classList.add('hidden');
+            }
+
+            document.getElementById('post-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('post-modal').classList.add('hidden');
+        }
+    </script>
 </body>
 
 </html>

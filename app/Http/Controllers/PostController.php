@@ -50,5 +50,40 @@ class PostController extends Controller
         });
         return view('admin.posts', compact('posts'));
     }
+    public function update(Request $request): RedirectResponse
+    {
+        $validatedData = $request->validate([
+            'id' => 'required|exists:posts,id',
+            'caption' => 'required|string|max:255',
+            'description' => 'required|max:255',
+            'image' => 'nullable|mimes:png,jpg',
+            'video' => 'nullable|mimes:mp4',
+        ]);
 
+        $post = Post::findOrFail($validatedData['id']);
+
+        // Update fields
+        $post->caption = $validatedData['caption'];
+        $post->description = $validatedData['description'];
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            if ($post->image) {
+                Storage::disk('public')->delete($post->image); // Delete the old image
+            }
+            $post->image = $request->file('image')->store('uploads', 'public');
+        }
+
+        // Handle video upload
+        if ($request->hasFile('video')) {
+            if ($post->video) {
+                Storage::disk('public')->delete($post->video); // Delete the old video
+            }
+            $post->video = $request->file('video')->store('uploads', 'public');
+        }
+
+        $post->save();
+
+        return redirect()->route('admin.posts')->with('success', 'Post updated successfully!');
+    }
 }
