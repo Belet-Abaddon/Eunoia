@@ -42,4 +42,13 @@ class TherapistController extends Controller
         $therapists=User::where('role',2)->get();
         return view('admin.therapist-list',compact('therapists'));
     }
+    public function destroy($id)
+    {
+        // Find the category type by ID and delete
+        $theprapist = User::findOrFail($id);
+        $theprapist->delete();
+
+        // Redirect back with a success message
+        return redirect()->route('admin.therapistLists')->with('success', 'Category type deleted successfully.');
+    }
 }

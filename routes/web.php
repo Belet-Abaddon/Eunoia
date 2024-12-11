@@ -10,15 +10,14 @@ use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Http\Controllers\AdminDashboardController;
 
 
 // Route::get('/question',function(){
 //     return view('admin.question');
 // });
 
-Route::get('/', function () {
-    return view('admin.admin-dashboard');
-});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -28,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/admin-dashboard', [AdminDashboardController::class, 'dashboard'])->name('admin.dashboard');
     Route::post('/post-create', [PostController::class, 'store'])->name('admin.postCreate');
     Route::get('/posts',[PostController::class,'show'])->name('admin.posts');
     Route::put('/post-update', [PostController::class, 'update'])->name('admin.postUpdate');
@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/question-update', [QuestionController::class, 'update'])->name('admin.questionUpdate');
     Route::post('/therapist-list', [TherapistController::class, 'store'])->name('admin.therapistCreate');
     Route::get('/therapist-list',[TherapistController::class,'show'])->name('admin.therapistLists');
+    Route::get('/therapist-list/{id}',[TherapistController::class,'destroy'])->name('admin.therapistDelete');
     Route::get('/posts',[PostController::class,'show'])->name('admin.posts');
     Route::get('/user-list',[RegisteredUserController::class,'show'])->name('admin.user-list');
     Route::post('/user-list',[RegisteredUserController::class,'changeRole'])->name('admin.userRole');

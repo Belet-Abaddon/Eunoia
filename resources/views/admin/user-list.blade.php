@@ -154,7 +154,7 @@
                                 </form>
                             </li>
                             <li>
-                                <a href="/"
+                                <a href="/admin-dashboard"
                                     class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group">
                                     <svg class="w-6 h-6 text-gray-900 transition duration-75" fill="currentColor"
                                         viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -321,7 +321,7 @@
                                                         </svg>
                                                         Edit user
                                                     </button>
-                                                    <button type="button" data-modal-toggle="delete-user-modal"
+                                                    <button type="button" data-modal-toggle="delete-user-modal" 
                                                         class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
                                                         <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
                                                             xmlns="http://www.w3.org/2000/svg">
