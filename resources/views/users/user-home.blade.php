@@ -84,10 +84,10 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
                 <!-- Psychometric Testing Box -->
                 @foreach ($phychoTys as $phychoTy)
-                    <a href="#psychometric-testing"
+                    <a href="{{ route('user.questions', $phychoTy->id) }}"
                         class="bg-white shadow-lg rounded p-6 text-center hover:shadow-xl transition-all">
-                        <h3 class="text-xl font-semibold text-cyan-700">{{$phychoTy->name}}</h3>
-                        <p class="text-gray-600 mt-2">{{$phychoTy->description}}</p>
+                        <h3 class="text-xl font-semibold text-cyan-700">{{ $phychoTy->name }}</h3>
+                        <p class="text-gray-600 mt-2">{{ $phychoTy->description }}</p>
                     </a>
                 @endforeach
             </div>

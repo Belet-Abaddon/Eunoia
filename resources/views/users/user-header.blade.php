@@ -36,23 +36,7 @@
             <nav class="hidden md:flex items-center space-x-6">
                 <a href="#home" class="text-gray-700 hover:text-cyan-500">Home</a>
                 <a href="#about-us" class="text-gray-700 hover:text-cyan-500">About Us</a>
-
-                <!-- Dropdown Menu -->
-                <div class="relative group">
-                    <button class="text-gray-700 hover:text-cyan-500">Our Services</button>
-                    <div class="absolute left-0 mt-2 w-48 bg-white shadow-md rounded dropdown-menu">
-                        @foreach ($phychoTys as $phychoTy)
-                        <a href="#psych-assessment" class="block px-4 py-2 text-sm hover:bg-cyan-100">{{$phychoTy->name}}</a>
-                        @endforeach
-                        <!-- <a href="#psych-assessment" class="block px-4 py-2 text-sm hover:bg-cyan-100">Psychological Assessment</a>
-                        <a href="#psychometric-testing" class="block px-4 py-2 text-sm hover:bg-cyan-100">Psychometric Testing</a>
-                        <a href="#adhd-testing" class="block px-4 py-2 text-sm hover:bg-cyan-100">ADHD Testing</a>
-                        <a href="#autism-testing" class="block px-4 py-2 text-sm hover:bg-cyan-100">Autism/ASD Testing</a>
-                        <a href="#intelligence-testing" class="block px-4 py-2 text-sm hover:bg-cyan-100">Intelligence Testing</a>
-                        <a href="#personality-testing" class="block px-4 py-2 text-sm hover:bg-cyan-100">Personality Testing</a> -->
-                    </div>
-                </div>
-
+                <a href="#our-services" class="text-gray-700 hover:text-cyan-500">Our Services</a>
                 <a href="#blog" class="text-gray-700 hover:text-cyan-500">Blog</a>
                 <a href="#contact" class="text-gray-700 hover:text-cyan-500">Contact</a>
             </nav>

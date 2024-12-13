@@ -25,16 +25,17 @@ class QuestionController extends Controller
         $question = Question::create($data);
         return redirect()->route('admin.questionList');
     }
-    public function show():View{
-        $questions=Question::get();
+    public function show(): View
+    {
+        $questions = Question::get();
         $psychoTys = PhychotherapyType::get();
-        return view('admin.question',compact('questions','psychoTys'));
+        return view('admin.question', compact('questions', 'psychoTys'));
     }
     public function update(Request $request): RedirectResponse
     {
         $id = $request->input('id');
         $question = Question::findOrFail($id);
-    
+
         // Update basic fields
         $question->question = $request->input('question');
         $question->description = $request->input('description');
@@ -42,7 +43,7 @@ class QuestionController extends Controller
 
         // Save updated category
         $question->save();
-    
+
         return redirect()->back();
     }
     public function destroy($id)
@@ -50,8 +51,14 @@ class QuestionController extends Controller
         // Find the category type by ID and delete
         $question = Question::findOrFail($id);
         $question->delete();
-    
+
         // Redirect back with a success message
         return redirect()->route('admin.questionList')->with('success', 'Category type deleted successfully.');
+    }
+    public function showQuestions($phychotherapyTypeId)
+    {
+        $phychotherapyType = PhychotherapyType::findOrFail($phychotherapyTypeId);
+        $questions=Question::where('phychotherapy_type_id', $phychotherapyTypeId)->get();
+        return view('users.question', compact('phychotherapyType', 'questions'));
     }
 }

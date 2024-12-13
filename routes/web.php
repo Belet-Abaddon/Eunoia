@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\TherapistController;
 use App\Http\Controllers\PostController;
@@ -17,8 +18,10 @@ use App\Http\Controllers\AdminDashboardController;
 //     return view('admin.question');
 // });
 
-Route::get('/user-home', [PhychotherapyTypeController::class, 'showPhychoTyList'])->name('user.home'); 
+Route::get('/user-home', [PhychotherapyTypeController::class, 'showPhychoTyList'])->name('user.home');
 Route::get('/user-header', [PhychotherapyTypeController::class, 'showPhychoTy'])->name('user.header');
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -34,7 +37,7 @@ Route::middleware('auth')->group(function () {
 
     //post
     Route::post('/post-create', [PostController::class, 'store'])->name('admin.postCreate');
-    Route::get('/posts',[PostController::class,'show'])->name('admin.posts');
+    Route::get('/posts', [PostController::class, 'show'])->name('admin.posts');
     Route::put('/post-update', [PostController::class, 'update'])->name('admin.postUpdate');
 
 
@@ -52,13 +55,16 @@ Route::middleware('auth')->group(function () {
 
     //therapist
     Route::post('/therapist-list', [TherapistController::class, 'store'])->name('admin.therapistCreate');
-    Route::get('/therapist-list',[TherapistController::class,'show'])->name('admin.therapistLists');
-    Route::get('/therapist-list/{id}',[TherapistController::class,'destroy'])->name('admin.therapistDelete');
+    Route::get('/therapist-list', [TherapistController::class, 'show'])->name('admin.therapistLists');
+    Route::get('/therapist-list/{id}', [TherapistController::class, 'destroy'])->name('admin.therapistDelete');
 
     //user
-    Route::get('/user-list',[RegisteredUserController::class,'show'])->name('admin.user-list');
-    Route::post('/user-list',[RegisteredUserController::class,'changeRole'])->name('admin.userRole');
-});
-    // post
+    Route::get('/user-list', [RegisteredUserController::class, 'show'])->name('admin.user-list');
+    Route::post('/user-list', [RegisteredUserController::class, 'changeRole'])->name('admin.userRole');
 
-require __DIR__.'/auth.php';
+    Route::get('/user-questions/{phychotherapyType}', [QuestionController::class, 'showQuestions'])->name('user.questions');
+    Route::post('/questions/submit', [AnswerController::class, 'storeAnswers'])->name('questions.submit');
+    Route::get('/result/{answerId}', [AnswerController::class, 'showResult'])->name('result.show');
+});
+
+require __DIR__ . '/auth.php';
