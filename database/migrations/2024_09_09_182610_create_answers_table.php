@@ -13,9 +13,18 @@ return new class extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->string('answer');
+            $table->integer('answer1');
+            $table->integer('answer2');
+            $table->integer('answer3');
+            $table->integer('answer4');
+            $table->integer('answer5');
+            $table->integer('answer6');
+            $table->integer('answer7');
+            $table->integer('answer8');
+            $table->integer('answer9');
+            $table->integer('answer10');
             $table->integer('percentage');
-            $table->foreignIdFor(App\Models\Question::class);
+            $table->foreignIdFor(App\Models\PhychotherapyType::class);
             $table->foreignIdFor(App\Models\User::class);
             $table->timestamps();
         });

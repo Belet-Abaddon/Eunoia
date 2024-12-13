@@ -44,4 +44,23 @@ class PhychotherapyTypeController extends Controller
     
         return redirect()->back();
     }
+    public function destroy($id)
+    {
+        // Find the category type by ID and delete
+        $phychoTy = PhychotherapyType::findOrFail($id);
+        $phychoTy->delete();
+    
+        // Redirect back with a success message
+        return redirect()->route('admin.psychoTyList')->with('success', 'Category type deleted successfully.');
+    }
+    public function showPhychoTyList():View
+    {
+        $phychoTys=PhychotherapyType::get();
+        return view('users.user-home',compact('phychoTys'));
+    }
+    public function showPhychoTy():View
+    {
+        $phychoTys=PhychotherapyType::get();
+        return view('users.user-header',compact('phychoTys'));
+    }
 }

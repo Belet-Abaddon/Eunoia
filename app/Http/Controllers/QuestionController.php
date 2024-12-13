@@ -45,4 +45,13 @@ class QuestionController extends Controller
     
         return redirect()->back();
     }
+    public function destroy($id)
+    {
+        // Find the category type by ID and delete
+        $question = Question::findOrFail($id);
+        $question->delete();
+    
+        // Redirect back with a success message
+        return redirect()->route('admin.questionList')->with('success', 'Category type deleted successfully.');
+    }
 }

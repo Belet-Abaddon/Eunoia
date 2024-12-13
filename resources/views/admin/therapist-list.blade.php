@@ -593,12 +593,9 @@
                 console.log('Opening modal for ID:', id); // Check if the function is called
                 document.getElementById('delete-user-modal-' + id).classList.remove('hidden');
             }
-
-
             function closeingModal(id) {
                 document.getElementById('delete-user-modal-' + id).classList.add('hidden');
             }
-
             window.openingModal = openingModal;
             window.closeingModal = closeingModal;
         });

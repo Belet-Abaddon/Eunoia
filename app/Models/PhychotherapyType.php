@@ -14,5 +14,8 @@ class PhychotherapyType extends Model
     public function questions():BelongsTo {
         return $this->belongsTo(Question::class);
     }
+    public function answers():BelongsTo {
+        return $this->belongsTo(Answer::class);
+    }
     use HasFactory;
 }
