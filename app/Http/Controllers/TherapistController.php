@@ -51,4 +51,5 @@ class TherapistController extends Controller
         // Redirect back with a success message
         return redirect()->route('admin.therapistLists')->with('success', 'Category type deleted successfully.');
     }
+    
 }
