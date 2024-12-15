@@ -33,18 +33,31 @@
                     @foreach ($therapists as $therapist)
                         <li class="flex items-center justify-between bg-gray-50 p-4 rounded-lg shadow">
                             <div>
-                                <p class="text-lg font-semibold text-gray-800">Name :{{ $therapist->name }}</p>
-                                <p class="text-sm text-gray-600">Specialists :{{ $therapist->specialists }}</p>
+                                <p class="text-lg font-semibold text-gray-800">Name: {{ $therapist->name }}</p>
+                                <p class="text-sm text-gray-600">Specialists: {{ $therapist->specialists }}</p>
                             </div>
-                            <a href=""
-                                class="bg-cyan-600 text-white px-4 py-2 rounded-lg hover:bg-cyan-700 transition">
-                                Contact
-                            </a>
+
+                            <form action="{{ route('contacts.store') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="therapist_id" value="{{ $therapist->id }}">
+                                <button type="submit"
+                                    class="bg-cyan-600 text-white px-4 py-2 rounded-lg hover:bg-cyan-700 transition">
+                                    Contact
+                                </button>
+                            </form>
                         </li>
                     @endforeach
                 </ul>
             </div>
-        </div>
+        </div><br>
+        @if (session('success'))
+            <div
+                class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4 w-[80%] mx-auto text-center">
+                {{ session('success') }}
+            </div>
+        @endif
+
+
         <!-- Go Home Button -->
         <div class="text-center mt-12">
             <a href="{{ route('user.home') }}"
@@ -60,26 +73,31 @@
             </p>
             <ul class="space-y-4">
                 <li>
-                    <a href="https://www.apa.org" target="_blank" class="flex items-center justify-between bg-gray-50 p-4 rounded-lg shadow hover:bg-cyan-50 transition">
+                    <a href="https://www.apa.org" target="_blank"
+                        class="flex items-center justify-between bg-gray-50 p-4 rounded-lg shadow hover:bg-cyan-50 transition">
                         <span class="text-lg font-medium text-cyan-700">American Psychological Association (APA)</span>
                         <span class="text-sm text-gray-500">www.apa.org</span>
                     </a>
                 </li>
                 <li>
-                    <a href="https://www.verywellmind.com" target="_blank" class="flex items-center justify-between bg-gray-50 p-4 rounded-lg shadow hover:bg-cyan-50 transition">
+                    <a href="https://www.verywellmind.com" target="_blank"
+                        class="flex items-center justify-between bg-gray-50 p-4 rounded-lg shadow hover:bg-cyan-50 transition">
                         <span class="text-lg font-medium text-cyan-700">Verywell Mind</span>
                         <span class="text-sm text-gray-500">www.verywellmind.com</span>
                     </a>
                 </li>
                 <li>
-                    <a href="https://www.psychologytoday.com" target="_blank" class="flex items-center justify-between bg-gray-50 p-4 rounded-lg shadow hover:bg-cyan-50 transition">
+                    <a href="https://www.psychologytoday.com" target="_blank"
+                        class="flex items-center justify-between bg-gray-50 p-4 rounded-lg shadow hover:bg-cyan-50 transition">
                         <span class="text-lg font-medium text-cyan-700">Psychology Today</span>
                         <span class="text-sm text-gray-500">www.psychologytoday.com</span>
                     </a>
                 </li>
                 <li>
-                    <a href="https://www.nimh.nih.gov" target="_blank" class="flex items-center justify-between bg-gray-50 p-4 rounded-lg shadow hover:bg-cyan-50 transition">
-                        <span class="text-lg font-medium text-cyan-700">National Institute of Mental Health (NIMH)</span>
+                    <a href="https://www.nimh.nih.gov" target="_blank"
+                        class="flex items-center justify-between bg-gray-50 p-4 rounded-lg shadow hover:bg-cyan-50 transition">
+                        <span class="text-lg font-medium text-cyan-700">National Institute of Mental Health
+                            (NIMH)</span>
                         <span class="text-sm text-gray-500">www.nimh.nih.gov</span>
                     </a>
                 </li>

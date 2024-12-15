@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\ContactController;
 
 
 // Route::get('/question',function(){
@@ -65,6 +66,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/user-questions/{phychotherapyType}', [QuestionController::class, 'showQuestions'])->name('user.questions');
     Route::post('/questions/submit', [AnswerController::class, 'storeAnswers'])->name('questions.submit');
     Route::get('/result/{answerId}', [AnswerController::class, 'showResult'])->name('result.show');
+
+    Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.store');
 });
 
 require __DIR__ . '/auth.php';
