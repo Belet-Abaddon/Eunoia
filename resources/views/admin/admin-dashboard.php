@@ -4,53 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description"
-        content="Get started with a free and open source Tailwind CSS admin dashboard featuring a sidebar layout, advanced charts, and hundreds of components based on Flowbite">
-    <meta name="author" content="Themesberg">
-    <meta name="generator" content="Hugo 0.79.0">
-
     <title>EUNOIA</title>
-
-    <link rel="canonical" href="https://themesberg.com/product/tailwind-css/dashboard-windster">
-
-
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
     <link rel="stylesheet" href="https://demo.themesberg.com/windster/app.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://demo.themesberg.com/windster/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://demo.themesberg.com/windster/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://demo.themesberg.com/windster/favicon-16x16.png">
-    <link rel="icon" type="image/png" href="https://demo.themesberg.com/windster/favicon.ico">
-    <link rel="manifest" href="https://demo.themesberg.com/windster/site.webmanifest">
-    <link rel="mask-icon" href="https://demo.themesberg.com/windster/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@">
-    <meta name="twitter:creator" content="@">
-    <meta name="twitter:title" content="Tailwind CSS Dashboard - Windster">
-    <meta name="twitter:description"
-        content="Get started with a free and open source Tailwind CSS admin dashboard featuring a sidebar layout, advanced charts, and hundreds of components based on Flowbite">
-    <meta name="twitter:image" content="https://demo.themesberg.com/windster/">
-
-    <!-- Facebook -->
-    <meta property="og:url" content="https://demo.themesberg.com/windster/">
-    <meta property="og:title" content="Tailwind CSS Dashboard - Windster">
-    <meta property="og:description"
-        content="Get started with a free and open source Tailwind CSS admin dashboard featuring a sidebar layout, advanced charts, and hundreds of components based on Flowbite">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://demo.themesberg.com/windster/images/og-image.jpg">
-    <meta property="og:image:type" content="image/png">
-
-
-
-
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141734189-6"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
@@ -73,14 +30,6 @@
 </head>
 
 <body class="bg-gray-50">
-
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-THQTXJ7" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe></noscript>
-
-
-
-
-
     <nav class="bg-white border-b border-gray-200 fixed z-30 w-full">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
             <div class="flex items-center justify-between">

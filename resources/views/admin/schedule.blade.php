@@ -4,54 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description"
-        content="Get started with a free and open source Tailwind CSS dashboard featuring a sidebar layout, advanced charts, and hundreds of components based on Flowbite">
-    <meta name="author" content="Themesberg">
-    <meta name="generator" content="Hugo 0.79.0">
-
     <title>EUNOIA</title>
-
-    <link rel="canonical" href="https://themesberg.com/product/tailwind-css/dashboard-windster">
-
-
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
     <link rel="stylesheet" href="https://demo.themesberg.com/windster/app.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="https://demo.themesberg.com/windster/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://demo.themesberg.com/windster/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://demo.themesberg.com/windster/favicon-16x16.png">
-    <link rel="icon" type="image/png" href="https://demo.themesberg.com/windster/favicon.ico">
-    <link rel="manifest" href="https://demo.themesberg.com/windster/site.webmanifest">
-    <link rel="mask-icon" href="https://demo.themesberg.com/windster/safari-pinned-tab.svg" color="#5bbad5">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@">
-    <meta name="twitter:creator" content="@">
-    <meta name="twitter:title" content="Tailwind CSS Users List Page - Windster">
-    <meta name="twitter:description"
-        content="Get started with a free and open source Tailwind CSS dashboard featuring a sidebar layout, advanced charts, and hundreds of components based on Flowbite">
-    <meta name="twitter:image" content="https://demo.themesberg.com/windster/images/og-image.jpg">
-
-    <!-- Facebook -->
-    <meta property="og:url" content="https://demo.themesberg.com/windster/users/list/">
-    <meta property="og:title" content="Tailwind CSS Users List Page - Windster">
-    <meta property="og:description"
-        content="Get started with a free and open source Tailwind CSS dashboard featuring a sidebar layout, advanced charts, and hundreds of components based on Flowbite">
-    <meta property="og:type" content="article">
-    <meta property="og:image" content="https://demo.themesberg.com/windster/images/og-image.jpg">
-    <meta property="og:image:type" content="image/png">
-
-
-
-
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141734189-6"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
@@ -59,8 +15,6 @@
 
         gtag('config', 'UA-141734189-6');
     </script>
-
-
     <script>(function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({
                 'gtm.start':
@@ -69,19 +23,9 @@
                 j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-THQTXJ7');</script>
-
-
 </head>
 
 <body class="bg-gray-50">
-
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-THQTXJ7" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe></noscript>
-
-
-
-
-
     <nav class="bg-white border-b border-gray-200 fixed z-30 w-full">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
             <div class="flex items-center justify-between">
@@ -101,8 +45,7 @@
                                 clip-rule="evenodd"></path>
                         </svg>
                     </button>
-                    <a href="https://demo.themesberg.com/windster/"
-                        class="text-xl font-bold flex items-center lg:ml-2.5">
+                    <a href="" class="text-xl font-bold flex items-center lg:ml-2.5">
                         <span class="self-center whitespace-nowrap">EUNOIA</span>
                     </a>
                     <form action="#" method="GET" class="hidden lg:block lg:pl-32">
@@ -126,7 +69,6 @@
         </div>
     </nav>
     <div class="flex overflow-hidden bg-white pt-16">
-
         <aside id="sidebar"
             class="fixed hidden z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75"
             aria-label="Sidebar">
@@ -227,9 +169,10 @@
                                 <a href="schedule"
                                     class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
                                     <svg class="w-5 h-5 text-gray-900 flex-shrink-0 transition duration-75"
-                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                                         <path
-                                            d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-96 55.2C54 332.9 0 401.3 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7c0-81-54-149.4-128-171.1l0 50.8c27.6 7.1 48 32.2 48 62l0 40c0 8.8-7.2 16-16 16l-16 0c-8.8 0-16-7.2-16-16s7.2-16 16-16l0-24c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 24c8.8 0 16 7.2 16 16s-7.2 16-16 16l-16 0c-8.8 0-16-7.2-16-16l0-40c0-29.8 20.4-54.9 48-62l0-57.1c-6-.6-12.1-.9-18.3-.9l-91.4 0c-6.2 0-12.3 .3-18.3 .9l0 65.4c23.1 6.9 40 28.3 40 53.7c0 30.9-25.1 56-56 56s-56-25.1-56-56c0-25.4 16.9-46.8 40-53.7l0-59.1zM144 448a24 24 0 1 0 0-48 24 24 0 1 0 0 48z" />
+                                            d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L64 64C28.7 64 0 92.7 0 128l0 16 0 48L0 448c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-256 0-48 0-16c0-35.3-28.7-64-64-64l-40 0 0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L152 64l0-40zM48 192l80 0 0 56-80 0 0-56zm0 104l80 0 0 64-80 0 0-64zm128 0l96 0 0 64-96 0 0-64zm144 0l80 0 0 64-80 0 0-64zm80-48l-80 0 0-56 80 0 0 56zm0 160l0 40c0 8.8-7.2 16-16 16l-64 0 0-56 80 0zm-128 0l0 56-96 0 0-56 96 0zm-144 0l0 56-64 0c-8.8 0-16-7.2-16-16l0-40 80 0zM272 248l-96 0 0-56 96 0 0 56z" />
                                     </svg>
                                     <span class="ml-3 flex-1 whitespace-nowrap">Schedule</span>
                                 </a>
@@ -251,6 +194,7 @@
                 </div>
             </div>
         </aside>
+
         <div class="bg-gray-900 opacity-50 hidden fixed inset-0 z-10" id="sidebarBackdrop"></div>
 
         <div id="main-content" class="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64">
@@ -259,7 +203,7 @@
                 <div class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5">
                     <div class="mb-1 w-full">
                         <div class="mb-4">
-                            <h1 class="text-xl sm:text-2xl font-semibold text-gray-900">All users</h1>
+                            <h1 class="text-xl sm:text-2xl font-semibold text-gray-900">All schedules</h1>
                         </div>
                         <div class="sm:flex">
                             <div class="hidden sm:flex items-center sm:divide-x sm:divide-gray-100 mb-3 sm:mb-0">
@@ -268,11 +212,22 @@
                                     <div class="mt-1 relative lg:w-64 xl:w-96">
                                         <input type="text" name="email" id="users-search"
                                             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                            placeholder="Search for users">
+                                            placeholder="Search for schedule">
                                     </div>
                                 </form>
                             </div>
-
+                            <div class="flex items-center space-x-2 sm:space-x-3 ml-auto">
+                                <button type="button" data-modal-toggle="add-user-modal"
+                                    class="w-1/2 text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium inline-flex items-center justify-center rounded-lg text-sm px-3 py-2 text-center sm:w-auto">
+                                    <svg class="-ml-1 mr-2 h-6 w-6" fill="currentColor" viewBox="0 0 20 20"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    Add schedule
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -289,19 +244,23 @@
                                             </th>
                                             <th scope="col"
                                                 class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                email
+                                                Start Time
                                             </th>
                                             <th scope="col"
                                                 class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                age
+                                                End Time
                                             </th>
                                             <th scope="col"
                                                 class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                gender
+                                                Date
                                             </th>
                                             <th scope="col"
                                                 class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                country
+                                                Created At
+                                            </th>
+                                            <th scope="col"
+                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
+                                                Updated At
                                             </th>
                                             <th scope="col"
                                                 class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
@@ -310,16 +269,29 @@
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-200">
-                                        @foreach($users as $user)
+                                        @foreach ($schedules as $schedule)
                                             <tr>
-                                                <td class="p-4 text-sm text-gray-900">{{ $user->name }}</td>
-                                                <td class="p-4 text-sm text-gray-900">{{ $user->email }}</td>
-                                                <td class="p-4 text-sm text-gray-900">{{ $user->age }}</td>
-                                                <td class="p-4 text-sm text-gray-900">{{ $user->gender }}</td>
-                                                <td class="p-4 text-sm text-gray-900">{{ $user->country }}</td>
+                                                <td class="p-4 text-sm text-gray-900">
+                                                    {{ $schedule->therapist->name }}
+                                                </td>
+                                                <td class="p-4 text-sm text-gray-900">
+                                                    {{ $schedule->start_time }}
+                                                </td>
+                                                <td class="p-4 text-sm text-gray-900">
+                                                    {{$schedule->end_time}}
+                                                </td>
+                                                <td class="p-4 text-sm text-gray-900">
+                                                    {{$schedule->date}}
+                                                </td>
+                                                <td class="p-4 text-sm text-gray-900">
+                                                    {{ $schedule->created_at }}
+                                                </td>
+                                                <td class="p-4 text-sm text-gray-900">
+                                                    {{ $schedule->updated_at }}
+                                                </td>
                                                 <td class="p-4 whitespace-nowrap space-x-2">
-                                                    <button type="button" data-modal-toggle="user-modal"
-                                                    onclick="openModal('{{ $user->id }}', '{{ $user->name }}', '{{ $user->email }}', '{{ $user->age }}', '{{ $user->gender }}', '{{ $user->country }}', '{{ $user->degree }}', '{{ $user->experience }}', '{{ $user->specialists }}', '{{ $user->university }}')"
+                                                    <button type="button"
+                                                        onclick="openModal('{{ $schedule->id }}', '{{ $schedule->therapist_id }}', '{{ $schedule->start_time }}', '{{ $schedule->end_time }}', '{{ $schedule->date }}')"
                                                         class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
                                                         <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
                                                             xmlns="http://www.w3.org/2000/svg">
@@ -330,9 +302,10 @@
                                                                 d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
                                                                 clip-rule="evenodd"></path>
                                                         </svg>
-                                                        Edit user
+                                                        Edit schedule
                                                     </button>
-                                                    <button type="button" data-modal-toggle="delete-user-modal" 
+
+                                                    <button type="button" onclick="openingModal('{{ $schedule->id }}')"
                                                         class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
                                                         <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
                                                             xmlns="http://www.w3.org/2000/svg">
@@ -340,7 +313,7 @@
                                                                 d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
                                                                 clip-rule="evenodd"></path>
                                                         </svg>
-                                                        Delete user
+                                                        Delete schedule
                                                     </button>
                                                 </td>
                                             </tr>
@@ -379,7 +352,7 @@
                     <div class="flex items-center space-x-3">
                         <a href="#"
                             class="flex-1 text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium inline-flex items-center justify-center rounded-lg text-sm px-3 py-2 text-center">
-                            <svg class="-ml-1 mr-1 h-5 w-5"" fill=" currentColor" viewBox="0 0 20 20"
+                            <svg class="-ml-1 mr-1 h-5 w-5" fill=" currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
                                     d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
@@ -409,7 +382,7 @@
                             <!-- Modal header -->
                             <div class="flex items-start justify-between p-5 border-b rounded-t">
                                 <h3 class="text-xl font-semibold">
-                                    Change Admin
+                                    Edit schedule data
                                 </h3>
                                 <button type="button"
                                     class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
@@ -424,40 +397,52 @@
                             </div>
                             <!-- Modal body -->
                             <div class="p-6 space-y-6">
-                            <form action="{{ route('admin.userRole') }}" method="POST">
-                            @csrf
+                                <form action="{{route('admin.scheduleUpdate')}}" method="POST">
+                                    @csrf
+                                    @method('PUT')
                                     <div class="grid grid-cols-6 gap-6">
                                         <input type="hidden" name="id" id="model-id" value="">
+                                        <!-- Therapist ID -->
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="degree"
-                                                class="text-sm font-medium text-gray-900 block mb-2">Degree</label>
-                                            <input type="text" name="degree" id="model-degree"
+                                            <label for="therapist_id"
+                                                class="text-sm font-medium text-gray-900 block mb-2">Therapist</label>
+                                            <select name="therapist_id" id="model-therapist"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                placeholder="degree" required>
+                                                required>
+                                                <option value="" disabled selected>Select a therapist</option>
+                                                @foreach($therapists as $therapist)
+                                                    <option value="{{ $therapist->id }}">{{ $therapist->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
+
+                                        <!-- Date -->
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="experience"
-                                                class="text-sm font-medium text-gray-900 block mb-2">Experience</label>
-                                            <input type="number" name="experience" id="model-experience"
+                                            <label for="date"
+                                                class="text-sm font-medium text-gray-900 block mb-2">Date</label>
+                                            <input type="date" name="date" id="model-date"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                placeholder="e.g. 1" required>
+                                                required>
                                         </div>
+
+                                        <!-- Start Time -->
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="specialists"
-                                                class="text-sm font-medium text-gray-900 block mb-2">Specialists</label>
-                                            <input type="text" name="specialists" id="model-specialists"
+                                            <label for="start_time"
+                                                class="text-sm font-medium text-gray-900 block mb-2">Start Time</label>
+                                            <input type="time" name="start_time" id="model-st"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                placeholder="specialists" required>
+                                                required>
                                         </div>
+
+                                        <!-- End Time -->
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="university"
-                                                class="text-sm font-medium text-gray-900 block mb-2">University</label>
-                                            <input type="text" name="university" id="model-university"
+                                            <label for="end_time"
+                                                class="text-sm font-medium text-gray-900 block mb-2">End Time</label>
+                                            <input type="time" name="end_time" id="model-et"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                placeholder="university" required>
+                                                required>
                                         </div>
                                     </div>
-                                    <input type="number" name="role" id="model-role" value="1" hidden>
                             </div>
                             <!-- Modal footer -->
                             <div class="items-center p-6 border-t border-gray-200 rounded-b">
@@ -469,17 +454,21 @@
                         </div>
                     </div>
                 </div>
-                <!-- Delete User Modal -->
+
+                <!-- Add User Modal -->
                 <div class="hidden overflow-x-hidden overflow-y-auto fixed top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center h-modal sm:h-full"
-                    id="delete-user-modal">
-                    <div class="relative w-full max-w-md px-4 h-full md:h-auto">
+                    id="add-user-modal">
+                    <div class="relative w-full max-w-2xl px-4 h-full md:h-auto">
                         <!-- Modal content -->
                         <div class="bg-white rounded-lg shadow relative">
                             <!-- Modal header -->
-                            <div class="flex justify-end p-2">
+                            <div class="flex items-start justify-between p-5 border-b rounded-t">
+                                <h3 class="text-xl font-semibold">
+                                    Add new schedule
+                                </h3>
                                 <button type="button"
                                     class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-                                    data-modal-toggle="delete-user-modal">
+                                    data-modal-toggle="add-user-modal">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
@@ -489,27 +478,107 @@
                                 </button>
                             </div>
                             <!-- Modal body -->
-                            <div class="p-6 pt-0 text-center">
-                                <svg class="w-20 h-20 text-red-600 mx-auto" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <h3 class="text-xl font-normal text-gray-500 mt-5 mb-6">Are you sure you want to delete
-                                    this user?</h3>
-                                <a href="#"
-                                    class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-base inline-flex items-center px-3 py-2.5 text-center mr-2">
-                                    Yes, I'm sure
-                                </a>
-                                <a href="#"
-                                    class="text-gray-900 bg-white hover:bg-gray-100 focus:ring-4 focus:ring-cyan-200 border border-gray-200 font-medium inline-flex items-center rounded-lg text-base px-3 py-2.5 text-center"
-                                    data-modal-toggle="delete-user-modal">
-                                    No, cancel
-                                </a>
+                            <div class="p-6 space-y-6">
+                                <form action="{{ route('admin.scheduleCreate') }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="grid grid-cols-6 gap-6">
+                                        <!-- Therapist ID -->
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="therapist_id"
+                                                class="text-sm font-medium text-gray-900 block mb-2">Therapist</label>
+                                            <select name="therapist_id" id="therapist_id"
+                                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                                required>
+                                                <option value="" disabled selected>Select a therapist</option>
+                                                @foreach($therapists as $therapist)
+                                                    <option value="{{ $therapist->id }}">{{ $therapist->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <!-- Date -->
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="date"
+                                                class="text-sm font-medium text-gray-900 block mb-2">Date</label>
+                                            <input type="date" name="date" id="date"
+                                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                                required>
+                                        </div>
+
+                                        <!-- Start Time -->
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="start_time"
+                                                class="text-sm font-medium text-gray-900 block mb-2">Start Time</label>
+                                            <input type="time" name="start_time" id="start_time"
+                                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                                required>
+                                        </div>
+
+                                        <!-- End Time -->
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="end_time"
+                                                class="text-sm font-medium text-gray-900 block mb-2">End Time</label>
+                                            <input type="time" name="end_time" id="end_time"
+                                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                                required>
+                                        </div>
+                                    </div>
+
+                                    <!-- Modal Footer -->
+                                    <div class="items-center p-6 border-t border-gray-200 rounded-b">
+                                        <button
+                                            class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                            type="submit">Add Schedule</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-                </div>
+
+                    <!-- Delete User Modal -->
+                    @foreach ($schedules as $schedule)
+                        <div class="hidden overflow-x-hidden overflow-y-auto fixed top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center h-modal sm:h-full"
+                            id="delete-user-modal-{{ $schedule->id }}">
+                            <div class="relative w-full max-w-md px-4 h-full md:h-auto">
+                                <!-- Modal content -->
+                                <div class="bg-white rounded-lg shadow relative">
+                                    <!-- Modal header -->
+                                    <div class="flex justify-end p-2">
+                                        <button type="button" onclick="closeingModal('{{ $schedule->id }}')"
+                                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center">
+                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <!-- Modal body -->
+                                    <div class="p-6 pt-0 text-center">
+                                        <svg class="w-20 h-20 text-red-600 mx-auto" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                        <h3 class="text-xl font-normal text-gray-500 mt-5 mb-6">Are you sure you want to
+                                            delete
+                                            this user?</h3>
+                                        <a href="{{ route('admin.scheduleDelete', ['id' => $schedule->id]) }}"
+                                            class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-base inline-flex items-center px-3 py-2.5 text-center mr-2">
+                                            Yes, I'm sure
+                                        </a>
+                                        <a href="#"
+                                            class="text-gray-900 bg-white hover:bg-gray-100 focus:ring-4 focus:ring-cyan-200 border border-gray-200 font-medium inline-flex items-center rounded-lg text-base px-3 py-2.5 text-center"
+                                            data-modal-toggle="delete-user-modal">
+                                            No, cancel
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
 
 
             </main>
@@ -547,12 +616,12 @@
         });
     </script>
     <script>
-        function openModal(id, name, email, age, gender, country, degree, experience, specialists, university) {
+        function openModal(id, name, start_time, end_time, date) {
             document.getElementById('model-id').value = id;
-            document.getElementById('model-degree').value = degree;
-            document.getElementById('model-experience').value = experience;
-            document.getElementById('model-specialists').value = specialists;
-            document.getElementById('model-university').value = university;
+            document.getElementById('model-therapist').value = name;
+            document.getElementById('model-st').value = start_time;
+            document.getElementById('model-et').value = end_time;
+            document.getElementById('model-date').value = date;
 
             document.getElementById('user-modal').classList.remove('hidden');
         }
@@ -561,7 +630,19 @@
             document.getElementById('user-modal').classList.add('hidden');
         }
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function openingModal(id) {
+                console.log('Opening modal for ID:', id); // Check if the function is called
+                document.getElementById('delete-user-modal-' + id).classList.remove('hidden');
+            }
+            function closeingModal(id) {
+                document.getElementById('delete-user-modal-' + id).classList.add('hidden');
+            }
+            window.openingModal = openingModal;
+            window.closeingModal = closeingModal;
+        });
+    </script>
+</body >
 
-</body>
-
-</html>
+</html >

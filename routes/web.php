@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\TherapistController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PhychotherapyTypeController;
@@ -62,6 +63,12 @@ Route::middleware('auth')->group(function () {
     //user
     Route::get('/user-list', [RegisteredUserController::class, 'show'])->name('admin.user-list');
     Route::post('/user-list', [RegisteredUserController::class, 'changeRole'])->name('admin.userRole');
+
+    //schedule
+    Route::get('/schedule',[ScheduleController::class,'show'])->name('admin.schedule');
+    Route::post('/schedule-create',[ScheduleController::class,'store'])->name('admin.scheduleCreate');
+    Route::put('/schedule-update',[ScheduleController::class,'update'])->name('admin.scheduleUpdate');
+    Route::get('/schedule-delete',[ScheduleController::class,'destroy'])->name('admin.scheduleDelete');
 
     Route::get('/user-questions/{phychotherapyType}', [QuestionController::class, 'showQuestions'])->name('user.questions');
     Route::post('/questions/submit', [AnswerController::class, 'storeAnswers'])->name('questions.submit');

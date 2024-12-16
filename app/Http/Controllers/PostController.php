@@ -15,20 +15,24 @@ class PostController extends Controller
     {
         $imageFilePath = null;
         $videoFilePath = null;
+
         $validatedData = $request->validate([
             'caption' => 'required|string|max:255',
             'description' => 'required|max:255',
-            'image' => 'mimes:png,jpg',
+            'image' => 'mimes:png,jpg,jpeg',  // Added jpeg support
             'video' => 'mimes:mp4'
         ]);
 
+        // Store image file in the 'imageAndvideo' folder
         if ($request->file('image')) {
             $file = $request->file('image');
-            $imageFilePath = $file->store('uploads', 'public');
+            $imageFilePath = $file->store('imageAndvideo', 'public');  // Store in the 'imageAndvideo' directory
         }
+
+        // Store video file in the 'imageAndvideo' folder
         if ($request->file('video')) {
             $file = $request->file('video');
-            $videoFilePath = $file->store('uploads', 'public');
+            $videoFilePath = $file->store('imageAndvideo', 'public');  // Store in the 'imageAndvideo' directory
         }
 
         $data = [
@@ -38,6 +42,7 @@ class PostController extends Controller
             'image' => $imageFilePath,
             'video' => $videoFilePath
         ];
+
         $post = Post::create($data);
         return redirect()->route('admin.posts');
     }

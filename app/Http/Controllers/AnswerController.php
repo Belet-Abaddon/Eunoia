@@ -61,7 +61,7 @@ class AnswerController extends Controller
     {
         $answer = Answer::findOrFail($answerId);
         $percentage = $answer->percentage;
-        $therapists = User::where('role', 2)->get();
+        $therapists = User::where('role', 2)->with('schedules')->get();
 
         // Determine the message based on the percentage
         if ($percentage >= 70) {
