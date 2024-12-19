@@ -256,6 +256,10 @@
                                             </th>
                                             <th scope="col"
                                                 class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
+                                                Zoom Link
+                                            </th>
+                                            <th scope="col"
+                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
                                                 Created At
                                             </th>
                                             <th scope="col"
@@ -282,6 +286,9 @@
                                                 </td>
                                                 <td class="p-4 text-sm text-gray-900">
                                                     {{$schedule->date}}
+                                                </td>
+                                                <td class="p-4 text-sm text-gray-900">
+                                                    {{$schedule->zoom_link}}
                                                 </td>
                                                 <td class="p-4 text-sm text-gray-900">
                                                     {{ $schedule->created_at }}
@@ -500,10 +507,19 @@
                                         <!-- Date -->
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="date"
-                                                class="text-sm font-medium text-gray-900 block mb-2">Date</label>
-                                            <input type="date" name="date" id="date"
+                                                class="text-sm font-medium text-gray-900 block mb-2">Day</label>
+                                            <select name="date" id="date"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                                 required>
+                                                <option value="" disabled selected>Select a day</option>
+                                                <option value="Monday">Monday</option>
+                                                <option value="Tuesday">Tuesday</option>
+                                                <option value="Wednesday">Wednesday</option>
+                                                <option value="Thursday">Thursday</option>
+                                                <option value="Friday">Friday</option>
+                                                <option value="Saturday">Saturday</option>
+                                                <option value="Sunday">Sunday</option>
+                                            </select>
                                         </div>
 
                                         <!-- Start Time -->
@@ -522,6 +538,15 @@
                                             <input type="time" name="end_time" id="end_time"
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                                 required>
+                                        </div>
+
+                                        <!-- Zoom Link -->
+                                        <div class="col-span-6">
+                                            <label for="zoom_link"
+                                                class="text-sm font-medium text-gray-900 block mb-2">Zoom Link</label>
+                                            <input type="url" name="zoom_link" id="zoom_link"
+                                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                                                placeholder="Enter the Zoom meeting link" required>
                                         </div>
                                     </div>
 
@@ -631,7 +656,7 @@
         }
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             function openingModal(id) {
                 console.log('Opening modal for ID:', id); // Check if the function is called
                 document.getElementById('delete-user-modal-' + id).classList.remove('hidden');
@@ -643,6 +668,6 @@
             window.closeingModal = closeingModal;
         });
     </script>
-</body >
+</body>
 
-</html >
+</html>

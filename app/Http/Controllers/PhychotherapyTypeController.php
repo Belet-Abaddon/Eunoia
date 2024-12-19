@@ -25,23 +25,24 @@ class PhychotherapyTypeController extends Controller
         return redirect()->route('admin.psychoTyList');
     }
 
-    public function show():View
+    public function show(): View
     {
-        $phychoTys=PhychotherapyType::get();
-        return view('admin.psycho-ty',compact('phychoTys'));
+        $phychoTys = PhychotherapyType::paginate(5); // Display 10 items per page
+        return view('admin.psycho-ty', compact('phychoTys'));
     }
+
     public function update(Request $request): RedirectResponse
     {
         $id = $request->input('id');
         $psychoType = PhychotherapyType::findOrFail($id);
-    
+
         // Update basic fields
         $psychoType->name = $request->input('name');
         $psychoType->description = $request->input('description');
 
         // Save updated category
         $psychoType->save();
-    
+
         return redirect()->back();
     }
     public function destroy($id)
@@ -49,18 +50,13 @@ class PhychotherapyTypeController extends Controller
         // Find the category type by ID and delete
         $phychoTy = PhychotherapyType::findOrFail($id);
         $phychoTy->delete();
-    
+
         // Redirect back with a success message
         return redirect()->route('admin.psychoTyList')->with('success', 'Category type deleted successfully.');
     }
-    public function showPhychoTyList():View
+    public function showPhychoTyList(): View
     {
-        $phychoTys=PhychotherapyType::get();
-        return view('users.user-home',compact('phychoTys'));
-    }
-    public function showPhychoTy():View
-    {
-        $phychoTys=PhychotherapyType::get();
-        return view('users.user-header',compact('phychoTys'));
+        $phychoTys = PhychotherapyType::get();
+        return view('users.user-home', compact('phychoTys'));
     }
 }

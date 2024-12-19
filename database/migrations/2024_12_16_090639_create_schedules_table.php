@@ -16,7 +16,8 @@ return new class extends Migration
             $table->foreignId('therapist_id')->constrained('users')->onDelete('cascade');
             $table->time('start_time');
             $table->time('end_time');
-            $table->date('date');
+            $table->string('date');
+            $table->string('zoom_link');
             $table->timestamps();
         });
     }
