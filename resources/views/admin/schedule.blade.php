@@ -288,7 +288,9 @@
                                                     {{$schedule->date}}
                                                 </td>
                                                 <td class="p-4 text-sm text-gray-900">
-                                                    {{$schedule->zoom_link}}
+                                                    <a href="{{$schedule->zoom_link}}">
+                                                    Start Zoom
+                                                    </a>
                                                 </td>
                                                 <td class="p-4 text-sm text-gray-900">
                                                     {{ $schedule->created_at }}

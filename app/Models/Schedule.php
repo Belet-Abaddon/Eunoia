@@ -9,7 +9,7 @@ class Schedule extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['therapist_id', 'start_time', 'end_time', 'date','link'];
+    protected $fillable = ['therapist_id', 'start_time', 'end_time', 'date','zoom_link'];
 
     public function therapist()
     {
