@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Http\Requests\PhychotherapyTypeRequest;
 use App\Models\PhychotherapyType;
+use App\Models\Contact;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 
@@ -57,6 +58,12 @@ class PhychotherapyTypeController extends Controller
     public function showPhychoTyList(): View
     {
         $phychoTys = PhychotherapyType::get();
-        return view('users.user-home', compact('phychoTys'));
+        // Fetch all contacts of the logged-in user, ordered by creation time (including old ones)
+        $contacts = Contact::with('therapist') // Eager load therapist data
+            ->where('user_id', auth()->id()) // Filter contacts by the logged-in user
+            ->orderBy('created_at', 'desc') // Sort by creation date (most recent first)
+            ->get();
+
+        return view('users.user-home', compact('phychoTys','contacts'));
     }
 }

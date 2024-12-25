@@ -9,7 +9,6 @@
 </head>
 
 <body class="bg-gray-100">
-    @include('users.user-header')
     <div class="container mx-auto p-6">
         <header class="text-center mb-10">
             <h1 class="text-4xl font-bold text-cyan-700 mb-4">{{ $phychotherapyType->name }}</h1>

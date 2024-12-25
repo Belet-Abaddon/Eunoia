@@ -20,7 +20,7 @@ use App\Http\Controllers\ContactController;
 //     return view('admin.question');
 // });
 
-Route::get('/user-home', [PhychotherapyTypeController::class, 'showPhychoTyList'])->name('user.home');
+Route::get('/', [PhychotherapyTypeController::class, 'showPhychoTyList'])->name('user.home');
 Route::get('/user-header', [PhychotherapyTypeController::class, 'showPhychoTy'])->name('user.header');
 
 

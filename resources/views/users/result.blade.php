@@ -10,8 +10,6 @@
 </head>
 
 <body class="bg-gray-50">
-    @include('users.user-header')
-
     <div class="container mx-auto p-6">
         <!-- Header -->
         <header class="text-center mb-10">
@@ -136,24 +134,29 @@
     </footer>
 
     <script>
-        const ctx = document.getElementById('resultChart').getContext('2d');
-        const percentage = {{ $percentage }};
-        const data = {
-            labels: ['Percentage', 'Remaining'],
-            datasets: [{
-                data: [percentage, 100 - percentage],
-                backgroundColor: ['#4ade80', '#e5e7eb'],
-                hoverOffset: 4
-            }]
-        };
+    const ctx = document.getElementById('resultChart').getContext('2d');
+    const percentage = {{ $percentage ?? 0 }}; // Default to 0 if undefined
+    const data = {
+        labels: ['Percentage', 'Remaining'],
+        datasets: [{
+            data: [percentage, 100 - percentage],
+            backgroundColor: ['#4ade80', '#e5e7eb'],
+            hoverOffset: 4
+        }]
+    };
 
-        const config = {
-            type: 'pie',
-            data: data,
-        };
+    const config = {
+        type: 'pie',
+        data: data,
+    };
 
+    if (ctx) {
         new Chart(ctx, config);
-    </script>
+    } else {
+        console.error('Canvas context not found.');
+    }
+</script>
+
 </body>
 
 </html>
