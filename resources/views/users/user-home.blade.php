@@ -51,7 +51,7 @@
             </div>
 
             <!-- Navigation Links -->
-            <nav class="hidden md:flex items-center space-x-8">
+            <nav class="hidden md:flex items-center space-x-10">
                 <a href="#home" class="text-gray-700 hover:text-cyan-500 text-lg">Home</a>
                 <a href="#about-us" class="text-gray-700 hover:text-cyan-500 text-lg">About Us</a>
                 <a href="#our-services" class="text-gray-700 hover:text-cyan-500 text-lg">Our Services</a>
@@ -60,45 +60,46 @@
             </nav>
 
             <!-- Right Side: Notification Bell and Sign Up/Login -->
-            <div class="flex items-center space-x-6">
-                <!-- Notification Icon and Dropdown -->
-                <div class="relative group notification-container">
-                    <button class="text-gray-700 notification-bell">
-                        <i class="fas fa-bell text-2xl"></i>
-                    </button>
-                    <!-- Dropdown Menu -->
-                    <div class="dropdown-menu bg-white shadow-md rounded-lg py-2">
-                        @foreach ($contacts as $contact)
-                            <div class="px-4 py-2 flex items-center space-x-2 border-b">
-                                <div class="flex-1 text-sm">
-                                    <strong>{{ $contact->therapist->name }}</strong><br>
-                                    <span class="text-gray-600">Zoom Link:</span>
-                                    <a href="{{ $contact->therapist->schedules->first()->zoom_link }}" target="_blank"
-                                        class="inline-block text-white bg-cyan-600 hover:bg-cyan-700 px-4 py-2 rounded-full text-sm transition">
-                                        Join Zoom
-                                    </a><br>
-                                    <span class="text-xs text-gray-500">Time:
-                                        {{ $contact->created_at->format('h:i A, M d, Y') }}</span>
+            <div class="flex items-center space-x-10">
+                @guest
+                    <a href="{{ route('register') }}"
+                        class="bg-cyan-500 text-white px-6 py-3 rounded hover:bg-cyan-700 text-lg">Sign Up</a>
+                @endguest
+
+                @auth
+                    <!-- Notification Icon and Dropdown -->
+                    <div class="relative">
+                        <button id="notification-bell" class="text-gray-700 hover:text-cyan-500">
+                            <i class="fas fa-bell text-2xl"></i>
+                        </button>
+                        <!-- Dropdown Menu -->
+                        <div id="notification-dropdown"
+                            class="absolute right-0 mt-2 w-64 bg-white shadow-lg rounded-lg overflow-hidden hidden">
+                            @foreach ($contacts as $contact)
+                                <div class="px-4 py-2 border-b">
+                                    <div class="text-sm">
+                                        <strong>{{ $contact->therapist->name }}</strong><br>
+                                        <span class="text-gray-600">Zoom Link:</span>
+                                        <a href="{{ $contact->therapist->schedules->first()->zoom_link }}" target="_blank"
+                                            class="block text-cyan-600 hover:text-cyan-800 text-sm font-medium">Join Zoom</a>
+                                        <span class="text-xs text-gray-500">Time:
+                                            {{ $contact->created_at->format('h:i A, M d, Y') }}</span>
+                                    </div>
                                 </div>
-                            </div>
-                        @endforeach
-                        @if ($contacts->isEmpty())
-                            <div class="px-4 py-2 text-sm text-gray-500">No new notifications</div>
-                        @endif
+                            @endforeach
+                            @if ($contacts->isEmpty())
+                                <div class="px-4 py-2 text-sm text-gray-500">No new notifications</div>
+                            @endif
+                        </div>
                     </div>
-                </div>
 
-                <!-- Sign Up / User Greeting -->
-                <div>
-                    @guest
-                        <a href="{{ route('register') }}"
-                            class="bg-cyan-500 text-white px-6 py-3 rounded hover:bg-cyan-700 text-lg">Sign Up</a>
-                    @endguest
-
-                    @auth
-                        <span class="text-gray-700 font-medium text-lg">Hello, {{ Auth::user()->name }}</span>
-                    @endauth
-                </div>
+                    <span class="text-gray-700 font-medium text-lg">Hello, {{ Auth::user()->name }}</span>
+                    <form action="{{ route('logout') }}" method="POST" class="inline">
+                        @csrf
+                        <button type="submit"
+                            class="bg-cyan-500 text-white px-6 py-3 rounded hover:bg-cyan-700 text-lg">Logout</button>
+                    </form>
+                @endauth
             </div>
         </div>
     </header>
@@ -273,14 +274,22 @@
 
     <!-- Add your sections here -->
 
+    <!-- JavaScript for Notification Dropdown -->
     <script>
-        // Optional: Toggle dropdown menu
-        const bellIcon = document.querySelector('.fa-bell');
-        const dropdownMenu = document.querySelector('.dropdown-menu');
+        document.addEventListener('DOMContentLoaded', function () {
+            const bell = document.getElementById('notification-bell');
+            const dropdown = document.getElementById('notification-dropdown');
 
-        bellIcon.addEventListener('click', () => {
-            dropdownMenu.classList.toggle('opacity-100');
-            dropdownMenu.classList.toggle('visibility-visible');
+            bell.addEventListener('click', function () {
+                dropdown.classList.toggle('hidden'); // Show or hide the dropdown
+            });
+
+            // Close the dropdown if clicked outside
+            document.addEventListener('click', function (e) {
+                if (!bell.contains(e.target) && !dropdown.contains(e.target)) {
+                    dropdown.classList.add('hidden');
+                }
+            });
         });
     </script>
 </body>
