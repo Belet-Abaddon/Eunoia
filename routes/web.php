@@ -82,6 +82,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/result/{answerId}', [AnswerController::class, 'showResult'])->name('result.show');
 
     Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.store');
+
+    Route::get('/therapist-dashboard', [ContactController::class, 'getNewContacts'])->name('therapist.dashboard');
+    Route::get('/contacts/{contact}/answers', [ContactController::class, 'viewContactAnswers'])->name('view.contact');
+
 });
 
 require __DIR__ . '/auth.php';

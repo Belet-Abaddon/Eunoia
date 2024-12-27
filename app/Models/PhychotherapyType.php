@@ -11,11 +11,15 @@ class PhychotherapyType extends Model
     protected $table = 'phychotherapy_types';
     protected $fillable = ['name', 'description'];
 
-    public function questions():BelongsTo {
-        return $this->belongsTo(Question::class);
+    // In PhychotherapyType Model
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
     }
-    public function answers():BelongsTo {
-        return $this->belongsTo(Answer::class);
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
     }
+
     use HasFactory;
 }

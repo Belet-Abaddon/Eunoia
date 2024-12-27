@@ -68,10 +68,38 @@
                 </div>
             </div>
 
-            <!-- Placeholder for Other Content -->
+            <!-- New Contacts Section -->
             <div class="bg-white shadow-md rounded-lg p-6">
-                <h2 class="text-2xl font-bold text-gray-700">Dashboard Content</h2>
-                <p class="text-gray-600 mt-2">This is where other dashboard content will go.</p>
+                <h2 class="text-2xl font-bold text-gray-700">New Contacts</h2>
+
+                <!-- Contact Table -->
+                <table class="min-w-full mt-4 table-auto">
+                    <thead>
+                        <tr class="bg-cyan-600 text-white">
+                            <th class="px-6 py-3 text-left">Patient Name</th>
+                            <th class="px-6 py-3 text-left">Contacted At</th>
+                            <th class="px-6 py-3 text-left">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($contacts as $contact)
+                        <tr class="border-b">
+                            <td class="px-6 py-4">{{ $contact->user->name }}</td>
+                            <td class="px-6 py-4">{{ $contact->created_at->format('M d, Y') }}</td>
+                            <td class="px-6 py-4">
+                                <a href="{{ route('view.contact', $contact->id) }}" class="text-cyan-600 hover:text-cyan-800">
+                                    Show Result
+                                </a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+                <!-- Pagination -->
+                <div class="mt-4">
+                    {{ $contacts->links() }}
+                </div>
             </div>
         </main>
     </div>

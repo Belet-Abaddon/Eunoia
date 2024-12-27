@@ -9,10 +9,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Question extends Model
 {
     protected $table = 'questions';
-    protected $fillable = ['question', 'description','phychotherapy_type_id'];
+    protected $fillable = ['question', 'description', 'phychotherapy_type_id'];
 
-    public function phychotherapy_type():HasMany {
-        return $this->hasMany(PhychotherapyType::class);
+    // In Question Model
+    public function phychotherapyType()
+    {
+        return $this->belongsTo(PhychotherapyType::class);
     }
+
     use HasFactory;
 }
