@@ -50,4 +50,26 @@ class ContactController extends Controller
 
         return view('therapist.answers', compact('contact', 'answer', 'contactDate', 'user'));
     }
+    public function showPatientsList()
+    {
+        // Fetch all unique users who have contacted the therapist more than once and paginate them
+        $contacts = Contact::with('user')  // Eager load the user
+            ->where('therapist_id', auth()->user()->id)  // Filter by therapist_id
+            ->select('user_id')  // Select only user_id to avoid loading unnecessary data
+            ->distinct()
+            ->paginate(10);  // Paginate the results (10 per page)
+
+        return view('therapist.patient-list', compact('contacts'));
+    }
+    // Show all records (answers) for a specific patient
+    public function viewPatientRecords($userId)
+    {
+        // Retrieve all answers for the user, ordered by created_at
+        $answers = Answer::where('user_id', $userId)->with('phychotherapyType.questions')->orderBy('created_at', 'desc')->get();
+
+        // Retrieve the user information
+        $user = User::findOrFail($userId);
+
+        return view('therapist.patient-records', compact('answers', 'user'));
+    }
 }

@@ -4,11 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Therapist Dashboard - Patient List</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <title>Patients List</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body class="bg-gray-100">
@@ -50,49 +47,47 @@
                 </ul>
             </nav>
         </aside>
-        <!-- Main Content -->
-        <main class="flex-1 p-6">
-            <div class="bg-white rounded-lg shadow p-4">
-                <h2 class="text-xl font-bold mb-4">Patient List</h2>
+        <div class="container mx-auto p-8">
+            <h2 class="text-2xl font-bold mb-4">Patients List</h2>
 
-                <!-- Table -->
-                <div class="overflow-x-auto">
-                    <table class="table-auto w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-gray-200">
-                                <th class="px-4 py-2 border">#</th>
-                                <th class="px-4 py-2 border">Name</th>
-                                <th class="px-4 py-2 border">Email</th>
-                                <th class="px-4 py-2 border">Contact</th>
-                                <th class="px-4 py-2 border">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="hover:bg-gray-100">
-                                <td class="px-4 py-2 border">1</td>
-                                <td class="px-4 py-2 border">John Doe</td>
-                                <td class="px-4 py-2 border">john@example.com</td>
-                                <td class="px-4 py-2 border">+123456789</td>
-                                <td class="px-4 py-2 border">
-                                    <button
-                                        class="bg-cyan-500 text-white px-4 py-2 rounded hover:bg-cyan-700">View</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-gray-100">
-                                <td class="px-4 py-2 border">2</td>
-                                <td class="px-4 py-2 border">Jane Smith</td>
-                                <td class="px-4 py-2 border">jane@example.com</td>
-                                <td class="px-4 py-2 border">+987654321</td>
-                                <td class="px-4 py-2 border">
-                                    <button
-                                        class="bg-cyan-500 text-white px-4 py-2 rounded hover:bg-cyan-700">View</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <!-- Patients Table -->
+            <table class="min-w-full table-auto border-collapse border border-gray-300 mb-6">
+                <thead>
+                    <tr class="bg-cyan-600 text-white">
+                        <th class="px-4 py-2">Name</th>
+                        <th class="px-4 py-2">Email</th>
+                        <th class="px-4 py-2">Age</th>
+                        <th class="px-4 py-2">Gender</th>
+                        <th class="px-4 py-2">Country</th>
+                        <th class="px-4 py-2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($contacts as $contact)
+                                            @php
+                                                // Fetch user details for the contact
+                                                $user = $contact->user;
+                                            @endphp
+                                            <tr class="border-b">
+                                                <td class="px-4 py-2">{{ $user->name }}</td>
+                                                <td class="px-4 py-2">{{ $user->email }}</td>
+                                                <td class="px-4 py-2">{{ $user->age }}</td>
+                                                <td class="px-4 py-2">{{ ucfirst($user->gender) }}</td>
+                                                <td class="px-4 py-2">{{ $user->country }}</td>
+                                                <td class="px-4 py-2">
+                                                    <a href="{{ route('patient.records', $user->id) }}" class="text-cyan-600 hover:text-cyan-800">View All
+                                                        Records</a>
+                                                </td>
+                                            </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+            <!-- Pagination -->
+            <div class="mt-6">
+                {{ $contacts->links() }} <!-- Display pagination links -->
             </div>
-        </main>
+        </div>
     </div>
 </body>
 
