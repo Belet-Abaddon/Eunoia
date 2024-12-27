@@ -41,10 +41,15 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#logout" class="flex items-center space-x-4 text-white hover:bg-cyan-500 p-3 rounded">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span>Logout</span>
-                        </a>
+                        <!-- Logout Button with Form -->
+                        <form action="{{ route('logout') }}" method="POST" class="inline">
+                            @csrf
+                            <button type="submit"
+                                class="flex items-center space-x-4 text-white hover:bg-cyan-500 p-3 rounded w-full text-left">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span>Logout</span>
+                            </button>
+                        </form>
                     </li>
                 </ul>
             </nav>
@@ -83,15 +88,16 @@
                     </thead>
                     <tbody>
                         @foreach ($contacts as $contact)
-                        <tr class="border-b">
-                            <td class="px-6 py-4">{{ $contact->user->name }}</td>
-                            <td class="px-6 py-4">{{ $contact->created_at->format('M d, Y') }}</td>
-                            <td class="px-6 py-4">
-                                <a href="{{ route('view.contact', $contact->id) }}" class="text-cyan-600 hover:text-cyan-800">
-                                    Show Result
-                                </a>
-                            </td>
-                        </tr>
+                            <tr class="border-b">
+                                <td class="px-6 py-4">{{ $contact->user->name }}</td>
+                                <td class="px-6 py-4">{{ $contact->created_at->format('M d, Y') }}</td>
+                                <td class="px-6 py-4">
+                                    <a href="{{ route('view.contact', $contact->id) }}"
+                                        class="text-cyan-600 hover:text-cyan-800">
+                                        Show Result
+                                    </a>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>

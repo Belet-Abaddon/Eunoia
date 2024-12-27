@@ -16,15 +16,10 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\ContactController;
 
 
-// Route::get('/question',function(){
-//     return view('admin.question');
-// });
 
 Route::get('/', [PhychotherapyTypeController::class, 'showPhychoTyList'])->name('user.home');
 Route::get('/user-header', [PhychotherapyTypeController::class, 'showPhychoTy'])->name('user.header');
-Route::get('/profile-therapist', function () {
-    return view('therapist.profile');
-});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -81,6 +76,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/contacts/{contact}/answers', [ContactController::class, 'viewContactAnswers'])->name('view.contact');
     Route::get('/patients-list', [ContactController::class, 'showPatientsList'])->name('patients.list');
     Route::get('/patient-records/{userId}', [ContactController::class, 'viewPatientRecords'])->name('patient.records');
+    Route::get('/profile-therapist', [ScheduleController::class, 'showProfile'])->name('profile-therapist');
+
 });
 
 require __DIR__ . '/auth.php';

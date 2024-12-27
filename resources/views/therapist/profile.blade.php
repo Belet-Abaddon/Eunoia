@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body class="bg-gray-100">
     <div class="flex h-screen">
         <!-- Sidebar -->
@@ -38,42 +40,89 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#logout" class="flex items-center space-x-4 text-white hover:bg-cyan-500 p-3 rounded">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span>Logout</span>
-                        </a>
+                        <!-- Logout Button with Form -->
+                        <form action="{{ route('logout') }}" method="POST" class="inline">
+                            @csrf
+                            <button type="submit"
+                                class="flex items-center space-x-4 text-white hover:bg-cyan-500 p-3 rounded w-full text-left">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span>Logout</span>
+                            </button>
+                        </form>
                     </li>
                 </ul>
             </nav>
         </aside>
+
         <!-- Main Content -->
         <main class="flex-1 p-8">
             <div class="bg-white shadow rounded-lg p-6">
                 <h2 class="text-2xl font-bold mb-4">Profile</h2>
+
+                <!-- Fetching therapist details from the authenticated user -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Personal Info -->
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h3 class="text-lg font-semibold mb-2">Personal Information</h3>
-                        <p><strong>Name:</strong> John Doe</p>
-                        <p><strong>Email:</strong> johndoe@example.com</p>
-                        <p><strong>Phone:</strong> +123 456 7890</p>
+                        <p><strong>Name:</strong> {{ Auth::user()->name }}</p>
+                        <p><strong>Email:</strong> {{ Auth::user()->email }}</p>
+                        <p><strong>Country:</strong> {{ Auth::user()->country }}</p>
+                        <!-- Assuming 'country' is used for phone prefix -->
                     </div>
 
                     <!-- Professional Info -->
                     <div class="bg-gray-100 p-4 rounded-lg">
                         <h3 class="text-lg font-semibold mb-2">Professional Information</h3>
-                        <p><strong>Specialization:</strong> Cognitive Behavioral Therapy</p>
-                        <p><strong>Experience:</strong> 5 years</p>
-                        <p><strong>Qualifications:</strong> Licensed Therapist, M.Sc. in Psychology</p>
+                        <p><strong>Specialization:</strong> {{ Auth::user()->specialists ?? 'Not provided' }}</p>
+                        <p><strong>Experience:</strong> {{ Auth::user()->experience }} years</p>
+                        <p><strong>Degree:</strong> {{ Auth::user()->degree ?? 'Not provided' }}</p>
+                        <p><strong>University:</strong> {{ Auth::user()->university ?? 'Not provided' }}</p>
                     </div>
+                </div>
+
+                <!-- Schedule Section -->
+                <div class="mt-8">
+                    <h3 class="text-xl font-semibold mb-4">Schedule</h3>
+
+                    <!-- Group schedules by day -->
+                    @php
+                        $daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+                        $groupedSchedules = collect($daysOfWeek)->mapWithKeys(function ($day) use ($schedules) {
+                            return [$day => $schedules->where('date', $day)];
+                        });
+                    @endphp
+
+                    @foreach ($groupedSchedules as $day => $daySchedules)
+                        @if ($daySchedules->isNotEmpty())
+                            <div class="bg-gray-100 p-4 mb-4 rounded-lg">
+                                <h4 class="text-lg font-semibold">{{ $day }}</h4>
+                                @foreach ($daySchedules as $schedule)
+                                    <div class="mb-4">
+                                        <p><strong>Start Time:</strong>
+                                            {{ \Carbon\Carbon::parse($schedule->start_time)->format('h:i A') }}</p>
+                                        <p><strong>End Time:</strong>
+                                            {{ \Carbon\Carbon::parse($schedule->end_time)->format('h:i A') }}</p>
+                                        <p><strong>Zoom Link:</strong> <a href="{{ $schedule->zoom_link }}" class="text-cyan-600"
+                                                target="_blank">Join Zoom</a></p>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
+                    @endforeach
+
+                    @if ($schedules->isEmpty())
+                        <p>No scheduled sessions available.</p>
+                    @endif
                 </div>
 
                 <!-- Update Button -->
                 <div class="mt-6">
-                    <button class="bg-cyan-700 text-white px-6 py-2 rounded hover:bg-cyan-800">Edit Profile</button>
+                    <a href="/profile" class="bg-cyan-700 text-white px-6 py-2 rounded hover:bg-cyan-800">Edit
+                        Profile</a>
                 </div>
             </div>
         </main>
     </div>
 </body>
+
 </html>

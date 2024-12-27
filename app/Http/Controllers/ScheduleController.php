@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateScheduleRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class ScheduleController extends Controller
 {
@@ -65,5 +66,13 @@ class ScheduleController extends Controller
 
         // Redirect back with a success message
         return redirect()->route('admin.schedule')->with('success', 'Schedule deleted successfully.');
+    }
+    public function showProfile()
+    {
+        // Fetch the authenticated therapist's schedule
+        $schedules = Auth::user()->schedules;
+
+        // Pass the schedules to the view
+        return view('therapist.profile', compact('schedules'));
     }
 }

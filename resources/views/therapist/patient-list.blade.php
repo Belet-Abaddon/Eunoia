@@ -39,10 +39,15 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#logout" class="flex items-center space-x-4 text-white hover:bg-cyan-500 p-3 rounded">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span>Logout</span>
-                        </a>
+                        <!-- Logout Button with Form -->
+                        <form action="{{ route('logout') }}" method="POST" class="inline">
+                            @csrf
+                            <button type="submit"
+                                class="flex items-center space-x-4 text-white hover:bg-cyan-500 p-3 rounded w-full text-left">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span>Logout</span>
+                            </button>
+                        </form>
                     </li>
                 </ul>
             </nav>
@@ -64,21 +69,22 @@
                 </thead>
                 <tbody>
                     @foreach ($contacts as $contact)
-                                            @php
-                                                // Fetch user details for the contact
-                                                $user = $contact->user;
-                                            @endphp
-                                            <tr class="border-b">
-                                                <td class="px-4 py-2">{{ $user->name }}</td>
-                                                <td class="px-4 py-2">{{ $user->email }}</td>
-                                                <td class="px-4 py-2">{{ $user->age }}</td>
-                                                <td class="px-4 py-2">{{ ucfirst($user->gender) }}</td>
-                                                <td class="px-4 py-2">{{ $user->country }}</td>
-                                                <td class="px-4 py-2">
-                                                    <a href="{{ route('patient.records', $user->id) }}" class="text-cyan-600 hover:text-cyan-800">View All
-                                                        Records</a>
-                                                </td>
-                                            </tr>
+                                        @php
+                                            // Fetch user details for the contact
+                                            $user = $contact->user;
+                                        @endphp
+                                        <tr class="border-b">
+                                            <td class="px-4 py-2">{{ $user->name }}</td>
+                                            <td class="px-4 py-2">{{ $user->email }}</td>
+                                            <td class="px-4 py-2">{{ $user->age }}</td>
+                                            <td class="px-4 py-2">{{ ucfirst($user->gender) }}</td>
+                                            <td class="px-4 py-2">{{ $user->country }}</td>
+                                            <td class="px-4 py-2">
+                                                <a href="{{ route('patient.records', $user->id) }}"
+                                                    class="text-cyan-600 hover:text-cyan-800">View All
+                                                    Records</a>
+                                            </td>
+                                        </tr>
                     @endforeach
                 </tbody>
             </table>
