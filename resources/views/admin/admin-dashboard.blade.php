@@ -25,7 +25,31 @@
                 j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-THQTXJ7');</script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Add some styling for the chart container */
+        .chart-container {
+            width: 80%;
+            margin: 0 auto;
+            margin-bottom: 30px;
+            /* Add some space between charts */
+        }
 
+        .charts-wrapper {
+            display: flex;
+            flex-direction: column;
+            /* Stack the charts vertically */
+            align-items: center;
+        }
+
+        .chat-size {
+            width: 80%;
+            /* Ensure canvas respects the width of its parent */
+            height: 200px;
+            margin: 20px;
+            /* Set a fixed height or adjust as needed */
+        }
+    </style>
 
 </head>
 
@@ -74,7 +98,7 @@
         </div>
     </nav>
     <div class="flex overflow-hidden bg-white pt-16">
-    <aside id="sidebar"
+        <aside id="sidebar"
             class="fixed hidden z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75"
             aria-label="Sidebar">
             <div class="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white pt-0">
@@ -206,94 +230,198 @@
 
                 <div class="pt-6 px-4">
                     <div class="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-                        <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+                        <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
                             <div class="flex items-center">
                                 <div class="flex-shrink-0">
-                                    <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900"> {{ $totalUsers }}</span>
+                                    <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">{{
+    $totalUsers }}</span>
                                     <h3 class="text-base font-normal text-gray-500">Total Users</h3>
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+                        <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
                             <div class="flex items-center">
                                 <div class="flex-shrink-0">
-                                    <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">{{$totalTherapists}} </span>
+                                    <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">{{
+    $totalTherapists }}</span>
                                     <h3 class="text-base font-normal text-gray-500">Total Therapists</h3>
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+                        <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
                             <div class="flex items-center">
                                 <div class="flex-shrink-0">
-                                    <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900"> </span>
-                                    <h3 class="text-base font-normal text-gray-500">User signups this week</h3>
+                                    <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">{{
+    $totalAdmins }}</span>
+                                    <h3 class="text-base font-normal text-gray-500">Total Admins</h3>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="grid grid-cols-1 2xl:grid-cols-2 xl:gap-4 my-4">
+                    <!-- Chart Wrapper for Side by Side Layout -->
+                    <div class="flex justify-between gap-4">
+                        <!-- First Chart (e.g., the bar chart for therapist contact data) -->
+                        <div class="w-1/2 p-4">
+                            <h3 class="text-lg font-semibold text-center">User Contact Data by Therapist</h3>
+                            <canvas id="therapistContactChart" class="chart-size"></canvas>
+                        </div>
+
+                        <!-- Second Chart (the bar chart for psychotherapy type data) -->
+                        <div class="w-1/2 p-4">
+                            <h3 class="text-lg font-semibold text-center">Psychotherapy Type Bar Chart</h3>
+                            <canvas id="existingChart" class="chart-size"></canvas>
+                        </div>
+                    </div>
+                    <script>
+                        // First Chart: Therapist Contact Data
+                        const ctx1 = document.getElementById('therapistContactChart').getContext('2d');
+                        const therapistContactChart = new Chart(ctx1, {
+                            type: 'bar',
+                            data: {
+                                labels: @json($therapists), // Therapist names
+                                datasets: [{
+                                    label: 'Number of Contacts',
+                                    data: @json($contactCounts), // Contact counts for each therapist
+                                    backgroundColor: 'rgba(75, 192, 192, 0.2)', // Bar color
+                                    borderColor: 'rgba(75, 192, 192, 1)', // Border color
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: true,
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        title: {
+                                            display: true,
+                                            text: 'Number of Contacts'
+                                        }
+                                    },
+                                    x: {
+                                        title: {
+                                            display: true,
+                                            text: 'Therapists'
+                                        }
+                                    }
+                                },
+                                plugins: {
+                                    legend: {
+                                        position: 'top',
+                                    },
+                                    tooltip: {
+                                        enabled: true
+                                    }
+                                }
+                            }
+                        });
+
+                        // Second Chart: Psychotherapy Type Data
+                        const ctx2 = document.getElementById('existingChart').getContext('2d');
+                        const existingChart = new Chart(ctx2, {
+                            type: 'bar',
+                            data: {
+                                labels: @json($existingChartLabels), // Psychotherapy Types
+                                datasets: [{
+                                    label: 'Existing Data',
+                                    data: @json($existingChartData), // Data for each psychotherapy type
+                                    backgroundColor: 'rgba(255, 159, 64, 0.2)', // Bar color
+                                    borderColor: 'rgba(255, 159, 64, 1)', // Border color
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: true,
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        title: {
+                                            display: true,
+                                            text: 'Values'
+                                        }
+                                    },
+                                    x: {
+                                        title: {
+                                            display: true,
+                                            text: 'Psychotherapy Types'
+                                        }
+                                    }
+                                },
+                                plugins: {
+                                    legend: {
+                                        position: 'top',
+                                    },
+                                    tooltip: {
+                                        enabled: true
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+
+                    <div class="my-4">
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
                         <!-- Top Sales Card -->
                         <div class="bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full">
-                        <table class="table-fixed min-w-full divide-y divide-gray-200">
-                                    <thead class="bg-gray-100">
+                            <table class="table-fixed min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-100">
+                                    <tr>
+                                        <th scope="col"
+                                            class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Id</th>
+                                        <th scope="col"
+                                            class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
+                                        <th scope="col"
+                                            class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+                                        <th scope="col"
+                                            class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Age</th>
+                                        <th scope="col"
+                                            class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Gender
+                                        </th>
+                                        <th scope="col"
+                                            class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Country
+                                        </th>
+                                        <th scope="col"
+                                            class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Degree
+                                        </th>
+                                        <th scope="col"
+                                            class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Experience
+                                        </th>
+                                        <th scope="col"
+                                            class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
+                                            Specialists</th>
+                                        <th scope="col"
+                                            class="p-4 text-left text-xs font-medium text-gray-500 uppercase">University
+                                        </th>
+                                        <th scope="col"
+                                            class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Action
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    @forelse($adminList as $admin)
                                         <tr>
-
-                                            <th scope="col"
-                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                Name
-                                            </th>
-                                            <th scope="col"
-                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                email
-                                            </th>
-                                            <th scope="col"
-                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                age
-                                            </th>
-                                            <th scope="col"
-                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                gender
-                                            </th>
-                                            <th scope="col"
-                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                country
-                                            </th>
-                                            <th scope="col"
-                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                degree
-                                            </th>
-                                            <th scope="col"
-                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                experience
-                                            </th>
-                                            <th scope="col"
-                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                specialists
-                                            </th>
-                                            <th scope="col"
-                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                university
-                                            </th>
-                                            <th scope="col"
-                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                Action
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="bg-white divide-y divide-gray-200">
-                                        @foreach($adminList as $admin)
-                                            <tr>
-                                                <td class="p-4 text-sm text-gray-900">{{ $admin->name }}</td>
-                                                <td class="p-4 text-sm text-gray-900">{{ $admin->email }}</td>
-                                                <td class="p-4 text-sm text-gray-900">{{ $admin->age }}</td>
-                                                <td class="p-4 text-sm text-gray-900">{{ $admin->gender }}</td>
-                                                <td class="p-4 text-sm text-gray-900">{{ $admin->country }}</td>
-                                                <td class="p-4 text-sm text-gray-900">{{ $admin->degree }}</td>
-                                                <td class="p-4 text-sm text-gray-900">{{ $admin->experience }}</td>
-                                                <td class="p-4 text-sm text-gray-900">{{ $admin->specialists }}</td>
-                                                <td class="p-4 text-sm text-gray-900">{{ $admin->university }}</td>
-                                                <td class="p-4 whitespace-nowrap space-x-2">
-                                                    <button type="button" data-modal-toggle="delete-user-modal"
+                                            <td class="p-4 text-sm text-gray-900">{{ $admin->id }}</td>
+                                            <td class="p-4 text-sm text-gray-900">{{ $admin->name }}</td>
+                                            <td class="p-4 text-sm text-gray-900">{{ $admin->email }}</td>
+                                            <td class="p-4 text-sm text-gray-900">{{ $admin->age }}</td>
+                                            <td class="p-4 text-sm text-gray-900">{{ $admin->gender }}</td>
+                                            <td class="p-4 text-sm text-gray-900">{{ $admin->country }}</td>
+                                            <td class="p-4 text-sm text-gray-900">{{ $admin->degree }}</td>
+                                            <td class="p-4 text-sm text-gray-900">{{ $admin->experience }}</td>
+                                            <td class="p-4 text-sm text-gray-900">{{ $admin->specialists }}</td>
+                                            <td class="p-4 text-sm text-gray-900">{{ $admin->university }}</td>
+                                            <td class="p-4 whitespace-nowrap space-x-2">
+                                                <form action="{{ route('admin.changeRole', $admin->id) }}" method="POST"
+                                                    onsubmit="return confirm('Are you sure you want to change this admin to user?');">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="submit"
                                                         class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
                                                         <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
                                                             xmlns="http://www.w3.org/2000/svg">
@@ -301,156 +429,73 @@
                                                                 d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
                                                                 clip-rule="evenodd"></path>
                                                         </svg>
-                                                        Delete therapist
+                                                        Ban Admin
                                                     </button>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                        </div>
-                        <!-- Sessions by device Card -->
-                        <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
-
-                            <!-- Card Title -->
-                            <h3 class="text-xl leading-none font-bold text-gray-900 mb-10">Acquisition Overview</h3>
-                            <div class="block w-full overflow-x-auto">
-                                <table class="items-center w-full bg-transparent border-collapse">
-                                    <thead>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @empty
                                         <tr>
-                                            <th
-                                                class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">
-                                                Top Channels</th>
-                                            <th
-                                                class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">
-                                                Users</th>
-                                            <th
-                                                class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap min-w-140-px">
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-gray-100">
-                                        <tr class="text-gray-500">
-                                            <th
-                                                class="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
-                                                Organic Search</th>
-                                            <td
-                                                class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                                                5,649</td>
-                                            <td class="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
-                                                <div class="flex items-center">
-                                                    <span class="mr-2 text-xs font-medium">30%</span>
-                                                    <div class="relative w-full">
-                                                        <div class="w-full bg-gray-200 rounded-sm h-2">
-                                                            <div class="bg-cyan-600 h-2 rounded-sm" style="width: 30%">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <td colspan="10" class="p-4 text-sm text-gray-900 text-center">No Admins Found
                                             </td>
                                         </tr>
-                                        <tr class="text-gray-500">
-                                            <th
-                                                class="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
-                                                Referral</th>
-                                            <td
-                                                class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                                                4,025</td>
-                                            <td class="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
-                                                <div class="flex items-center">
-                                                    <span class="mr-2 text-xs font-medium">24%</span>
-                                                    <div class="relative w-full">
-                                                        <div class="w-full bg-gray-200 rounded-sm h-2">
-                                                            <div class="bg-orange-300 h-2 rounded-sm"
-                                                                style="width: 24%"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="text-gray-500">
-                                            <th
-                                                class="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
-                                                Direct</th>
-                                            <td
-                                                class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                                                3,105</td>
-                                            <td class="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
-                                                <div class="flex items-center">
-                                                    <span class="mr-2 text-xs font-medium">18%</span>
-                                                    <div class="relative w-full">
-                                                        <div class="w-full bg-gray-200 rounded-sm h-2">
-                                                            <div class="bg-teal-400 h-2 rounded-sm" style="width: 18%">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="text-gray-500">
-                                            <th
-                                                class="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
-                                                Social</th>
-                                            <td
-                                                class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                                                1251</td>
-                                            <td class="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
-                                                <div class="flex items-center">
-                                                    <span class="mr-2 text-xs font-medium">12%</span>
-                                                    <div class="relative w-full">
-                                                        <div class="w-full bg-gray-200 rounded-sm h-2">
-                                                            <div class="bg-pink-600 h-2 rounded-sm" style="width: 12%">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="text-gray-500">
-                                            <th
-                                                class="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
-                                                Other</th>
-                                            <td
-                                                class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                                                734</td>
-                                            <td class="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
-                                                <div class="flex items-center">
-                                                    <span class="mr-2 text-xs font-medium">9%</span>
-                                                    <div class="relative w-full">
-                                                        <div class="w-full bg-gray-200 rounded-sm h-2">
-                                                            <div class="bg-indigo-600 h-2 rounded-sm" style="width: 9%">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="text-gray-500">
-                                            <th
-                                                class="border-t-0 align-middle text-sm font-normal whitespace-nowrap p-4 pb-0 text-left">
-                                                Email</th>
-                                            <td
-                                                class="border-t-0 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4 pb-0">
-                                                456</td>
-                                            <td class="border-t-0 align-middle text-xs whitespace-nowrap p-4 pb-0">
-                                                <div class="flex items-center">
-                                                    <span class="mr-2 text-xs font-medium">7%</span>
-                                                    <div class="relative w-full">
-                                                        <div class="w-full bg-gray-200 rounded-sm h-2">
-                                                            <div class="bg-purple-500 h-2 rounded-sm" style="width: 7%">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                            <div
+                                class="bg-white sticky sm:flex items-center w-full sm:justify-between bottom-0 right-0 border-t border-gray-200 p-4">
+                                <div class="flex items-center mb-4 sm:mb-0">
+                                    <a href="{{ $adminList->previousPageUrl() }}"
+                                        class="text-gray-500 hover:text-gray-900 cursor-pointer p-1 hover:bg-gray-100 rounded inline-flex justify-center">
+                                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                    </a>
+                                    <a href="{{ $adminList->nextPageUrl() }}"
+                                        class="text-gray-500 hover:text-gray-900 cursor-pointer p-1 hover:bg-gray-100 rounded inline-flex justify-center mr-2">
+                                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                    </a>
+                                    <span class="text-sm font-normal text-gray-500">Showing <span
+                                            class="text-gray-900 font-semibold">{{ $adminList->firstItem() }}-{{ $adminList->lastItem() }}</span>
+                                        of <span
+                                            class="text-gray-900 font-semibold">{{ $adminList->total() }}</span></span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    @if ($adminList->onFirstPage())
+                                        <span
+                                            class="flex-1 text-white bg-gray-300 font-medium inline-flex items-center justify-center rounded-lg text-sm px-3 py-2 text-center cursor-not-allowed">
+                                            Previous
+                                        </span>
+                                    @else
+                                        <a href="{{ $adminList->previousPageUrl() }}"
+                                            class="flex-1 text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium inline-flex items-center justify-center rounded-lg text-sm px-3 py-2 text-center">
+                                            Previous
+                                        </a>
+                                    @endif
+                                    @if ($adminList->hasMorePages())
+                                        <a href="{{ $adminList->nextPageUrl() }}"
+                                            class="flex-1 text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium inline-flex items-center justify-center rounded-lg text-sm px-3 py-2 text-center">
+                                            Next
+                                        </a>
+                                    @else
+                                        <span
+                                            class="flex-1 text-white bg-gray-300 font-medium inline-flex items-center justify-center rounded-lg text-sm px-3 py-2 text-center cursor-not-allowed">
+                                            Next
+                                        </span>
+                                    @endif
+                                </div>
                             </div>
-
                         </div>
-
                     </div>
+
                 </div>
             </main>
             <footer

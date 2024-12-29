@@ -31,8 +31,8 @@ Route::middleware('auth')->group(function () {
 
     // admin
     //admin dashboard
-    Route::get('/admin-dashboard', [AdminDashboardController::class, 'dashboard'])->name('admin.dashboard');
-
+    Route::get('/admin-dashboard', [RegisteredUserController::class, 'dashboard'])->name('admin.dashboard');
+    Route::patch('/admin/change-role/{id}', [RegisteredUserController::class, 'changeRoleAdmin'])->name('admin.changeRole');
     //post
     Route::post('/post-create', [PostController::class, 'store'])->name('admin.postCreate');
     Route::get('/posts', [PostController::class, 'show'])->name('admin.posts');

@@ -8,17 +8,12 @@ use Illuminate\View\View;
 
 class AdminDashboardController extends Controller
 {
-    public function dashboard(): View
+    public function dashboard()
     {
-        // Count total users, admins, and therapists directly using query filtering
         $totalUsers = User::where('role', 0)->count();
-        $totalAdmins = User::where('role', 1)->count();
         $totalTherapists = User::where('role', 2)->count();
+        $totalAdmins = User::where('role', 1)->count(); // Assuming role 1 is admin
 
-        // Fetch all admin details
-        $adminList = User::where('role', 1)->get();
-
-        // Return data to the view
-        return view('admin.admin-dashboard', compact('totalUsers', 'totalAdmins', 'totalTherapists', 'adminList'));
+        return view('admin.admin-dashboard', compact('totalUsers', 'totalTherapists', 'totalAdmins'));
     }
 }
