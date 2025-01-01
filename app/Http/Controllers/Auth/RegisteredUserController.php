@@ -87,62 +87,63 @@ class RegisteredUserController extends Controller
         return redirect()->back()->with('success', 'User role updated successfully.');
     }
     public function dashboard()
-{
-    // Paginate the users or any data you want to show
-    $phychoTys = PhychotherapyType::paginate(10); // Paginate with 10 items per page
+    {
+        // Paginate the users or any data you want to show
+        $phychoTys = PhychotherapyType::paginate(10); // Paginate with 10 items per page
 
-    // Prepare the data for the chart as before
-    $psychologicalTypes = Answer::select('phychotherapy_type_id', DB::raw('count(*) as count'))
-        ->groupBy('phychotherapy_type_id')
-        ->get();
+        // Prepare the data for the chart as before
+        $psychologicalTypes = Answer::select('phychotherapy_type_id', DB::raw('count(*) as count'))
+            ->groupBy('phychotherapy_type_id')
+            ->get();
 
-    // Retrieve all psychological types to display names with counts
-    $types = PhychotherapyType::all();
+        // Retrieve all psychological types to display names with counts
+        $types = PhychotherapyType::all();
 
-    // Prepare data for chart
-    $labels = [];
-    $counts = [];
+        // Prepare data for chart
+        $labels = [];
+        $counts = [];
 
-    foreach ($psychologicalTypes as $type) {
-        $labels[] = $types->firstWhere('id', $type->phychotherapy_type_id)->name; // Assuming the PhychotherapyType model has a 'name' column
-        $counts[] = $type->count;
+        foreach ($psychologicalTypes as $type) {
+            $foundType = $types->firstWhere('id', $type->phychotherapy_type_id);
+            $labels[] = $foundType ? ($foundType->name ?? 'Unknown Type') : 'Unknown Type'; // Handle null $foundType
+            $counts[] = $type->count;
+        }        
+
+        // Initialize existingChartLabels before using it
+        $existingChartLabels = $labels;  // Here we assign the labels to existingChartLabels
+        $existingChartData = $counts;    // Assign the counts to existingChartData
+
+        // Fetch the number of users who contacted each therapist
+        $contactCounts = DB::table('contacts')
+            ->join('users as therapists', 'contacts.therapist_id', '=', 'therapists.id')
+            ->select('therapists.name as therapist_name', DB::raw('count(contacts.id) as contact_count'))
+            ->groupBy('therapists.id', 'therapists.name')
+            ->get();
+
+        // Prepare data for the chart
+        $therapists = $contactCounts->pluck('therapist_name')->toArray();
+        $contactCountsData = $contactCounts->pluck('contact_count')->toArray();
+
+        // Fetch the admin list
+        $totalUsers = User::where('role', 0)->count();
+        $totalTherapists = User::where('role', 2)->count();
+        $totalAdmins = User::where('role', 1)->count();
+        $adminList = User::where('role', 1)->paginate(10); // Paginate the admin list with 10 per page
+
+        return view('admin.admin-dashboard', [
+            'totalUsers' => $totalUsers,
+            'totalTherapists' => $totalTherapists,
+            'totalAdmins' => $totalAdmins,
+            'adminList' => $adminList,
+            'labels' => $labels,
+            'counts' => $counts,
+            'phychoTys' => $phychoTys,
+            'therapists' => $therapists,
+            'contactCounts' => $contactCountsData,
+            'existingChartLabels' => $existingChartLabels, // Pass it to the view
+            'existingChartData' => $existingChartData,     // Pass it to the view
+        ]);
     }
-
-    // Initialize existingChartLabels before using it
-    $existingChartLabels = $labels;  // Here we assign the labels to existingChartLabels
-    $existingChartData = $counts;    // Assign the counts to existingChartData
-
-    // Fetch the number of users who contacted each therapist
-    $contactCounts = DB::table('contacts')
-        ->join('users as therapists', 'contacts.therapist_id', '=', 'therapists.id')
-        ->select('therapists.name as therapist_name', DB::raw('count(contacts.id) as contact_count'))
-        ->groupBy('therapists.id', 'therapists.name')
-        ->get();
-
-    // Prepare data for the chart
-    $therapists = $contactCounts->pluck('therapist_name')->toArray();
-    $contactCountsData = $contactCounts->pluck('contact_count')->toArray();
-
-    // Fetch the admin list
-    $totalUsers = User::where('role', 0)->count();
-    $totalTherapists = User::where('role', 2)->count();
-    $totalAdmins = User::where('role', 1)->count();
-    $adminList = User::where('role', 1)->paginate(10); // Paginate the admin list with 10 per page
-
-    return view('admin.admin-dashboard', [
-        'totalUsers' => $totalUsers,
-        'totalTherapists' => $totalTherapists,
-        'totalAdmins' => $totalAdmins,
-        'adminList' => $adminList,
-        'labels' => $labels,
-        'counts' => $counts,
-        'phychoTys' => $phychoTys,
-        'therapists' => $therapists,
-        'contactCounts' => $contactCountsData,
-        'existingChartLabels' => $existingChartLabels, // Pass it to the view
-        'existingChartData' => $existingChartData,     // Pass it to the view
-    ]);
-}
 
     public function changeRoleAdmin($id)
     {

@@ -15,8 +15,6 @@
 
         gtag('config', 'UA-141734189-6');
     </script>
-
-
     <script>(function (w, d, s, l, i) {
             w[l] = w[l] || []; w[l].push({
                 'gtm.start':
@@ -71,7 +69,7 @@
         </div>
     </nav>
     <div class="flex overflow-hidden bg-white pt-16">
-    <aside id="sidebar"
+        <aside id="sidebar"
             class="fixed hidden z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75"
             aria-label="Sidebar">
             <div class="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white pt-0">
@@ -180,18 +178,20 @@
                                 </a>
                             </li>
                         </ul>
-                        <div class="space-y-2 pt-2 ">
-                            <a href="" target="_blank"
+                        <!-- Logout Button with Form -->
+                        <form action="{{ route('logout') }}" method="POST" class="inline">
+                            @csrf
+                            <button type="submit"
                                 class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 group transition duration-75 flex items-center p-2">
                                 <svg class="w-5 h-5 text-gray-900 flex-shrink-0 transition duration-75"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                    <!-- Font Awesome Icon -->
                                     <path
                                         d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z" />
                                 </svg>
                                 <span class="ml-3">Sign Out</span>
-                            </a>
-                        </div>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -301,29 +301,16 @@
                                                     @endif
                                                 </td>
                                                 <td class="p-4 whitespace-nowrap space-x-2">
-                                                    <button type="button" data-modal-toggle="user-modal"
+                                                    <button type="button"
                                                         onclick="openModal('{{ $post->id }}', '{{ $post->caption }}', '{{ $post->description }}', '{{ $post->image_url }}', '{{ $post->video_url }}')"
+                                                        data-modal-toggle="user-modal"
                                                         class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
-                                                        <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
-                                                            xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z">
-                                                            </path>
-                                                            <path fill-rule="evenodd"
-                                                                d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
-                                                                clip-rule="evenodd"></path>
-                                                        </svg>
                                                         Edit post
                                                     </button>
                                                     <button type="button" data-modal-toggle="delete-user-modal"
+                                                        onclick="openingModal('{{ $post->id }}')"
                                                         class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
-                                                        <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
-                                                            xmlns="http://www.w3.org/2000/svg">
-                                                            <path fill-rule="evenodd"
-                                                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                                clip-rule="evenodd"></path>
-                                                        </svg>
-                                                        Delete post
+                                                        Delete
                                                     </button>
                                                 </td>
                                             </tr>
@@ -383,7 +370,7 @@
                     </div>
                 </div>
 
-                <!-- Edit User Modal -->
+                <!-- Edit Post Modal -->
                 <div class="hidden overflow-x-hidden overflow-y-auto fixed top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center h-modal sm:h-full"
                     id="user-modal">
                     <div class="relative w-full max-w-2xl px-4 h-full md:h-auto">
@@ -392,7 +379,7 @@
                             <!-- Modal header -->
                             <div class="flex items-start justify-between p-5 border-b rounded-t">
                                 <h3 class="text-xl font-semibold">
-                                    Edit post data
+                                    Edit psychological type data
                                 </h3>
                                 <button type="button"
                                     class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
@@ -477,8 +464,9 @@
                         </div>
                     </div>
 
-                    <!-- Add User Modal -->
-                    <div class="hidden overflow-x-hidden overflow-y-auto fixed top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center h-modal sm:h-full"
+                    <!-- Add Post Modal -->
+                    <div style="display: none;"
+                        class=" overflow-x-hidden overflow-y-auto fixed top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center h-modal sm:h-full"
                         id="add-user-modal">
                         <div class="relative w-full max-w-2xl px-4 h-full md:h-auto">
                             <!-- Modal content -->
@@ -486,7 +474,7 @@
                                 <!-- Modal header -->
                                 <div class="flex items-start justify-between p-5 border-b rounded-t">
                                     <h3 class="text-xl font-semibold">
-                                        Add new post
+                                        Add new psychological type
                                     </h3>
                                     <button type="button"
                                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
@@ -501,35 +489,33 @@
                                 </div>
                                 <!-- Modal body -->
                                 <div class="p-6 space-y-6">
-                                <form action="{{ route('admin.postCreate') }}" method="POST"
-                                        enctype="multipart/form-data">
-                                        @csrf
+                                    <form action="{{ route('admin.postCreate') }}" method="POST">
                                         <div class="grid grid-cols-6 gap-6">
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="caption"
                                                     class="text-sm font-medium text-gray-900 block mb-2">Caption</label>
-                                                <input type="text" name="caption" id="caption"
+                                                <input type="text" id="caption"
                                                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                    placeholder="Bonnie" required>
+                                                    placeholder="Caption" required>
                                             </div>
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="description"
                                                     class="text-sm font-medium text-gray-900 block mb-2">Description</label>
-                                                <input type="text" name="description" id="description"
+                                                <input type="text" id="description"
                                                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                                    placeholder="description" required>
+                                                    placeholder="Description" required>
                                             </div>
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="image-upload"
                                                     class="text-sm font-medium text-gray-900 block mb-2">Image</label>
-                                                <input type="file" name="image" id="image"
+                                                <input type="file" id="image-upload"
                                                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                                     accept="image/*">
                                             </div>
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="video-upload"
                                                     class="text-sm font-medium text-gray-900 block mb-2">Video</label>
-                                                <input type="file" name="video" id="video-upload"
+                                                <input type="file" id="video-upload"
                                                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                                     accept="video/*">
                                             </div>
@@ -547,7 +533,6 @@
                     </div>
 
                     <!-- Delete User Modal -->
-
                     <div class="hidden overflow-x-hidden overflow-y-auto fixed top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center h-modal sm:h-full"
                         id="delete-user-modal">
                         <div class="relative w-full max-w-md px-4 h-full md:h-auto">
@@ -607,7 +592,7 @@
         integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
         data-cf-beacon='{"rayId":"8e058c9b5aeb4933","version":"2024.10.5","r":1,"token":"3a2c60bab7654724a0f7e5946db4ea5a","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}'
         crossorigin="anonymous"></script>
-    <script>
+        <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Add User Modal
             const addUserButton = document.querySelector('[data-modal-toggle="add-user-modal"]');
@@ -653,7 +638,7 @@
         }
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             function openingModal(id) {
                 console.log('Opening modal for ID:', id); // Check if the function is called
                 document.getElementById('delete-user-modal-' + id).classList.remove('hidden');

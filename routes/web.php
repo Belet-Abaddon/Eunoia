@@ -15,7 +15,9 @@ use App\Models\Post;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\ContactController;
 
-
+Route::get('/admin',function(){
+    return view('admin_dashboard');
+});
 
 Route::get('/', [PhychotherapyTypeController::class, 'showPhychoTyList'])->name('user.home');
 Route::get('/user-header', [PhychotherapyTypeController::class, 'showPhychoTy'])->name('user.header');
@@ -31,6 +33,7 @@ Route::middleware('auth')->group(function () {
 
     // admin
     //admin dashboard
+
     Route::get('/admin-dashboard', [RegisteredUserController::class, 'dashboard'])->name('admin.dashboard');
     Route::patch('/admin/change-role/{id}', [RegisteredUserController::class, 'changeRoleAdmin'])->name('admin.changeRole');
     //post
