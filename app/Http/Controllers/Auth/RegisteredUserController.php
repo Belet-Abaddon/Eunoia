@@ -32,6 +32,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // Validation
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
@@ -43,8 +44,12 @@ class RegisteredUserController extends Controller
             'experience' => 'nullable|integer',
             'specialists' => 'nullable|string',
             'university' => 'nullable|string',
+            'profile' => 'nullable|string',
+            'status' => ['required', 'string', 'max:10'],
+            'role' => ['required', 'integer'],
         ]);
 
+        // Create user
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -56,15 +61,18 @@ class RegisteredUserController extends Controller
             'experience' => $request->input('experience', null),
             'specialists' => $request->input('specialists', null),
             'university' => $request->input('university', null),
-            'role' => 0,
+            'profile' => $request->input('profile', null),
+            'status' => $request->status,
+            'role' => $request->role,
         ]);
 
+        // Fire event and log in
         event(new Registered($user));
-
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        return redirect(route('/dashboard', absolute: false));
     }
+
     public function show(): View
     {
         $users = User::where('role', 0)->get();
@@ -107,7 +115,7 @@ class RegisteredUserController extends Controller
             $foundType = $types->firstWhere('id', $type->phychotherapy_type_id);
             $labels[] = $foundType ? ($foundType->name ?? 'Unknown Type') : 'Unknown Type'; // Handle null $foundType
             $counts[] = $type->count;
-        }        
+        }
 
         // Initialize existingChartLabels before using it
         $existingChartLabels = $labels;  // Here we assign the labels to existingChartLabels

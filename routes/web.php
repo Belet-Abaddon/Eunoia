@@ -22,9 +22,9 @@ Route::get('/admin',function(){
 Route::get('/', [PhychotherapyTypeController::class, 'showPhychoTyList'])->name('user.home');
 Route::get('/user-header', [PhychotherapyTypeController::class, 'showPhychoTy'])->name('user.header');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [PhychotherapyTypeController::class, 'showPhychoTyList'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

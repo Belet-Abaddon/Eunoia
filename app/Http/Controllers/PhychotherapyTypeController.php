@@ -7,6 +7,8 @@ use Illuminate\View\View;
 use App\Http\Requests\PhychotherapyTypeRequest;
 use App\Models\PhychotherapyType;
 use App\Models\Contact;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 
@@ -56,14 +58,17 @@ class PhychotherapyTypeController extends Controller
         return redirect()->route('admin.psychoTyList')->with('success', 'Category type deleted successfully.');
     }
     public function showPhychoTyList(): View
-    {
-        $phychoTys = PhychotherapyType::get();
-        // Fetch all contacts of the logged-in user, ordered by creation time (including old ones)
-        $contacts = Contact::with('therapist') // Eager load therapist data
-            ->where('user_id', auth()->id()) // Filter contacts by the logged-in user
-            ->orderBy('created_at', 'desc') // Sort by creation date (most recent first)
-            ->get();
+{
+    $phychoTys = PhychotherapyType::get();
+    $contacts = Contact::with('therapist')
+        ->where('user_id', auth()->id())
+        ->orderBy('created_at', 'desc')
+        ->get();
+    $latestPosts = Post::latest()->take(5)->get();
+    
+    // Fetch therapists
+    $therapists = User::where('role', 2)->get(); // Assuming you have a Therapist model
 
-        return view('users.user-home', compact('phychoTys','contacts'));
-    }
+    return view('users.user-home', compact('phychoTys', 'contacts', 'latestPosts', 'therapists'));
+}
 }

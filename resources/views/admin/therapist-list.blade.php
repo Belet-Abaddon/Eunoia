@@ -73,7 +73,7 @@
     </nav>
     <div class="flex overflow-hidden bg-white pt-16">
 
-    <aside id="sidebar"
+        <aside id="sidebar"
             class="fixed hidden z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75"
             aria-label="Sidebar">
             <div class="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white pt-0">
@@ -244,46 +244,41 @@
                                 <table class="table-fixed min-w-full divide-y divide-gray-200">
                                     <thead class="bg-gray-100">
                                         <tr>
-
                                             <th scope="col"
-                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                Name
+                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Name
+                                            </th>
+                                            <th scope="col"
+                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Email
+                                            </th>
+                                            <th scope="col"
+                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Age
+                                            </th>
+                                            <th scope="col"
+                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Gender
                                             </th>
                                             <th scope="col"
                                                 class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                email
+                                                Country</th>
+                                            <th scope="col"
+                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Degree
                                             </th>
                                             <th scope="col"
                                                 class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                age
-                                            </th>
+                                                Experience</th>
                                             <th scope="col"
                                                 class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                gender
-                                            </th>
+                                                Specialists</th>
                                             <th scope="col"
                                                 class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                country
-                                            </th>
+                                                University</th>
                                             <th scope="col"
                                                 class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                degree
+                                                Profile</th>
+                                            <th scope="col"
+                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Status
                                             </th>
                                             <th scope="col"
-                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                experience
-                                            </th>
-                                            <th scope="col"
-                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                specialists
-                                            </th>
-                                            <th scope="col"
-                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                university
-                                            </th>
-                                            <th scope="col"
-                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                Action
+                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Action
                                             </th>
                                         </tr>
                                     </thead>
@@ -299,8 +294,18 @@
                                                 <td class="p-4 text-sm text-gray-900">{{ $therapist->experience }}</td>
                                                 <td class="p-4 text-sm text-gray-900">{{ $therapist->specialists }}</td>
                                                 <td class="p-4 text-sm text-gray-900">{{ $therapist->university }}</td>
+                                                <td class="p-4 text-sm text-gray-900">
+                                                    @if($therapist->profile)
+                                                        <img src="{{ asset('storage/' . $therapist->profile) }}" alt="Profile"
+                                                            class="w-10 h-10">
+                                                    @else
+                                                        No Profile Image
+                                                    @endif
+                                                </td>
+                                                <td class="p-4 text-sm text-gray-900">{{ $therapist->status }}</td>
                                                 <td class="p-4 whitespace-nowrap space-x-2">
-                                                    <button type="button" data-modal-toggle="delete-user-modal" onclick="openingModal('{{ $therapist->id }}')"
+                                                    <button type="button" data-modal-toggle="delete-user-modal"
+                                                        onclick="openingModal('{{ $therapist->id }}')"
                                                         class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
                                                         <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
                                                             xmlns="http://www.w3.org/2000/svg">
@@ -472,6 +477,13 @@
                                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                                 placeholder="university" required>
                                         </div>
+                                        <!-- Profile -->
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="profile"
+                                                class="text-sm font-medium text-gray-900 block mb-2">Profile</label>
+                                            <input type="file" name="profile" id="profile"
+                                                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5">
+                                        </div>
                                         <input type="number" name="role" id="" value="2" hidden>
                                     </div>
                             </div>
@@ -488,46 +500,46 @@
 
                 <!-- Delete User Modal -->
                 @foreach ($therapists as $therapist)
-                <div class="hidden overflow-x-hidden overflow-y-auto fixed top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center h-modal sm:h-full"
-                    id="delete-user-modal-{{ $therapist->id }}">
-                    <div class="relative w-full max-w-md px-4 h-full md:h-auto">
-                        <!-- Modal content -->
-                        <div class="bg-white rounded-lg shadow relative">
-                            <!-- Modal header -->
-                            <div class="flex justify-end p-2">
-                                <button type="button"
-                                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-                                    data-modal-toggle="delete-user-modal">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                            clip-rule="evenodd"></path>
+                    <div class="hidden overflow-x-hidden overflow-y-auto fixed top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center h-modal sm:h-full"
+                        id="delete-user-modal-{{ $therapist->id }}">
+                        <div class="relative w-full max-w-md px-4 h-full md:h-auto">
+                            <!-- Modal content -->
+                            <div class="bg-white rounded-lg shadow relative">
+                                <!-- Modal header -->
+                                <div class="flex justify-end p-2">
+                                    <button type="button"
+                                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+                                        data-modal-toggle="delete-user-modal">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <!-- Modal body -->
+                                <div class="p-6 pt-0 text-center">
+                                    <svg class="w-20 h-20 text-red-600 mx-auto" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                     </svg>
-                                </button>
-                            </div>
-                            <!-- Modal body -->
-                            <div class="p-6 pt-0 text-center">
-                                <svg class="w-20 h-20 text-red-600 mx-auto" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <h3 class="text-xl font-normal text-gray-500 mt-5 mb-6">Are you sure you want to delete
-                                    this therapist?</h3>
-                                <a href="{{ route('admin.therapistDelete', ['id' => $therapist->id]) }}"
-                                    class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-base inline-flex items-center px-3 py-2.5 text-center mr-2">
-                                    Yes, I'm sure
-                                </a>
-                                <a href="#"
-                                    class="text-gray-900 bg-white hover:bg-gray-100 focus:ring-4 focus:ring-cyan-200 border border-gray-200 font-medium inline-flex items-center rounded-lg text-base px-3 py-2.5 text-center"
-                                    data-modal-toggle="delete-user-modal">
-                                    No, cancel
-                                </a>
+                                    <h3 class="text-xl font-normal text-gray-500 mt-5 mb-6">Are you sure you want to delete
+                                        this therapist?</h3>
+                                    <a href="{{ route('admin.therapistDelete', ['id' => $therapist->id]) }}"
+                                        class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-base inline-flex items-center px-3 py-2.5 text-center mr-2">
+                                        Yes, I'm sure
+                                    </a>
+                                    <a href="#"
+                                        class="text-gray-900 bg-white hover:bg-gray-100 focus:ring-4 focus:ring-cyan-200 border border-gray-200 font-medium inline-flex items-center rounded-lg text-base px-3 py-2.5 text-center"
+                                        data-modal-toggle="delete-user-modal">
+                                        No, cancel
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
 
 
@@ -548,8 +560,8 @@
         data-cf-beacon='{"rayId":"8e058c9b5aeb4933","version":"2024.10.5","r":1,"token":"3a2c60bab7654724a0f7e5946db4ea5a","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}'
         crossorigin="anonymous"></script>
 
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
             function openingModal(id) {
                 console.log('Opening modal for ID:', id); // Check if the function is called
                 document.getElementById('delete-user-modal-' + id).classList.remove('hidden');

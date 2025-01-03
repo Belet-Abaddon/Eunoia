@@ -22,25 +22,39 @@ class TherapistController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $data=[
-            'name'=>$request->name,
-            'email'=>$request->email,   
-            'password'=>Hash::make($request->password),
-            'age'=>$request->age,
-            'gender'=>$request->gender,
-            'country'=>$request->country,
-            'degree'=>$request->degree,
-            'experience'=>$request->experience,
-            'specialists'=>$request->specialists,
-            'university' =>$request->university,
-            'role'=>$request->role,
+        // Handle the profile file upload
+        $profilePath = null;
+        if ($request->hasFile('profile')) {
+            $profilePath = $request->file('profile')->store('profiles', 'public'); // Store the file in 'profiles' folder
+        }
+
+        // Prepare the data to be inserted
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'age' => $request->age,
+            'gender' => $request->gender,
+            'country' => $request->country,
+            'degree' => $request->degree,
+            'experience' => $request->experience,
+            'specialists' => $request->specialists,
+            'university' => $request->university,
+            'profile' => $profilePath,  // Store the file path if a profile is uploaded
+            'status' => 'active',  // Default status to 'active'
+            'role' => $request->role,
         ];
-        $therapist=User::create($data);
+
+        // Create the therapist (User)
+        $therapist = User::create($data);
+
+        // Redirect to therapist list page after successful creation
         return redirect()->route('admin.therapistLists');
     }
-    public function show():View{
-        $therapists=User::where('role',2)->get();
-        return view('admin.therapist-list',compact('therapists'));
+    public function show(): View
+    {
+        $therapists = User::where('role', 2)->get();
+        return view('admin.therapist-list', compact('therapists'));
     }
     public function destroy($id)
     {
@@ -51,5 +65,5 @@ class TherapistController extends Controller
         // Redirect back with a success message
         return redirect()->route('admin.therapistLists')->with('success', 'Category type deleted successfully.');
     }
-    
+
 }

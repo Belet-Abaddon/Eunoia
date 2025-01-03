@@ -55,7 +55,7 @@
                 <a href="#home" class="text-gray-700 hover:text-cyan-500 text-lg">Home</a>
                 <a href="#about-us" class="text-gray-700 hover:text-cyan-500 text-lg">About Us</a>
                 <a href="#our-services" class="text-gray-700 hover:text-cyan-500 text-lg">Our Services</a>
-                <a href="#blog" class="text-gray-700 hover:text-cyan-500 text-lg">Blog</a>
+                <a href="#posts" class="text-gray-700 hover:text-cyan-500 text-lg">Posts</a>
                 <a href="#contact" class="text-gray-700 hover:text-cyan-500 text-lg">Contact</a>
             </nav>
 
@@ -117,59 +117,69 @@
     <!-- About Section -->
     <section id="about-us" class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-cyan-700 text-center mb-8">About Us</h2>
-            <p class="text-gray-700 text-center max-w-3xl mx-auto mb-12">
-                At EUNOIA Online, we are committed to providing reliable and accessible psychological testing
-                services to help individuals and professionals. Our mission is to empower mental health awareness
-                through technology.
+            <h2 class="text-4xl font-bold text-cyan-700 text-center mb-12">About Us</h2>
+            <p class="text-gray-700 text-center max-w-4xl mx-auto mb-16 leading-relaxed">
+                At <strong>EUNOIA Online</strong>, we are dedicated to revolutionizing mental health care by providing
+                innovative, reliable, and accessible psychological testing solutions.
+                Our focus is on empowering individuals, families, and professionals with tools that foster
+                self-awareness, personal growth, and emotional resilience.
+                We aim to bridge the gap between technology and mental health, creating a seamless platform where users
+                can access the support they need, anytime, anywhere.
             </p>
 
-            <!-- Mission Section -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-cyan-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all">
-                    <div class="flex justify-center mb-4">
-                        <i class="fas fa-bullseye text-cyan-700 text-4xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-cyan-700 text-center">Our Mission</h3>
-                    <p class="text-gray-700 text-center mt-4">
-                        Our mission is to make mental health testing more accessible, affordable, and effective by
-                        leveraging
-                        cutting-edge technology. We aim to provide individuals with accurate, actionable insights to
-                        enhance their
-                        mental well-being.
-                    </p>
+            <!-- Core Values Section -->
+            <h3 class="text-3xl font-semibold text-cyan-700 text-center mb-8">Our Core Values</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <div class="bg-cyan-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all text-center">
+                    <i class="fas fa-hand-holding-heart text-cyan-700 text-4xl mb-4"></i>
+                    <h4 class="text-xl font-bold text-cyan-700">Empathy</h4>
+                    <p class="text-gray-700 mt-2">We place empathy at the heart of our mission, ensuring every solution
+                        we design resonates with the needs of individuals.</p>
                 </div>
+                <div class="bg-cyan-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all text-center">
+                    <i class="fas fa-brain text-cyan-700 text-4xl mb-4"></i>
+                    <h4 class="text-xl font-bold text-cyan-700">Innovation</h4>
+                    <p class="text-gray-700 mt-2">We constantly innovate, integrating advanced technologies to make
+                        mental health solutions more effective and accessible.</p>
+                </div>
+                <div class="bg-cyan-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all text-center">
+                    <i class="fas fa-users text-cyan-700 text-4xl mb-4"></i>
+                    <h4 class="text-xl font-bold text-cyan-700">Inclusivity</h4>
+                    <p class="text-gray-700 mt-2">We strive to create solutions that cater to diverse backgrounds,
+                        ensuring everyone feels represented and supported.</p>
+                </div>
+                <div class="bg-cyan-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all text-center">
+                    <i class="fas fa-globe text-cyan-700 text-4xl mb-4"></i>
+                    <h4 class="text-xl font-bold text-cyan-700">Global Reach</h4>
+                    <p class="text-gray-700 mt-2">We envision a world where everyone, regardless of location, has access
+                        to quality mental health resources.</p>
+                </div>
+            </div>
 
-                <!-- Vision Section -->
-                <div class="bg-cyan-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all">
-                    <div class="flex justify-center mb-4">
-                        <i class="fas fa-eye text-cyan-700 text-4xl"></i>
+            <!-- Therapists Section -->
+            <h3 class="text-3xl font-semibold text-cyan-700 text-center mb-8">Meet Our Therapists</h3>
+            <p class="text-gray-700 text-center max-w-3xl mx-auto mb-12 leading-relaxed">
+                Our team of dedicated therapists is here to support your mental health journey. Get to know more about
+                them below.
+            </p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                @foreach($therapists as $therapist)
+                    <div class="bg-cyan-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all text-center">
+                        @if($therapist->profile)
+                            <img src="{{ asset('storage/' . $therapist->profile) }}" alt="Therapist"
+                                class="rounded-full w-36 h-36 mx-auto mb-4 object-cover">
+                        @else
+                            <img src="default-profile.jpg" alt="Therapist"
+                                class="rounded-full w-36 h-36 mx-auto mb-4 object-cover"> <!-- Default image -->
+                        @endif
+                        <h4 class="text-xl font-bold text-cyan-700">{{ $therapist->name }}</h4>
+                        <p class="text-gray-600">{{ $therapist->specialists }}</p>
+                        <p class="text-gray-600">{{ $therapist->degree }}</p>
                     </div>
-                    <h3 class="text-2xl font-bold text-cyan-700 text-center">Our Vision</h3>
-                    <p class="text-gray-700 text-center mt-4">
-                        Our vision is to be a global leader in online psychological testing, creating a world where
-                        mental health
-                        is prioritized, and everyone has access to the tools they need to live healthier, more balanced
-                        lives.
-                    </p>
-                </div>
-
-                <!-- Philosophy Section -->
-                <div class="bg-cyan-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all">
-                    <div class="flex justify-center mb-4">
-                        <i class="fas fa-quote-left text-cyan-700 text-4xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-cyan-700 text-center">Our Philosophy</h3>
-                    <p class="text-gray-700 text-center mt-4">
-                        "Mental health is not a destination, but a journey." We believe in supporting every step of that
-                        journey,
-                        offering tools and insights to help individuals grow and thrive mentally and emotionally.
-                    </p>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
-
 
     <!-- Our Services Section -->
     <section id="our-services" class="py-16 bg-cyan-50">
@@ -188,82 +198,129 @@
         </div>
     </section>
 
-    <section id="contact" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-cyan-700 text-center mb-8">Contact Us</h2>
-            <p class="text-center text-gray-700 mb-12 max-w-2xl mx-auto">
-                Have any questions? Reach out to us, and we’ll be happy to assist you with any information or support.
-            </p>
-
-            <!-- Contact Form -->
-            <div class="flex flex-col md:flex-row justify-between gap-8">
-                <div class="w-full md:w-1/2">
-                    <form action="#" method="POST" class="bg-cyan-50 p-6 rounded-lg shadow-lg">
-                        <div class="mb-4">
-                            <label for="name" class="block text-sm font-semibold text-cyan-700">Full Name</label>
-                            <input type="text" id="name" name="name"
-                                class="w-full p-3 mt-2 border border-gray-300 rounded-lg" required>
+    <!-- Blog Section with Carousel -->
+    <section id="posts" class="py-16 bg-white">
+        <h2 class="text-3xl font-bold text-cyan-700 text-center mb-8">Latest Posts</h2>
+        @if($latestPosts->count() > 0)
+            <div class="relative overflow-hidden">
+                <!-- Carousel Wrapper -->
+                <div id="carouselItems" class="flex transition-transform duration-300">
+                    @foreach($latestPosts as $post)
+                        <div class="min-w-[350px] flex-shrink-0 p-6"> <!-- Increased card width and padding -->
+                            <div class="bg-cyan-50 border border-cyan-700 rounded-lg shadow-lg p-6">
+                                <!-- Increased card padding -->
+                                <img src="{{ asset('storage/' . $post->image) }}" alt="Blog Image"
+                                    class="rounded-lg object-cover w-full mb-4" style="height: 250px;">
+                                <!-- Increased image height -->
+                                <div class="p-4">
+                                    <h2 class="text-2xl font-semibold text-cyan-700">{{ $post->caption }}</h2>
+                                    <div class="flex justify-between mt-4">
+                                        <a href=""
+                                            class="inline-block px-4 py-2 bg-cyan-700 text-white text-sm rounded hover:bg-cyan-800">Details</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="mb-4">
-                            <label for="email" class="block text-sm font-semibold text-cyan-700">Email Address</label>
-                            <input type="email" id="email" name="email"
-                                class="w-full p-3 mt-2 border border-gray-300 rounded-lg" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="message" class="block text-sm font-semibold text-cyan-700">Message</label>
-                            <textarea id="message" name="message" rows="4"
-                                class="w-full p-3 mt-2 border border-gray-300 rounded-lg" required></textarea>
-                        </div>
-                        <button type="submit"
-                            class="w-full bg-cyan-700 text-white py-3 rounded-lg hover:bg-cyan-800 transition-all">
-                            Send Message
-                        </button>
-                    </form>
-                </div>
+                    @endforeach
 
-                <!-- Contact Information with Icons -->
-                <div class="w-full md:w-1/2">
-                    <div class="bg-cyan-50 p-6 rounded-lg shadow-lg space-y-6">
-                        <h3 class="text-2xl font-bold text-cyan-700">Our Contact Info</h3>
-
-                        <!-- Address -->
-                        <div class="flex items-center space-x-3">
-                            <i class="fas fa-map-marker-alt text-cyan-700 text-xl"></i>
-                            <p class="text-gray-700">
-                                <strong>Address:</strong> 123 Mental Health St, Suite 456, City, Country
-                            </p>
-                        </div>
-
-                        <!-- Phone -->
-                        <div class="flex items-center space-x-3">
-                            <i class="fas fa-phone-alt text-cyan-700 text-xl"></i>
-                            <p class="text-gray-700">
-                                <strong>Phone:</strong> +1 (123) 456-7890
-                            </p>
-                        </div>
-
-                        <!-- Email -->
-                        <div class="flex items-center space-x-3">
-                            <i class="fas fa-envelope text-cyan-700 text-xl"></i>
-                            <p class="text-gray-700">
-                                <strong>Email:</strong> contact@psychtesting.com
-                            </p>
+                    <!-- See More Button -->
+                    <div class="min-w-[350px] flex-shrink-0 p-6">
+                        <div
+                            class="bg-cyan-50 border border-cyan-700 rounded-lg shadow-lg flex items-center justify-center h-full p-6">
+                            <a href=""
+                                class="inline-block px-6 py-3 bg-cyan-700 text-white font-bold rounded-lg hover:bg-cyan-800">
+                                See More Blogs
+                            </a>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Google Map Embed -->
-            <div class="mt-12">
-                <h3 class="text-xl font-bold text-cyan-700 text-center mb-6">Find Us On The Map</h3>
-                <div class="w-full h-64 rounded-lg overflow-hidden">
-                    <iframe src="https://www.google.com/maps/embed?pb=YOUR_GOOGLE_MAP_EMBED_URL" width="100%"
-                        height="100%" style="border:0;" allowfullscreen="" loading="lazy">
-                    </iframe>
+                <!-- Left and Right Arrows -->
+                <button id="prevBtn"
+                    class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-cyan-700 text-white p-2 rounded-full hover:bg-cyan-800">
+                    &#10094;
+                </button>
+                <button id="nextBtn"
+                    class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-cyan-700 text-white p-2 rounded-full hover:bg-cyan-800">
+                    &#10095;
+                </button>
+            </div>
+        @else
+            <p class="text-center text-gray-500">No blog posts available.</p>
+        @endif
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-cyan-50">
+        <div class="container mx-auto px-6 md:px-12 lg:px-20">
+            <h2 class="text-4xl font-bold text-cyan-700 text-center mb-12">Get in Touch</h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Organization Information -->
+                <div class="space-y-8">
+                    <!-- Address -->
+                    <div class="flex items-center">
+                        <div class="bg-cyan-100 p-4 rounded-full mr-4">
+                            <i class="fas fa-map-marker-alt text-cyan-700 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-cyan-700">Our Address</h3>
+                            <p class="text-gray-600">123 Main Street, Yangon, Myanmar</p>
+                        </div>
+                    </div>
+                    <!-- Phone -->
+                    <div class="flex items-center">
+                        <div class="bg-cyan-100 p-4 rounded-full mr-4">
+                            <i class="fas fa-phone text-cyan-700 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-cyan-700">Call Us</h3>
+                            <p class="text-gray-600">+95-123-456-789</p>
+                        </div>
+                    </div>
+                    <!-- Email -->
+                    <div class="flex items-center">
+                        <div class="bg-cyan-100 p-4 rounded-full mr-4">
+                            <i class="fas fa-envelope text-cyan-700 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-cyan-700">Email Us</h3>
+                            <p class="text-gray-600">info@organization.com</p>
+                        </div>
+                    </div>
+                    <!-- Working Hours -->
+                    <div class="flex items-center">
+                        <div class="bg-cyan-100 p-4 rounded-full mr-4">
+                            <i class="fas fa-clock text-cyan-700 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-cyan-700">Working Hours</h3>
+                            <p class="text-gray-600">Mon-Fri: 9 AM - 5 PM</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Decorative Contact Box -->
+                <div class="bg-cyan-700 text-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                    <p class="mb-4">
+                        Reach out to us for inquiries, collaborations, or support. Our team is here to assist you!
+                    </p>
+                    <p>
+                        <strong>Need help?</strong> Send us an email, or give us a call during our business hours. We’re
+                        happy to assist!
+                    </p>
+                    <div class="mt-6">
+                        <a href="mailto:info@organization.com"
+                            class="inline-block px-6 py-3 bg-white text-cyan-700 font-bold rounded-lg shadow hover:bg-gray-100">
+                            Email Us
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-gray-200 py-8">
@@ -292,6 +349,25 @@
             });
         });
     </script>
+    <script>
+        const carouselItems = document.getElementById('carouselItems');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        let scrollPosition = 0;
+        const cardWidth = 300 + 16; // Card width + margin (adjust as needed)
+
+        prevBtn.addEventListener('click', () => {
+            scrollPosition = Math.max(scrollPosition - cardWidth, 0);
+            carouselItems.style.transform = `translateX(-${scrollPosition}px)`;
+        });
+
+        nextBtn.addEventListener('click', () => {
+            scrollPosition = Math.min(scrollPosition + cardWidth, carouselItems.scrollWidth - carouselItems.offsetWidth);
+            carouselItems.style.transform = `translateX(-${scrollPosition}px)`;
+        });
+    </script>
+
 </body>
 
 </html>

@@ -27,6 +27,8 @@ class User extends Authenticatable
         'experience',
         'specialists',
         'university',
+        'profile',
+        'status',
         'role',
     ];
 
