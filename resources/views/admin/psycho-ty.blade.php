@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,6 +24,7 @@
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-THQTXJ7');</script>
 </head>
+
 <body class="bg-gray-50">
     <nav class="bg-white border-b border-gray-200 fixed z-30 w-full">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
@@ -232,91 +234,106 @@
                     </div>
                 </div>
                 <div class="flex flex-col">
-    <div class="overflow-x-auto">
-        <div class="align-middle inline-block min-w-full">
-            <div class="shadow overflow-hidden">
-                <table class="table-fixed min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-100">
-                        <tr>
-                            <th scope="col"
-                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                Name
-                            </th>
-                            <th scope="col"
-                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                Description
-                            </th>
-                            <th scope="col"
-                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                Action
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        @foreach ($phychoTys as $phychoTy)
-                        <tr class="hover:bg-gray-100">
-                            <td class="p-4 text-sm text-gray-900">
-                                {{ $phychoTy->name }}
-                            </td>
-                            <td class="p-4 text-sm text-gray-900">
-                                {{ $phychoTy->description }}
-                            </td>
-                            <td class="p-4 whitespace-nowrap space-x-2">
-                                <button type="button"
-                                    onclick="openModal('{{ $phychoTy->id }}', '{{ $phychoTy->name }}', '{{ $phychoTy->description }}')"
-                                    data-modal-toggle="user-modal"
-                                    class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
-                                    Edit
-                                </button>
-                                <button type="button" data-modal-toggle="delete-user-modal"
-                                    onclick="openingModal('{{ $phychoTy->id }}')"
-                                    class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="bg-white sticky sm:flex items-center w-full sm:justify-between bottom-0 right-0 border-t border-gray-200 p-4">
-    <div class="flex items-center mb-4 sm:mb-0">
-        <a href="{{ $phychoTys->previousPageUrl() }}" class="text-gray-500 hover:text-gray-900 cursor-pointer p-1 hover:bg-gray-100 rounded inline-flex justify-center">
-            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-            </svg>
-        </a>
-        <a href="{{ $phychoTys->nextPageUrl() }}" class="text-gray-500 hover:text-gray-900 cursor-pointer p-1 hover:bg-gray-100 rounded inline-flex justify-center mr-2">
-            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-            </svg>
-        </a>
-        <span class="text-sm font-normal text-gray-500">Showing <span class="text-gray-900 font-semibold">{{ $phychoTys->firstItem() }}-{{ $phychoTys->lastItem() }}</span> of <span class="text-gray-900 font-semibold">{{ $phychoTys->total() }}</span></span>
-    </div>
-    <div class="flex items-center space-x-3">
-        @if ($phychoTys->onFirstPage())
-            <span class="flex-1 text-white bg-gray-300 font-medium inline-flex items-center justify-center rounded-lg text-sm px-3 py-2 text-center cursor-not-allowed">
-                Previous
-            </span>
-        @else
-            <a href="{{ $phychoTys->previousPageUrl() }}" class="flex-1 text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium inline-flex items-center justify-center rounded-lg text-sm px-3 py-2 text-center">
-                Previous
-            </a>
-        @endif
-        @if ($phychoTys->hasMorePages())
-            <a href="{{ $phychoTys->nextPageUrl() }}" class="flex-1 text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium inline-flex items-center justify-center rounded-lg text-sm px-3 py-2 text-center">
-                Next
-            </a>
-        @else
-            <span class="flex-1 text-white bg-gray-300 font-medium inline-flex items-center justify-center rounded-lg text-sm px-3 py-2 text-center cursor-not-allowed">
-                Next
-            </span>
-        @endif
-    </div>
-</div>
+                    <div class="overflow-x-auto">
+                        <div class="align-middle inline-block min-w-full">
+                            <div class="shadow overflow-hidden">
+                                <table class="table-fixed min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-100">
+                                        <tr>
+                                            <th scope="col"
+                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
+                                                Name
+                                            </th>
+                                            <th scope="col"
+                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
+                                                Description
+                                            </th>
+                                            <th scope="col"
+                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
+                                                Action
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        @foreach ($phychoTys as $phychoTy)
+                                            <tr class="hover:bg-gray-100">
+                                                <td class="p-4 text-sm text-gray-900">
+                                                    {{ $phychoTy->name }}
+                                                </td>
+                                                <td class="p-4 text-sm text-gray-900">
+                                                    {{ $phychoTy->description }}
+                                                </td>
+                                                <td class="p-4 whitespace-nowrap space-x-2">
+                                                    <button type="button"
+                                                        onclick="openModal('{{ $phychoTy->id }}', '{{ $phychoTy->name }}', '{{ $phychoTy->description }}')"
+                                                        data-modal-toggle="user-modal"
+                                                        class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
+                                                        Edit
+                                                    </button>
+                                                    <button type="button" data-modal-toggle="delete-user-modal"
+                                                        onclick="openingModal('{{ $phychoTy->id }}')"
+                                                        class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="bg-white sticky sm:flex items-center w-full sm:justify-between bottom-0 right-0 border-t border-gray-200 p-4">
+                    <div class="flex items-center mb-4 sm:mb-0">
+                        <a href="{{ $phychoTys->previousPageUrl() }}"
+                            class="text-gray-500 hover:text-gray-900 cursor-pointer p-1 hover:bg-gray-100 rounded inline-flex justify-center">
+                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                        <a href="{{ $phychoTys->nextPageUrl() }}"
+                            class="text-gray-500 hover:text-gray-900 cursor-pointer p-1 hover:bg-gray-100 rounded inline-flex justify-center mr-2">
+                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                        <span class="text-sm font-normal text-gray-500">Showing <span
+                                class="text-gray-900 font-semibold">{{ $phychoTys->firstItem() }}-{{ $phychoTys->lastItem() }}</span>
+                            of <span class="text-gray-900 font-semibold">{{ $phychoTys->total() }}</span></span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        @if ($phychoTys->onFirstPage())
+                            <span
+                                class="flex-1 text-white bg-gray-300 font-medium inline-flex items-center justify-center rounded-lg text-sm px-3 py-2 text-center cursor-not-allowed">
+                                Previous
+                            </span>
+                        @else
+                            <a href="{{ $phychoTys->previousPageUrl() }}"
+                                class="flex-1 text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium inline-flex items-center justify-center rounded-lg text-sm px-3 py-2 text-center">
+                                Previous
+                            </a>
+                        @endif
+                        @if ($phychoTys->hasMorePages())
+                            <a href="{{ $phychoTys->nextPageUrl() }}"
+                                class="flex-1 text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium inline-flex items-center justify-center rounded-lg text-sm px-3 py-2 text-center">
+                                Next
+                            </a>
+                        @else
+                            <span
+                                class="flex-1 text-white bg-gray-300 font-medium inline-flex items-center justify-center rounded-lg text-sm px-3 py-2 text-center cursor-not-allowed">
+                                Next
+                            </span>
+                        @endif
+                    </div>
+                </div>
 
 
                 <!-- Edit User Modal -->
@@ -346,7 +363,7 @@
                                 <form action="{{ route('admin.psychoTyUpdate') }}" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <div class="grid grid-cols-6 gap-6">
+                                    <div class="grid grid-cols-6 gap-6">t
                                         <input type="hidden" name="id" id="model-id" value="">
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="caption"
@@ -375,7 +392,7 @@
                     </div>
                 </div>
 
-                <!-- Add User Modal -->
+                <!-- Add psycho-type Modal -->
                 <div class="hidden overflow-x-hidden overflow-y-auto fixed top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center h-modal sm:h-full"
                     id="add-user-modal">
                     <div class="relative w-full max-w-2xl px-4 h-full md:h-auto">

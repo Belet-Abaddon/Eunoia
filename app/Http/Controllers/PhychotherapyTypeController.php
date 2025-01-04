@@ -58,17 +58,17 @@ class PhychotherapyTypeController extends Controller
         return redirect()->route('admin.psychoTyList')->with('success', 'Category type deleted successfully.');
     }
     public function showPhychoTyList(): View
-{
-    $phychoTys = PhychotherapyType::get();
-    $contacts = Contact::with('therapist')
-        ->where('user_id', auth()->id())
-        ->orderBy('created_at', 'desc')
-        ->get();
-    $latestPosts = Post::latest()->take(5)->get();
-    
-    // Fetch therapists
-    $therapists = User::where('role', 2)->get(); // Assuming you have a Therapist model
+    {
+        $phychoTys = PhychotherapyType::get();
+        $contacts = Contact::with('therapist')
+            ->where('user_id', auth()->id())
+            ->orderBy('created_at', 'desc')
+            ->get();
+        $latestPosts = Post::latest()->take(5)->get();
 
-    return view('users.user-home', compact('phychoTys', 'contacts', 'latestPosts', 'therapists'));
-}
+        // Fetch therapists
+        $therapists = User::where('role', 2)->get(); // Assuming you have a Therapist model
+
+        return view('users.user-home', compact('phychoTys', 'contacts', 'latestPosts', 'therapists'));
+    }
 }

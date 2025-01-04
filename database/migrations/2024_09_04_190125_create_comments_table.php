@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('comment');
             $table->foreignIdFor(App\Models\Post::class);
             $table->foreignIdFor(App\Models\User::class);
+            $table->timestamps();
         });
     }
 

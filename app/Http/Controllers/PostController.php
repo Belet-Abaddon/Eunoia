@@ -5,96 +5,87 @@ use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Comment;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
-    public function store(Request $request): RedirectResponse
+    public function gotodetail()
     {
-        $imageFilePath = null;
-        $videoFilePath = null;
+        return view('users.detail');
+    }
+    public function postList()
+    {
+        // Retrieve posts with user info and paginate
+        $posts = Post::with('user')->latest()->paginate(6); // You can change the number 6 as per your needs
+        return view('users.posts', compact('posts'));
+    }
+    // app/Http/Controllers/PostController.php
 
-        $validatedData = $request->validate([
-            'caption' => 'required|string|max:255',
-            'description' => 'required|max:255',
-            'image' => 'mimes:png,jpg,jpeg',  // Added jpeg support
-            'video' => 'mimes:mp4'
+    public function showPostDetailFromHome($id)
+    {
+        // Retrieve the post by ID
+        $post = Post::with('user')->findOrFail($id);
+
+        // Return the detail view with the post data
+        return view('users.detail', compact('post'));
+    }
+    public function showPostDetailFromPosts($id)
+    {
+        // Retrieve the post by ID
+        $post = Post::with('user', 'comments.user')->findOrFail($id);
+
+        // Pass the post to the detail view
+        return view('users.detail', compact('post'));
+    }
+    public function store($postId, Request $request)
+    {
+        // Validate the input
+        $request->validate([
+            'comment' => 'required|string|max:500',
         ]);
 
-        // Store image file in the 'imageAndvideo' folder
-        if ($request->file('image')) {
-            $file = $request->file('image');
-            $imageFilePath = $file->store('imageAndvideo', 'public');  // Store in the 'imageAndvideo' directory
-        }
-
-        // Store video file in the 'imageAndvideo' folder
-        if ($request->file('video')) {
-            $file = $request->file('video');
-            $videoFilePath = $file->store('imageAndvideo', 'public');  // Store in the 'imageAndvideo' directory
-        }
-
-        $data = [
-            'caption' => $validatedData['caption'],
-            'description' => $validatedData['description'],
-            'user_id' => Auth::user()->id,
-            'image' => $imageFilePath,
-            'video' => $videoFilePath
-        ];
-
-        $post = Post::create($data);
-        return redirect()->route('admin.posts');
-    }
-    public function show(): View
-    {
-        $posts = Post::all()->map(function ($post) {
-            $post->image_url = $post->image ? Storage::url($post->image) : null;
-            $post->video_url = $post->video ? Storage::url($post->video) : null;
-            return $post;
-        });
-        return view('admin.posts', compact('posts'));
-    }
-    public function update(Request $request): RedirectResponse
-    {
-        $validatedData = $request->validate([
-            'id' => 'required|exists:posts,id',
-            'caption' => 'required|string|max:255',
-            'description' => 'required|max:255',
-            'image' => 'nullable|mimes:png,jpg',
-            'video' => 'nullable|mimes:mp4',
+        // Create the comment
+        Comment::create([
+            'comment' => $request->input('comment'),
+            'commentTime' => now(),
+            'post_id' => $postId, // Associate with the post
+            'user_id' => Auth::id(), // The logged-in user's ID
         ]);
 
-        $post = Post::findOrFail($validatedData['id']);
-
-        // Update fields
-        $post->caption = $validatedData['caption'];
-        $post->description = $validatedData['description'];
-
-        // Handle image upload
-        if ($request->hasFile('image')) {
-            if ($post->image) {
-                Storage::disk('public')->delete($post->image); // Delete the old image
-            }
-            $post->image = $request->file('image')->store('uploads', 'public');
-        }
-
-        // Handle video upload
-        if ($request->hasFile('video')) {
-            if ($post->video) {
-                Storage::disk('public')->delete($post->video); // Delete the old video
-            }
-            $post->video = $request->file('video')->store('uploads', 'public');
-        }
-
-        $post->save();
-
-        return redirect()->route('admin.posts')->with('success', 'Post updated successfully!');
+        // Redirect back to the post detail page with a success message
+        return redirect()->route('userPosts.postDetail', $postId)->with('success', 'Comment posted successfully.');
     }
-    public function destroy($id): RedirectResponse
+    // Update existing comment
+    public function update(Request $request, $commentId)
     {
-        $post = Post::findOrFail($id);
-        $post->delete();
-        return redirect()->route('admin.posts')->with('success', 'Post deleted successfully!');
+        $request->validate([
+            'comment' => 'required|string|max:500',
+        ]);
+
+        $comment = Comment::findOrFail($commentId);
+
+        if ($comment->user_id === auth()->id()) {
+            $comment->comment = $request->comment;
+            $comment->save();
+        }
+
+        // Redirect back to the post detail page after updating the comment
+        return redirect()->route('userPosts.postDetail', $comment->post_id)->with('success', 'Comment updated successfully.');
+    }
+
+    // Delete a comment
+    public function destroy($commentId)
+    {
+        $comment = Comment::findOrFail($commentId);
+
+        if ($comment->user_id === auth()->id()) {
+            $comment->delete();
+        }
+
+        // Redirect back to the post detail page after deleting the comment
+        return redirect()->route('userPosts.postDetail', $comment->post_id)->with('success', 'Comment deleted successfully.');
     }
 }

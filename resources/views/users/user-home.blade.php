@@ -198,7 +198,7 @@
         </div>
     </section>
 
-    <!-- Blog Section with Carousel -->
+    <!-- Posts Section with Carousel -->
     <section id="posts" class="py-16 bg-white">
         <h2 class="text-3xl font-bold text-cyan-700 text-center mb-8">Latest Posts</h2>
         @if($latestPosts->count() > 0)
@@ -215,7 +215,7 @@
                                 <div class="p-4">
                                     <h2 class="text-2xl font-semibold text-cyan-700">{{ $post->caption }}</h2>
                                     <div class="flex justify-between mt-4">
-                                        <a href=""
+                                        <a href="{{ route('userHome.postDetail', $post->id) }}"
                                             class="inline-block px-4 py-2 bg-cyan-700 text-white text-sm rounded hover:bg-cyan-800">Details</a>
                                     </div>
                                 </div>
@@ -227,9 +227,9 @@
                     <div class="min-w-[350px] flex-shrink-0 p-6">
                         <div
                             class="bg-cyan-50 border border-cyan-700 rounded-lg shadow-lg flex items-center justify-center h-full p-6">
-                            <a href=""
+                            <a href="{{route('user.posts')}}"
                                 class="inline-block px-6 py-3 bg-cyan-700 text-white font-bold rounded-lg hover:bg-cyan-800">
-                                See More Blogs
+                                See More Posts
                             </a>
                         </div>
                     </div>

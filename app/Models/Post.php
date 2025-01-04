@@ -9,13 +9,16 @@ class Post extends Model
 {
     protected $table = 'posts';
     protected $fillable = ['caption', 'description', 'image', 'video', 'user_id'];
+
     use HasFactory;
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-    public function comment(){
+
+    public function comments()
+    {
         return $this->hasMany(Comment::class);
-    }
+    }    public $timestamps = true;
 }

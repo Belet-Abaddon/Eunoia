@@ -70,7 +70,17 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
         Auth::login($user);
 
-        return redirect(route('/dashboard', absolute: false));
+        // Redirect based on role
+        if ($user->role === 0) {
+            return redirect()->route('admin-dashboard');
+        } elseif ($user->role === 1) {
+            return redirect()->route('dashboard');
+        } elseif ($user->role === 2) {
+            return redirect()->route('therapist-dashboard');
+        }
+
+        // Default fallback (if role is not recognized)
+        return redirect()->route('user.home');
     }
 
     public function show(): View

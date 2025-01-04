@@ -8,6 +8,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\PhychotherapyTypeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\CommentController;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -15,9 +16,6 @@ use App\Models\Post;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\ContactController;
 
-Route::get('/admin',function(){
-    return view('admin_dashboard');
-});
 
 Route::get('/', [PhychotherapyTypeController::class, 'showPhychoTyList'])->name('user.home');
 Route::get('/user-header', [PhychotherapyTypeController::class, 'showPhychoTy'])->name('user.header');
@@ -26,7 +24,9 @@ Route::get('/dashboard', [PhychotherapyTypeController::class, 'showPhychoTyList'
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+
+
+Route::middleware('auth')->group(callback: function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -37,11 +37,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin-dashboard', [RegisteredUserController::class, 'dashboard'])->name('admin.dashboard');
     Route::patch('/admin/change-role/{id}', [RegisteredUserController::class, 'changeRoleAdmin'])->name('admin.changeRole');
     //post
-    Route::post('/post-create', [PostController::class, 'store'])->name('admin.postCreate');
-    Route::get('/posts', [PostController::class, 'show'])->name('admin.posts');
-    Route::put('/post-update', [PostController::class, 'update'])->name('admin.postUpdate');
+    // Route::post('/post-create', [PostController::class, 'store'])->name('admin.postStore');
+    // Route::get('/posts', [PostController::class, 'show'])->name('admin.posts');
+    // Route::put('/post-update', [PostController::class, 'update'])->name('admin.postUpdate');
+    // Route::get('/post-delete/{id}', [PostController::class, 'destroy'])->name('admin.postDelete');
 
-
+    //post-list
+    Route::get('/posts-list', [PostController::class, 'post'])->name('admin.postList');
+    Route::post('/posts-create', [PostController::class, 'create'])->name('admin.postCreate');
+    Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('admin.postEdit');
+    Route::delete('/posts/{id}', [PostController::class, 'delete'])->name('admin.postDelete');
     // phychotherapy type
     Route::get('/psycho-ty', [PhychotherapyTypeController::class, 'show'])->name('admin.psychoTyList');
     Route::post('/psycho-ty-create', [PhychotherapyTypeController::class, 'store'])->name('admin.psychoTyCreate');
@@ -64,17 +69,24 @@ Route::middleware('auth')->group(function () {
     Route::post('/user-list', [RegisteredUserController::class, 'changeRole'])->name('admin.userRole');
 
     //schedule
-    Route::get('/schedule',[ScheduleController::class,'show'])->name('admin.schedule');
-    Route::post('/schedule-create',[ScheduleController::class,'store'])->name('admin.scheduleCreate');
-    Route::put('/schedule-update',[ScheduleController::class,'update'])->name('admin.scheduleUpdate');
-    Route::get('/schedule-delete',[ScheduleController::class,'destroy'])->name('admin.scheduleDelete');
+    Route::get('/schedule', [ScheduleController::class, 'show'])->name('admin.schedule');
+    Route::post('/schedule-create', [ScheduleController::class, 'store'])->name('admin.scheduleCreate');
+    Route::put('/schedule-update', [ScheduleController::class, 'update'])->name('admin.scheduleUpdate');
+    Route::get('/schedule-delete', [ScheduleController::class, 'destroy'])->name('admin.scheduleDelete');
 
+    //user
     Route::get('/user-questions/{phychotherapyType}', [QuestionController::class, 'showQuestions'])->name('user.questions');
     Route::post('/questions/submit', [AnswerController::class, 'storeAnswers'])->name('questions.submit');
     Route::get('/result/{answerId}', [AnswerController::class, 'showResult'])->name('result.show');
-
+    Route::get('/user-posts', [PostController::class, 'postList'])->name('user.posts');
     Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.store');
-
+    Route::get('/detail', [PostController::class, 'gotodetail'])->name('detailpage');
+    Route::get('/posts/{id}', [PostController::class, 'showPostDetailFromHome'])->name('userHome.postDetail');
+    Route::get('/post/{id}', [PostController::class, 'showPostDetailFromPosts'])->name('userPosts.postDetail');
+    Route::post('/post/{id}/comment', [PostController::class, 'store'])->name('comment.store');
+    Route::post('/comment/update/{commentId}', [PostController::class, 'update'])->name('comment.update');
+    Route::delete('/comment/destroy/{commentId}', [PostController::class, 'destroy'])->name('comment.destroy');
+    //therapist
     Route::get('/therapist-dashboard', [ContactController::class, 'getNewContacts'])->name('therapist.dashboard');
     Route::get('/contacts/{contact}/answers', [ContactController::class, 'viewContactAnswers'])->name('view.contact');
     Route::get('/patients-list', [ContactController::class, 'showPatientsList'])->name('patients.list');
