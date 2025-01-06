@@ -24,11 +24,11 @@
             </a>
         </div>
 
-        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-cyan-200 shadow-lg overflow-hidden sm:rounded-lg">
+        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-cyan-200 shadow-lg overflow-hidden sm:rounded-lg mb-4">
             {{ $slot }}
         </div>
 
     </div>
 </body>
 
-</html>
+</html> 

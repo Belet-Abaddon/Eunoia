@@ -30,7 +30,7 @@ class PhychotherapyTypeController extends Controller
 
     public function show(): View
     {
-        $phychoTys = PhychotherapyType::paginate(5); // Display 10 items per page
+        $phychoTys = PhychotherapyType::paginate(10); // Display 10 items per page
         return view('admin.psycho-ty', compact('phychoTys'));
     }
 

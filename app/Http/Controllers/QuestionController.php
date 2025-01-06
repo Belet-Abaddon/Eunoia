@@ -27,7 +27,7 @@ class QuestionController extends Controller
     }
     public function show(): View
     {
-        $questions = Question::get();
+        $questions = Question::with('phychotherapyType')->paginate(10);
         $psychoTys = PhychotherapyType::get();
         return view('admin.question', compact('questions', 'psychoTys'));
     }
