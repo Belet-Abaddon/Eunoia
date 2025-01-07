@@ -55,8 +55,8 @@
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 p-8">
-            <div class="bg-white shadow rounded-lg p-6">
+        <main class="flex-1 p-6">
+            <div class="bg-white shadow rounded-lg p-4">
                 <h2 class="text-2xl font-bold mb-4">Profile</h2>
 
                 <!-- Fetching therapist details from the authenticated user -->
@@ -81,7 +81,7 @@
                 </div>
 
                 <!-- Schedule Section -->
-                <div class="mt-8">
+                <div class="mt-6">
                     <h3 class="text-xl font-semibold mb-4">Schedule</h3>
 
                     <!-- Group schedules by day -->
@@ -91,32 +91,38 @@
                             return [$day => $schedules->where('date', $day)];
                         });
                     @endphp
-
-                    @foreach ($groupedSchedules as $day => $daySchedules)
-                        @if ($daySchedules->isNotEmpty())
-                            <div class="bg-gray-100 p-4 mb-4 rounded-lg">
-                                <h4 class="text-lg font-semibold">{{ $day }}</h4>
-                                @foreach ($daySchedules as $schedule)
-                                    <div class="mb-4">
-                                        <p><strong>Start Time:</strong>
-                                            {{ \Carbon\Carbon::parse($schedule->start_time)->format('h:i A') }}</p>
-                                        <p><strong>End Time:</strong>
-                                            {{ \Carbon\Carbon::parse($schedule->end_time)->format('h:i A') }}</p>
-                                        <p><strong>Zoom Link:</strong> <a href="{{ $schedule->zoom_link }}" class="text-cyan-600"
-                                                target="_blank">Join Zoom</a></p>
+                    <div class="grid grid-cols-2 gap-4">
+                        @foreach ($groupedSchedules as $day => $daySchedules)
+                            @if ($daySchedules->isNotEmpty())
+                                <div class="bg-gray-100 p-4 mb-4 rounded-lg">
+                                    <h4 class="text-lg font-semibold">{{ $day }}</h4>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        @foreach ($daySchedules as $index => $schedule)
+                                                <div class="mb-4">
+                                                    <p><strong>Start Time:</strong>
+                                                        {{ \Carbon\Carbon::parse($schedule->start_time)->format('h:i A') }}</p>
+                                                    <p><strong>End Time:</strong>
+                                                        {{ \Carbon\Carbon::parse($schedule->end_time)->format('h:i A') }}</p>
+                                                    <p><strong>Zoom Link:</strong> <a href="{{ $schedule->zoom_link }}"
+                                                            class="text-cyan-600" target="_blank">Join Zoom</a></p>
+                                                </div>
+                                                @if (($index + 1) % 2 == 0 && !$loop->last)
+                                                    </div>
+                                                    <div class="grid grid-cols-2 gap-4">
+                                                @endif
+                                        @endforeach
                                     </div>
-                                @endforeach
-                            </div>
-                        @endif
-                    @endforeach
-
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
                     @if ($schedules->isEmpty())
                         <p>No scheduled sessions available.</p>
                     @endif
                 </div>
 
                 <!-- Update Button -->
-                <div class="mt-6">
+                <div class="mt-3">
                     <a href="/profile" class="bg-cyan-700 text-white px-6 py-2 rounded hover:bg-cyan-800">Edit
                         Profile</a>
                 </div>

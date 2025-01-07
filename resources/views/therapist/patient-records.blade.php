@@ -8,7 +8,7 @@
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto p-8">
-        <h2 class="text-2xl font-bold mb-8 text-center">User Records for {{ $user->name }}</h2>
+        <h2 class="text-2xl font-bold mb-8 text-center">Records for {{ $user->name }}</h2>
 
         <!-- Loop through each date and display answers for each day -->
         @php
@@ -34,7 +34,7 @@
                     @foreach ($answerGroup as $answer)
                         <div class="border-b pb-4 mb-4">
                             <div class="font-semibold text-cyan-700 mb-2">
-                                <h4>Phychotherapy Type: {{ $answer->phychotherapyType->name }}</h4>
+                                <h4>Psychotherapy Type: {{ $answer->phychotherapyType->name }}</h4>
                                 <span class="text-sm text-gray-500">Percentage: {{ $answer->percentage }}%</span>
                             </div>
 

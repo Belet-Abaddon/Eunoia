@@ -31,8 +31,12 @@ class PhychotherapyTypeController extends Controller
     public function show(): View
     {
         $phychoTys = PhychotherapyType::paginate(10); // Display 10 items per page
-        return view('admin.psycho-ty', compact('phychoTys'));
+        $results = null; // Default value when not searching
+        $message = null; // Default value for messages
+
+        return view('admin.psycho-ty', compact('phychoTys', 'results', 'message'));
     }
+
 
     public function update(Request $request): RedirectResponse
     {
@@ -70,5 +74,16 @@ class PhychotherapyTypeController extends Controller
         $therapists = User::where('role', 2)->get(); // Assuming you have a Therapist model
 
         return view('users.user-home', compact('phychoTys', 'contacts', 'latestPosts', 'therapists'));
+    }
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Paginate the results
+        $phychoTys = PhychotherapyType::where('name', 'like', "%{$query}%")
+            ->orWhere('description', 'like', "%{$query}%")
+            ->paginate(10); // Paginate the result, 10 per page
+
+        return view('admin.psycho-ty', compact('phychoTys'));
     }
 }

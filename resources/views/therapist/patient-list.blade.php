@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patients List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="bg-gray-100">
-    <div class="flex h-screen">
+<div class="flex h-screen">
         <!-- Sidebar -->
         <aside class="w-64 bg-cyan-700 text-white flex flex-col">
             <div class="p-6">
@@ -52,6 +54,7 @@
                 </ul>
             </nav>
         </aside>
+        
         <div class="container mx-auto p-8">
             <h2 class="text-2xl font-bold mb-4">Patients List</h2>
 

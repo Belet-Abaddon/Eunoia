@@ -49,22 +49,6 @@
                         class="text-xl font-bold flex items-center lg:ml-2.5">
                         <span class="self-center whitespace-nowrap">EUNOIA</span>
                     </a>
-                    <form action="#" method="GET" class="hidden lg:block lg:pl-32">
-                        <label for="topbar-search" class="sr-only">Search</label>
-                        <div class="mt-1 relative lg:w-64">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </div>
-                            <input type="text" name="email" id="topbar-search"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full pl-10 p-2.5"
-                                placeholder="Search">
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -209,10 +193,10 @@
                         </div>
                         <div class="sm:flex">
                             <div class="hidden sm:flex items-center sm:divide-x sm:divide-gray-100 mb-3 sm:mb-0">
-                                <form class="lg:pr-3" action="#" method="GET">
+                                <form class="lg:pr-3" action="{{ route('search') }}" method="GET" id="search-form">
                                     <label for="users-search" class="sr-only">Search</label>
                                     <div class="mt-1 relative lg:w-64 xl:w-96">
-                                        <input type="text" name="email" id="users-search"
+                                        <input type="text" name="email" id="search-input"
                                             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                                             placeholder="Search for psychological type">
                                     </div>
@@ -241,43 +225,41 @@
                                     <thead class="bg-gray-100">
                                         <tr>
                                             <th scope="col"
-                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                Name
+                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Name
                                             </th>
                                             <th scope="col"
                                                 class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                Description
-                                            </th>
+                                                Description</th>
                                             <th scope="col"
-                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">
-                                                Action
+                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase">Action
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-200">
-                                        @foreach ($phychoTys as $phychoTy)
-                                            <tr class="hover:bg-gray-100">
-                                                <td class="p-4 text-sm text-gray-900">
-                                                    {{ $phychoTy->name }}
-                                                </td>
-                                                <td class="p-4 text-sm text-gray-900">
-                                                    {{ $phychoTy->description }}
-                                                </td>
-                                                <td class="p-4 whitespace-nowrap space-x-2">
-                                                    <button type="button"
-                                                        onclick="openModal('{{ $phychoTy->id }}', '{{ $phychoTy->name }}', '{{ $phychoTy->description }}')"
-                                                        data-modal-toggle="user-modal"
-                                                        class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
-                                                        Edit
-                                                    </button>
-                                                    <button type="button" data-modal-toggle="delete-user-modal"
-                                                        onclick="openingModal('{{ $phychoTy->id }}')"
-                                                        class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
-                                                        Delete
-                                                    </button>
-                                                </td>
+                                        @if ($phychoTys->isNotEmpty()) <!-- Check if there are results -->
+                                            @foreach ($phychoTys as $phychoTy)
+                                                <tr class="hover:bg-gray-100">
+                                                    <td class="p-4 text-sm text-gray-900">{{ $phychoTy->name }}</td>
+                                                    <td class="p-4 text-sm text-gray-900">{{ $phychoTy->description }}</td>
+                                                    <td class="p-4 whitespace-nowrap space-x-2">
+                                                        <button type="button"
+                                                            onclick="openModal('{{ $phychoTy->id }}', '{{ $phychoTy->name }}', '{{ $phychoTy->description }}')"
+                                                            class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2">
+                                                            Edit
+                                                        </button>
+                                                        <button type="button" onclick="openingModal('{{ $phychoTy->id }}')"
+                                                            class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2">
+                                                            Delete
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        @else
+                                            <tr>
+                                                <td colspan="3" class="p-4 text-sm text-center text-gray-900">The
+                                                    Psychotherapy Type not found.</td>
                                             </tr>
-                                        @endforeach
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>
@@ -554,6 +536,46 @@
             }
             window.openingModal = openingModal;
             window.closeingModal = closeingModal;
+        });
+    </script>
+    <script>
+        document.getElementById('search-input').addEventListener('input', function () {
+            const query = this.value;
+
+            if (query === '') {
+                document.getElementById('original-data').classList.remove('hidden');
+                document.getElementById('search-results').classList.add('hidden');
+                document.getElementById('search-results').innerHTML = '';
+                return;
+            }
+
+            fetch(`/search?email=${encodeURIComponent(query)}`)
+                .then(response => response.json())
+                .then(data => {
+                    const searchResults = document.getElementById('search-results');
+                    searchResults.innerHTML = '';
+                    data.forEach(item => {
+                        const row = `
+                        <tr class="hover:bg-gray-100">
+                            <td class="p-4 text-sm text-gray-900">${item.name}</td>
+                            <td class="p-4 text-sm text-gray-900">${item.description}</td>
+                            <td class="p-4 whitespace-nowrap space-x-2">
+                                <button type="button" onclick="openModal('${item.id}', '${item.name}', '${item.description}')"
+                                    class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2">
+                                    Edit
+                                </button>
+                                <button type="button" onclick="openingModal('${item.id}')"
+                                    class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2">
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                        searchResults.innerHTML += row;
+                    });
+                    document.getElementById('original-data').classList.add('hidden');
+                    searchResults.classList.remove('hidden');
+                });
         });
     </script>
 </body>
