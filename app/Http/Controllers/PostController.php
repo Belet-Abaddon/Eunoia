@@ -9,6 +9,8 @@ use App\Models\Comment;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Http\Response;
 
 class PostController extends Controller
 {
@@ -88,4 +90,92 @@ class PostController extends Controller
         // Redirect back to the post detail page after deleting the comment
         return redirect()->route('userPosts.postDetail', $comment->post_id)->with('success', 'Comment deleted successfully.');
     }
+    public function showInAdminProfile()
+    {
+        // Get the currently authenticated admin user
+        $users = Auth::user();
+
+        // Retrieve the posts related to the authenticated admin user, ordered by 'created_at' in descending order
+        $posts = $users->posts()->orderBy('created_at', 'desc')->get();
+
+        // Pass the user and posts to the view
+        return view('admin.admin-profile', compact('users', 'posts'));
+    }
+
+    public function create(Request $request)
+    {
+        // Validate the incoming data
+        $validated = $request->validate([
+            'caption' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'video' => 'nullable|mimes:mp4,avi,mov|max:10240',
+        ]);
+
+        // Handle image and video upload if present
+        $imagePath = $request->hasFile('image') ? $request->file('image')->store('posts/images', 'public') : null;
+        $videoPath = $request->hasFile('video') ? $request->file('video')->store('posts/videos', 'public') : null;
+
+        // Create a new post
+        Post::create([
+            'caption' => $request->caption,
+            'description' => $request->description,
+            'image' => $imagePath,
+            'video' => $videoPath,
+            'user_id' => auth()->id(), // Assuming posts are linked to the authenticated user
+        ]);
+
+        // Redirect after creation
+        return redirect()->route('admin.profile')->with('success', 'Post created successfully!');
+    }
+    public function updatePost(Request $request, $id)
+    {
+        // Find the post by ID
+        $post = Post::findOrFail($id);
+
+        // Validate the incoming data
+        $validated = $request->validate([
+            'caption' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'video' => 'nullable|mimes:mp4,avi,mov|max:10240',
+        ]);
+
+        // Handle image and video upload if present
+        $imagePath = $request->hasFile('image') ? $request->file('image')->store('posts/images', 'public') : $post->image;
+        $videoPath = $request->hasFile('video') ? $request->file('video')->store('posts/videos', 'public') : $post->video;
+
+        // Update post data
+        $post->update([
+            'caption' => $request->caption,
+            'description' => $request->description,
+            'image' => $imagePath,
+            'video' => $videoPath,
+        ]);
+
+        // Redirect after update
+        return redirect()->route('admin.profile')->with('success', 'Post updated successfully!');
+    }
+
+    public function deletePost($postId)
+    {
+        // Get the currently authenticated admin user
+        $user = Auth::user();
+
+        // Retrieve the post to be deleted
+        $post = $user->posts()->findOrFail($postId);
+
+        // Delete the post
+        $post->delete();
+
+        // Redirect back to the profile page or wherever you want
+        return redirect()->route('admin.profile')->with('success', 'Post deleted successfully!');
+    }
+    public function edit($id)
+    {
+        $post = Post::findOrFail($id);  // Retrieve the post by its ID
+        return view('admin.admin-profile', compact('post'));  // Make sure you pass 'post' in the compact function
+    }
+
+
 }

@@ -88,7 +88,7 @@
             <div class="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white pt-0">
                 <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
                     <div class="flex-1 px-3 bg-white divide-y space-y-1">
-                        <ul class="space-y-2 pb-2">
+                    <ul class="space-y-2 pb-2">
                             <li>
                                 <form action="#" method="GET" class="lg:hidden">
                                     <label for="mobile-search" class="sr-only">Search</label>
@@ -120,18 +120,6 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="posts"
-                                    class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
-                                    <svg class="w-5 h-5 text-gray-900 flex-shrink-0 transition duration-75"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                                        <path
-                                            d="M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 288c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 64zm384 64l-128 0L256 0 384 128z" />
-                                    </svg>
-                                    <span class="ml-3 flex-1 whitespace-nowrap">Posts</span>
-                                </a>
-                            </li>
-                            <li>
                                 <a href="psycho-ty"
                                     class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
                                     <svg class="w-5 h-5 text-gray-900 flex-shrink-0 transition duration-75"
@@ -158,12 +146,8 @@
                             <li>
                                 <a href="user-list"
                                     class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
-                                    <svg class="w-6 h-6 text-gray-900 flex-shrink-0 transition duration-75"
-                                        fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd">
-                                        </path>
-                                    </svg>
+                                    <svg class="w-5 h-5 text-gray-900 flex-shrink-0 transition duration-75"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304l91.4 0C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7L29.7 512C13.3 512 0 498.7 0 482.3zM609.3 512l-137.8 0c5.4-9.4 8.6-20.3 8.6-32l0-8c0-60.7-27.1-115.2-69.8-151.8c2.4-.1 4.7-.2 7.1-.2l61.4 0C567.8 320 640 392.2 640 481.3c0 17-13.8 30.7-30.7 30.7zM432 256c-31 0-59-12.6-79.3-32.9C372.4 196.5 384 163.6 384 128c0-26.8-6.6-52.1-18.3-74.3C384.3 40.1 407.2 32 432 32c61.9 0 112 50.1 112 112s-50.1 112-112 112z"/></svg>
                                     <span class="ml-3 flex-1 whitespace-nowrap">Users</span>
                                 </a>
                             </li>
@@ -190,6 +174,18 @@
                                     <span class="ml-3 flex-1 whitespace-nowrap">Schedule</span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="admin-profile"
+                                    class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
+                                    <svg class="w-5 h-5 text-gray-900 flex-shrink-0 transition duration-75"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                                        <path
+                                            d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464l349.5 0c-8.9-63.3-63.3-112-129-112l-91.4 0c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304l91.4 0C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7L29.7 512C13.3 512 0 498.7 0 482.3z" />
+                                    </svg>
+                                    <span class="ml-3 flex-1 whitespace-nowrap">Profile</span>
+                                </a>
+                            </li>
                         </ul>
                         <!-- Logout Button with Form -->
                         <form action="{{ route('logout') }}" method="POST" class="inline">
@@ -213,7 +209,6 @@
 
         <div id="main-content" class="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64">
             <main>
-
                 <div class="pt-6 px-4">
                     <div class="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                         <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">

@@ -18,11 +18,14 @@
                 <h1 class="text-3xl font-bold text-cyan-700">EUNOIA</h1>
             </div>
             <div class="flex items-center space-x-6">
-                <a href="/"
-                    class="text-cyan-700 text-lg font-medium hidden md:inline-block hover:text-cyan-500 hover:border-b-2 hover:border-cyan-500 transition-all duration-300">
-                    <i class="fas fa-home text-2xl"></i>
-                </a>
-                <span class="text-cyan-700 font-medium text-lg">Hello, User</span>
+                <!-- Check if the user role is 0 -->
+                @if(auth()->user()->role == 0)
+                    <a href="/"
+                        class="text-cyan-700 text-lg font-medium hidden md:inline-block hover:text-cyan-500 hover:border-b-2 hover:border-cyan-500 transition-all duration-300">
+                        <i class="fas fa-home text-2xl"></i>
+                    </a>
+                @endif
+                <span class="text-cyan-700 font-medium text-lg">Hello, {{ Auth::user()->name }}</span>
                 <button class="bg-cyan-500 text-white px-4 py-2 rounded hover:bg-cyan-700 text-lg">
                     Logout
                 </button>

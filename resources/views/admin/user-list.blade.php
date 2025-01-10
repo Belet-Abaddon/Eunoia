@@ -53,29 +53,13 @@
                         class="text-xl font-bold flex items-center lg:ml-2.5">
                         <span class="self-center whitespace-nowrap">EUNOIA</span>
                     </a>
-                    <form action="#" method="GET" class="hidden lg:block lg:pl-32">
-                        <label for="topbar-search" class="sr-only">Search</label>
-                        <div class="mt-1 relative lg:w-64">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </div>
-                            <input type="text" name="email" id="topbar-search"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full pl-10 p-2.5"
-                                placeholder="Search">
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
     </nav>
     <div class="flex overflow-hidden bg-white pt-16">
 
-    <aside id="sidebar"
+        <aside id="sidebar"
             class="fixed hidden z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75"
             aria-label="Sidebar">
             <div class="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white pt-0">
@@ -113,18 +97,6 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="posts"
-                                    class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
-                                    <svg class="w-5 h-5 text-gray-900 flex-shrink-0 transition duration-75"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 384 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                                        <path
-                                            d="M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 288c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 64zm384 64l-128 0L256 0 384 128z" />
-                                    </svg>
-                                    <span class="ml-3 flex-1 whitespace-nowrap">Posts</span>
-                                </a>
-                            </li>
-                            <li>
                                 <a href="psycho-ty"
                                     class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
                                     <svg class="w-5 h-5 text-gray-900 flex-shrink-0 transition duration-75"
@@ -151,12 +123,8 @@
                             <li>
                                 <a href="user-list"
                                     class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
-                                    <svg class="w-6 h-6 text-gray-900 flex-shrink-0 transition duration-75"
-                                        fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd">
-                                        </path>
-                                    </svg>
+                                    <svg class="w-5 h-5 text-gray-900 flex-shrink-0 transition duration-75"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304l91.4 0C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7L29.7 512C13.3 512 0 498.7 0 482.3zM609.3 512l-137.8 0c5.4-9.4 8.6-20.3 8.6-32l0-8c0-60.7-27.1-115.2-69.8-151.8c2.4-.1 4.7-.2 7.1-.2l61.4 0C567.8 320 640 392.2 640 481.3c0 17-13.8 30.7-30.7 30.7zM432 256c-31 0-59-12.6-79.3-32.9C372.4 196.5 384 163.6 384 128c0-26.8-6.6-52.1-18.3-74.3C384.3 40.1 407.2 32 432 32c61.9 0 112 50.1 112 112s-50.1 112-112 112z"/></svg>
                                     <span class="ml-3 flex-1 whitespace-nowrap">Users</span>
                                 </a>
                             </li>
@@ -181,6 +149,18 @@
                                             d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L64 64C28.7 64 0 92.7 0 128l0 16 0 48L0 448c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-256 0-48 0-16c0-35.3-28.7-64-64-64l-40 0 0-40c0-13.3-10.7-24-24-24s-24 10.7-24 24l0 40L152 64l0-40zM48 192l80 0 0 56-80 0 0-56zm0 104l80 0 0 64-80 0 0-64zm128 0l96 0 0 64-96 0 0-64zm144 0l80 0 0 64-80 0 0-64zm80-48l-80 0 0-56 80 0 0 56zm0 160l0 40c0 8.8-7.2 16-16 16l-64 0 0-56 80 0zm-128 0l0 56-96 0 0-56 96 0zm-144 0l0 56-64 0c-8.8 0-16-7.2-16-16l0-40 80 0zM272 248l-96 0 0-56 96 0 0 56z" />
                                     </svg>
                                     <span class="ml-3 flex-1 whitespace-nowrap">Schedule</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="admin-profile"
+                                    class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
+                                    <svg class="w-5 h-5 text-gray-900 flex-shrink-0 transition duration-75"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                                        <path
+                                            d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464l349.5 0c-8.9-63.3-63.3-112-129-112l-91.4 0c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304l91.4 0C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7L29.7 512C13.3 512 0 498.7 0 482.3z" />
+                                    </svg>
+                                    <span class="ml-3 flex-1 whitespace-nowrap">Profile</span>
                                 </a>
                             </li>
                         </ul>
@@ -270,7 +250,7 @@
                                                 <td class="p-4 text-sm text-gray-900">{{ $user->country }}</td>
                                                 <td class="p-4 whitespace-nowrap space-x-2">
                                                     <button type="button" data-modal-toggle="user-modal"
-                                                    onclick="openModal('{{ $user->id }}', '{{ $user->name }}', '{{ $user->email }}', '{{ $user->age }}', '{{ $user->gender }}', '{{ $user->country }}', '{{ $user->degree }}', '{{ $user->experience }}', '{{ $user->specialists }}', '{{ $user->university }}')"
+                                                        onclick="openModal('{{ $user->id }}', '{{ $user->name }}', '{{ $user->email }}', '{{ $user->age }}', '{{ $user->gender }}', '{{ $user->country }}', '{{ $user->degree }}', '{{ $user->experience }}', '{{ $user->specialists }}', '{{ $user->university }}')"
                                                         class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
                                                         <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
                                                             xmlns="http://www.w3.org/2000/svg">
@@ -283,7 +263,7 @@
                                                         </svg>
                                                         Edit user
                                                     </button>
-                                                    <button type="button" data-modal-toggle="delete-user-modal" 
+                                                    <button type="button" data-modal-toggle="delete-user-modal"
                                                         class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
                                                         <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
                                                             xmlns="http://www.w3.org/2000/svg">
@@ -375,8 +355,8 @@
                             </div>
                             <!-- Modal body -->
                             <div class="p-6 space-y-6">
-                            <form action="{{ route('admin.userRole') }}" method="POST">
-                            @csrf
+                                <form action="{{ route('admin.userRole') }}" method="POST">
+                                    @csrf
                                     <div class="grid grid-cols-6 gap-6">
                                         <input type="hidden" name="id" id="model-id" value="">
                                         <div class="col-span-6 sm:col-span-3">

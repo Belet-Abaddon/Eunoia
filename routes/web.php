@@ -16,7 +16,6 @@ use App\Models\Post;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\ContactController;
 
-
 Route::get('/', [PhychotherapyTypeController::class, 'showPhychoTyList'])->name('user.home');
 Route::get('/user-header', [PhychotherapyTypeController::class, 'showPhychoTy'])->name('user.header');
 
@@ -43,10 +42,10 @@ Route::middleware('auth')->group(callback: function () {
     // Route::get('/post-delete/{id}', [PostController::class, 'destroy'])->name('admin.postDelete');
 
     //post-list
-    Route::get('/posts-list', [PostController::class, 'post'])->name('admin.postList');
-    Route::post('/posts-create', [PostController::class, 'create'])->name('admin.postCreate');
-    Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('admin.postEdit');
-    Route::delete('/posts/{id}', [PostController::class, 'delete'])->name('admin.postDelete');
+    Route::get('/admin-profile',[PostController::class, 'showInAdminProfile'])->name('admin.profile');
+    Route::post('/post/create', [PostController::class, 'create'])->name('post.create');
+    Route::put('/post/update/{id}', [PostController::class, 'updatePost'])->name('post.update');
+    Route::delete('/posts/{post}', [PostController::class, 'deletePost'])->name('post.delete');
     
     // phychotherapy type
     Route::get('/psycho-ty', [PhychotherapyTypeController::class, 'show'])->name('admin.psychoTyList');
@@ -88,6 +87,7 @@ Route::middleware('auth')->group(callback: function () {
     Route::post('/post/{id}/comment', [PostController::class, 'store'])->name('comment.store');
     Route::post('/comment/update/{commentId}', [PostController::class, 'update'])->name('comment.update');
     Route::delete('/comment/destroy/{commentId}', [PostController::class, 'destroy'])->name('comment.destroy');
+
     //therapist
     Route::get('/therapist-dashboard', [ContactController::class, 'getNewContacts'])->name('therapist.dashboard');
     Route::get('/contacts/{contact}/answers', [ContactController::class, 'viewContactAnswers'])->name('view.contact');
