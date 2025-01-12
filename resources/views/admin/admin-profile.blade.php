@@ -328,7 +328,7 @@
                                 </div>
                                 <h4 class="text-xl font-semibold text-gray-700 mb-3">{{ $post->caption }}</h4>
                                 <p class="text-gray-600 text-sm mb-4">{{ $post->description }}</p>
-                                <div class="flex gap-4 mb-4">
+                                <div class="flex gap-4 mb-4 h-[300px]">
                                     @if ($post->image && $post->video)
                                         <div class="flex space-x-4">
                                             <div class="w-1/2">

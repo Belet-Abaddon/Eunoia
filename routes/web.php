@@ -68,6 +68,7 @@ Route::middleware('auth')->group(callback: function () {
     //user
     Route::get('/user-list', [RegisteredUserController::class, 'show'])->name('admin.user-list');
     Route::post('/user-list', [RegisteredUserController::class, 'changeRole'])->name('admin.userRole');
+    Route::delete('/users/{id}', [RegisteredUserController::class, 'destroy'])->name('users.destroy');
 
     //schedule
     Route::get('/schedule', [ScheduleController::class, 'show'])->name('admin.schedule');

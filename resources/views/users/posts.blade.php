@@ -21,9 +21,11 @@
                     <i class="fas fa-home text-2xl"></i>
                 </a>
                 <span class="text-cyan-700 font-medium text-lg">Hello, {{ Auth::user()->name }}</span>
-                <button class="bg-cyan-500 text-white px-4 py-2 rounded hover:bg-cyan-700 text-lg">
-                    Logout
-                </button>
+                <form action="{{ route('logout') }}" method="POST" class="inline">
+                    @csrf
+                    <button type="submit"
+                        class="bg-cyan-500 text-white px-6 py-3 rounded hover:bg-cyan-700 text-lg">Logout</button>
+                </form>
             </div>
         </div>
     </header>

@@ -85,7 +85,7 @@ class RegisteredUserController extends Controller
 
     public function show(): View
     {
-        $users = User::where('role', 0)->get();
+        $users = User::where('role', 0)->paginate(10);
         return view('admin.user-list', compact('users'));
     }
     public function changeRole(Request $request): RedirectResponse
@@ -177,5 +177,11 @@ class RegisteredUserController extends Controller
 
         // Redirect back with a success message
         return redirect()->back()->with('success', 'Admin role changed to User successfully!');
+    }
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id); // Find user by ID
+        $user->delete(); // Delete the user
+        return redirect()->back()->with('success', 'User deleted successfully!');
     }
 }

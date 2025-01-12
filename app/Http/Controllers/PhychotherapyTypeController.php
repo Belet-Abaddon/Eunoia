@@ -9,6 +9,7 @@ use App\Models\PhychotherapyType;
 use App\Models\Contact;
 use App\Models\Post;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 
@@ -66,6 +67,7 @@ class PhychotherapyTypeController extends Controller
         $phychoTys = PhychotherapyType::get();
         $contacts = Contact::with('therapist')
             ->where('user_id', auth()->id())
+            ->where('created_at', '>=', Carbon::now()->subWeek())
             ->orderBy('created_at', 'desc')
             ->get();
         $latestPosts = Post::latest()->take(5)->get();

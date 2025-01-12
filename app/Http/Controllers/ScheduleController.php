@@ -15,7 +15,7 @@ class ScheduleController extends Controller
     public function show()
     {
         $therapists = User::where('role', 2)->get();
-        $schedules = Schedule::with('therapist')->get();
+        $schedules = Schedule::with('therapist')->paginate(10);
         return view('admin.schedule', compact('therapists', 'schedules'));
     }
     public function store(Request $request)

@@ -53,7 +53,7 @@ class TherapistController extends Controller
     }
     public function show(): View
     {
-        $therapists = User::where('role', 2)->get();
+        $therapists = User::where('role', 2)->paginate(10); // Display 10 therapists per page
         return view('admin.therapist-list', compact('therapists'));
     }
     public function destroy($id)

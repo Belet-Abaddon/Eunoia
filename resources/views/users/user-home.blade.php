@@ -74,22 +74,42 @@
                         </button>
                         <!-- Dropdown Menu -->
                         <div id="notification-dropdown"
-                            class="absolute right-0 mt-2 w-64 bg-white shadow-lg rounded-lg overflow-hidden hidden">
-                            @foreach ($contacts as $contact)
-                                <div class="px-4 py-2 border-b">
+                            class="absolute right-0 mt-2 w-80 bg-white shadow-xl rounded-lg overflow-hidden hidden border border-gray-200">
+                            @forelse ($contacts as $contact)
+                                <div class="p-4 border-b">
                                     <div class="text-sm">
-                                        <strong>{{ $contact->therapist->name }}</strong><br>
-                                        <span class="text-gray-600">Zoom Link:</span>
-                                        <a href="{{ $contact->therapist->schedules->first()->zoom_link }}" target="_blank"
-                                            class="block text-cyan-600 hover:text-cyan-800 text-sm font-medium">Join Zoom</a>
-                                        <span class="text-xs text-gray-500">Time:
-                                            {{ $contact->created_at->format('h:i A, M d, Y') }}</span>
+                                        <!-- Therapist Name -->
+                                        <strong class="block text-gray-900 font-semibold text-base mb-1">
+                                            {{ $contact->therapist->name }}
+                                        </strong>
+
+                                        <!-- Schedule Details -->
+                                        <div class="mt-2 space-y-2">
+                                            @foreach ($contact->therapist->schedules as $schedule)
+                                                <div class="bg-gray-50 p-2 rounded-lg shadow-sm">
+                                                    <span class="block text-gray-600 text-xs font-medium">
+                                                        Date: <span class="text-gray-800">{{ $schedule->date }}</span>
+                                                    </span>
+                                                    <span class="block text-gray-600 text-xs font-medium">
+                                                        Start Time: <span class="text-gray-800">{{ $schedule->start_time }}</span>
+                                                    </span>
+                                                    <span class="block text-gray-600 text-xs font-medium">
+                                                        End Time: <span class="text-gray-800">{{ $schedule->end_time }}</span>
+                                                    </span>
+                                                    <a href="{{ $schedule->zoom_link }}" target="_blank"
+                                                        class="mt-1 inline-block text-cyan-600 hover:text-cyan-800 text-sm font-medium">
+                                                        Join Zoom
+                                                    </a>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
-                            @endforeach
-                            @if ($contacts->isEmpty())
-                                <div class="px-4 py-2 text-sm text-gray-500">No new notifications</div>
-                            @endif
+                            @empty
+                                <div class="px-4 py-2 text-sm text-gray-500 text-center">
+                                    No new notifications
+                                </div>
+                            @endforelse
                         </div>
                     </div>
 
