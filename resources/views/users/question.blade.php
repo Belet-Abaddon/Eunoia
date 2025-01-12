@@ -49,7 +49,7 @@
     </div>
     <footer class="bg-gray-800 text-gray-200 py-8">
         <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2024 PsycH Testing Online. All Rights Reserved.</p>
+            <p>&copy; 2024 Eunoia Online. All Rights Reserved.</p>
         </div>
     </footer>
 </body>

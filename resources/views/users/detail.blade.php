@@ -131,7 +131,11 @@
             <i class="fas fa-arrow-left mr-2"></i> Back
         </button>
     </section>
-
+    <footer class="bg-gray-800 text-gray-200 py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Eunoia Online. All Rights Reserved.</p>
+        </div>
+    </footer>
     <script>
         // Function to enable editing mode
         function editComment(commentId, commentText) {
