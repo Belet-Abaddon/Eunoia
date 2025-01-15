@@ -113,7 +113,7 @@
                         </div>
                     </div>
 
-                    <span class="text-gray-700 font-medium text-lg">Hello, {{ Auth::user()->name }}</span>
+                    <a href="/profile" class="text-gray-700 font-medium text-lg">Hello, {{ Auth::user()->name }}</a>
                     <form action="{{ route('logout') }}" method="POST" class="inline">
                         @csrf
                         <button type="submit"
