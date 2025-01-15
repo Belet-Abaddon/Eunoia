@@ -193,12 +193,16 @@
                         </div>
                         <div class="sm:flex">
                             <div class="hidden sm:flex items-center sm:divide-x sm:divide-gray-100 mb-3 sm:mb-0">
-                                <form class="lg:pr-3" action="#" method="GET">
+                            <form class="lg:pr-3" action="{{ route('therapists.search') }}" method="GET" id="search-form">
                                     <label for="users-search" class="sr-only">Search</label>
-                                    <div class="mt-1 relative lg:w-64 xl:w-96">
-                                        <input type="text" name="email" id="users-search"
+                                    <div class="mt-1 relative lg:w-64 xl:w-96 flex items-center space-x-2">
+                                        <input type="text" name="query" id="search-input"
                                             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                            placeholder="Search for therapist">
+                                            placeholder="Search by name or email">
+                                        <button type="submit"
+                                            class="px-4 py-2 bg-cyan-600 text-white font-semibold rounded-lg shadow-md hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:ring-opacity-75">
+                                            Search
+                                        </button>
                                     </div>
                                 </form>
                             </div>

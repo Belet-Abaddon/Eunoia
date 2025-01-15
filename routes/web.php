@@ -35,11 +35,6 @@ Route::middleware('auth')->group(callback: function () {
 
     Route::get('/admin-dashboard', [RegisteredUserController::class, 'dashboard'])->name('admin.dashboard');
     Route::patch('/admin/change-role/{id}', [RegisteredUserController::class, 'changeRoleAdmin'])->name('admin.changeRole');
-    //post
-    // Route::post('/post-create', [PostController::class, 'store'])->name('admin.postStore');
-    // Route::get('/posts', [PostController::class, 'show'])->name('admin.posts');
-    // Route::put('/post-update', [PostController::class, 'update'])->name('admin.postUpdate');
-    // Route::get('/post-delete/{id}', [PostController::class, 'destroy'])->name('admin.postDelete');
 
     //post-list
     Route::get('/admin-profile',[PostController::class, 'showInAdminProfile'])->name('admin.profile');
@@ -59,22 +54,26 @@ Route::middleware('auth')->group(callback: function () {
     Route::post('/question-create', [QuestionController::class, 'store'])->name('admin.questionCreate');
     Route::put('/question-update', [QuestionController::class, 'update'])->name('admin.questionUpdate');
     Route::get('/question-delete/{id}', [QuestionController::class, 'destroy'])->name('admin.questionDelete');
+    Route::get('/questions-search', [QuestionController::class, 'search'])->name('question.search');
 
     //therapist
     Route::post('/therapist-list', [TherapistController::class, 'store'])->name('admin.therapistCreate');
     Route::get('/therapist-list', [TherapistController::class, 'show'])->name('admin.therapistLists');
     Route::get('/therapist-list/{id}', [TherapistController::class, 'destroy'])->name('admin.therapistDelete');
-
+    Route::get('/therapists-search', [TherapistController::class, 'search'])->name('therapists.search');
+    
     //user
     Route::get('/user-list', [RegisteredUserController::class, 'show'])->name('admin.user-list');
     Route::post('/user-list', [RegisteredUserController::class, 'changeRole'])->name('admin.userRole');
     Route::delete('/users/{id}', [RegisteredUserController::class, 'destroy'])->name('users.destroy');
+    Route::get('/users-search', [RegisteredUserController::class, 'search'])->name('users.search');
 
     //schedule
     Route::get('/schedule', [ScheduleController::class, 'show'])->name('admin.schedule');
     Route::post('/schedule-create', [ScheduleController::class, 'store'])->name('admin.scheduleCreate');
     Route::put('/schedule-update', [ScheduleController::class, 'update'])->name('admin.scheduleUpdate');
     Route::get('/schedule-delete', [ScheduleController::class, 'destroy'])->name('admin.scheduleDelete');
+    Route::get('/schedules-search', [ScheduleController::class, 'search'])->name('schedules.search');
 
     //user
     Route::get('/user-questions/{phychotherapyType}', [QuestionController::class, 'showQuestions'])->name('user.questions');

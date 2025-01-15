@@ -58,7 +58,26 @@ class QuestionController extends Controller
     public function showQuestions($phychotherapyTypeId)
     {
         $phychotherapyType = PhychotherapyType::findOrFail($phychotherapyTypeId);
-        $questions=Question::where('phychotherapy_type_id', $phychotherapyTypeId)->get();
+        $questions = Question::where('phychotherapy_type_id', $phychotherapyTypeId)->get();
         return view('users.question', compact('phychotherapyType', 'questions'));
+    }
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Validate the query
+        $request->validate([
+            'query' => 'nullable|string|max:255',
+        ]);
+
+        // Search in 'question', 'description', and related 'phychotherapy_type' name
+        $questions = Question::where('question', 'like', "%{$query}%")
+            ->orWhere('description', 'like', "%{$query}%")
+            ->orWhereHas('phychotherapyType', function ($q) use ($query) {
+                $q->where('name', 'like', "%{$query}%");
+            })
+            ->paginate(10); // Adjust the pagination count as needed
+            $psychoTys = PhychotherapyType::get();
+        return view('admin.question', compact('questions','psychoTys'));
     }
 }

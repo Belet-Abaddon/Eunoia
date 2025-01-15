@@ -65,5 +65,23 @@ class TherapistController extends Controller
         // Redirect back with a success message
         return redirect()->route('admin.therapistLists')->with('success', 'Category type deleted successfully.');
     }
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
 
+        // Validate the query input
+        $request->validate([
+            'query' => 'nullable|string|max:255',
+        ]);
+
+        // Search in 'name' and 'email' fields, and filter by 'role = 1'
+        $therapists = User::where('role', 2)
+            ->where(function ($q) use ($query) {
+                $q->where('name', 'like', "%{$query}%")
+                    ->orWhere('email', 'like', "%{$query}%");
+            })
+            ->paginate(10); // Adjust the pagination count as needed
+
+        return view('admin.therapist-list', compact('therapists'));
+    }
 }

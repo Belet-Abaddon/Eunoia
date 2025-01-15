@@ -75,4 +75,20 @@ class ScheduleController extends Controller
         // Pass the schedules to the view
         return view('therapist.profile', compact('schedules'));
     }
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Validate the query input
+        $request->validate([
+            'query' => 'nullable|string|max:255',
+        ]);
+
+        // Search for schedules by therapist's name
+        $schedules = Schedule::whereHas('therapist', function ($q) use ($query) {
+            $q->where('name', 'like', "%{$query}%");
+        })->paginate(10); // Adjust the pagination count as needed
+        $therapists = User::where('role', 2)->get();
+        return view('admin.schedule', compact('schedules', 'therapists'));
+    }
 }

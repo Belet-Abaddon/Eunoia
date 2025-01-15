@@ -59,7 +59,7 @@
             <div class="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white pt-0">
                 <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
                     <div class="flex-1 px-3 bg-white divide-y space-y-1">
-                    <ul class="space-y-2 pb-2">
+                        <ul class="space-y-2 pb-2">
                             <li>
                                 <form action="#" method="GET" class="lg:hidden">
                                     <label for="mobile-search" class="sr-only">Search</label>
@@ -118,7 +118,11 @@
                                 <a href="user-list"
                                     class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
                                     <svg class="w-5 h-5 text-gray-900 flex-shrink-0 transition duration-75"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304l91.4 0C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7L29.7 512C13.3 512 0 498.7 0 482.3zM609.3 512l-137.8 0c5.4-9.4 8.6-20.3 8.6-32l0-8c0-60.7-27.1-115.2-69.8-151.8c2.4-.1 4.7-.2 7.1-.2l61.4 0C567.8 320 640 392.2 640 481.3c0 17-13.8 30.7-30.7 30.7zM432 256c-31 0-59-12.6-79.3-32.9C372.4 196.5 384 163.6 384 128c0-26.8-6.6-52.1-18.3-74.3C384.3 40.1 407.2 32 432 32c61.9 0 112 50.1 112 112s-50.1 112-112 112z"/></svg>
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 640 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                                        <path
+                                            d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304l91.4 0C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7L29.7 512C13.3 512 0 498.7 0 482.3zM609.3 512l-137.8 0c5.4-9.4 8.6-20.3 8.6-32l0-8c0-60.7-27.1-115.2-69.8-151.8c2.4-.1 4.7-.2 7.1-.2l61.4 0C567.8 320 640 392.2 640 481.3c0 17-13.8 30.7-30.7 30.7zM432 256c-31 0-59-12.6-79.3-32.9C372.4 196.5 384 163.6 384 128c0-26.8-6.6-52.1-18.3-74.3C384.3 40.1 407.2 32 432 32c61.9 0 112 50.1 112 112s-50.1 112-112 112z" />
+                                    </svg>
                                     <span class="ml-3 flex-1 whitespace-nowrap">Users</span>
                                 </a>
                             </li>
@@ -189,13 +193,14 @@
                         </div>
                         <div class="sm:flex">
                             <div class="hidden sm:flex items-center sm:divide-x sm:divide-gray-100 mb-3 sm:mb-0">
-                                <form class="lg:pr-3" action="#" method="GET">
-                                    <label for="users-search" class="sr-only">Search</label>
-                                    <div class="mt-1 relative lg:w-64 xl:w-96">
-                                        <input type="text" name="email" id="users-search"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                                            placeholder="Search for schedule">
-                                    </div>
+                                <form action="{{ route('schedules.search') }}" method="GET"
+                                    class="flex items-center space-x-2">
+                                    <input type="text" name="query" placeholder="Search by therapist name"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5">
+                                    <button type="submit"
+                                        class="px-4 py-2 bg-cyan-600 text-white font-semibold rounded-lg shadow-md hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:ring-opacity-75">
+                                        Search
+                                    </button>
                                 </form>
                             </div>
                             <div class="flex items-center space-x-2 sm:space-x-3 ml-auto">
@@ -271,7 +276,7 @@
                                                 </td>
                                                 <td class="p-4 text-sm text-gray-900">
                                                     <a href="{{$schedule->zoom_link}}">
-                                                    Start Zoom
+                                                        Start Zoom
                                                     </a>
                                                 </td>
                                                 <td class="p-4 text-sm text-gray-900">

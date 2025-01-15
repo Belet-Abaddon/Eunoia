@@ -184,4 +184,24 @@ class RegisteredUserController extends Controller
         $user->delete(); // Delete the user
         return redirect()->back()->with('success', 'User deleted successfully!');
     }
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        // Validate the query input
+        $request->validate([
+            'query' => 'nullable|string|max:255',
+        ]);
+
+        // Search in 'name' and 'email' fields, and filter by 'role = 1'
+        $users = User::where('role', 0)
+            ->where(function ($q) use ($query) {
+                $q->where('name', 'like', "%{$query}%")
+                    ->orWhere('email', 'like', "%{$query}%");
+            })
+            ->paginate(10); // Adjust the pagination count as needed
+
+        return view('admin.user-list', compact('users'));
+    }
+
 }

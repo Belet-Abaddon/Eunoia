@@ -295,7 +295,7 @@
                         </div>
                         <div>
                             <h3 class="text-lg font-bold text-cyan-700">Call Us</h3>
-                            <p class="text-gray-600">+95-123-456-789</p>
+                            <p class="text-gray-600">+959407123478</p>
                         </div>
                     </div>
                     <!-- Email -->
@@ -305,7 +305,7 @@
                         </div>
                         <div>
                             <h3 class="text-lg font-bold text-cyan-700">Email Us</h3>
-                            <p class="text-gray-600">info@organization.com</p>
+                            <p class="text-gray-600">eunoia@organization.com</p>
                         </div>
                     </div>
                     <!-- Working Hours -->
@@ -331,7 +331,7 @@
                         happy to assist!
                     </p>
                     <div class="mt-6">
-                        <a href="mailto:info@organization.com"
+                        <a href="mailto:eunoia@organization.com"
                             class="inline-block px-6 py-3 bg-white text-cyan-700 font-bold rounded-lg shadow hover:bg-gray-100">
                             Email Us
                         </a>
