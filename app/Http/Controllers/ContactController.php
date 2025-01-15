@@ -28,11 +28,14 @@ class ContactController extends Controller
     }
     public function getNewContacts(Request $request)
     {
+        $totalPatients = Contact::where('therapist_id', auth()->id())
+            ->distinct('user_id') // Select only distinct patient IDs
+            ->count('user_id');
         $contacts = Contact::where('therapist_id', auth()->id()) // Match logged-in therapist
             ->where('created_at', '>=', Carbon::now()->subWeek()) // Contacts within the last week
             ->paginate(10); // Paginate with 10 items per page
 
-        return view('therapist.therapist-dashboard', compact('contacts'));
+        return view('therapist.therapist-dashboard', compact('totalPatients','contacts'));
     }
     public function viewContactAnswers($contactId)
     {

@@ -80,7 +80,7 @@
             @endif
             <div class="mt-6">
                 <a href="{{ route('therapist.dashboard') }}"
-                    class="text-white bg-cyan-600 px-4 py-2 rounded hover:bg-cyan-800">Back to Contacts</a>
+                    class="text-white bg-cyan-600 px-4 py-2 rounded hover:bg-cyan-800">Back to Dashboard</a>
             </div>
         </div>
     </div>
@@ -94,8 +94,8 @@
                 labels: ['Achieved', 'Remaining'],
                 datasets: [{
                     data: [percentage, 100 - percentage],
-                    backgroundColor: ['#0d98ba', '#ff9999'], // Light Green and Light Red
-                    hoverBackgroundColor: ['#5EC9CC', '#ff6666'] // Slightly Darker Green and Red for Hover
+                    backgroundColor: ['#0d98ba', '#e5e7eb'], // Light Green and Light Red
+                    hoverBackgroundColor: ['#5EC9CC', '#e5e7eb'] // Slightly Darker Green and Red for Hover
                 }]
             },
             options: {

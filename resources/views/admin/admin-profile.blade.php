@@ -229,21 +229,15 @@
 
                             <div class="border-t border-gray-200 pt-3">
                                 <p class="mb-2"><span class="font-semibold text-gray-800">Country:</span>
-                                    {{ $users->country }}</p>
+                                    {{ $users->country }}</p><br>
                                 <p class="mb-2"><span class="font-semibold text-gray-800">Specialization:</span>
-                                    {{ $users->specialization }}</p>
+                                    {{ $users->specialization }}</p><br>
                                 <p class="mb-2"><span class="font-semibold text-gray-800">Experience:</span>
-                                    {{ $users->experience }} years</p>
+                                    {{ $users->experience }} years</p><br>
                                 <p class="mb-2"><span class="font-semibold text-gray-800">Degree:</span>
-                                    {{ $users->degree }}</p>
+                                    {{ $users->degree }}</p><br>
                                 <p class="mb-2"><span class="font-semibold text-gray-800">University:</span>
                                     {{ $users->university }}</p>
-                            </div>
-
-                            <div class="mt-6 text-center">
-                                <button
-                                    class="bg-teal-600 text-white py-2 px-6 rounded hover:bg-teal-700 shadow-md">Edit
-                                    Profile</button>
                             </div>
                         </div>
 
@@ -363,7 +357,8 @@
                                         Update
                                     </button>
                                     <!-- Delete Button -->
-                                    <form action="{{ route('post.delete', $post->id) }}" method="POST">
+                                    <form action="{{ route('post.delete', $post->id) }}" method="POST"
+                                    onsubmit="return confirm('Are you sure you want to delete this therapist post?');">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"

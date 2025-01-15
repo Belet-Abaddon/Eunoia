@@ -72,7 +72,7 @@ Route::middleware('auth')->group(callback: function () {
     Route::get('/schedule', [ScheduleController::class, 'show'])->name('admin.schedule');
     Route::post('/schedule-create', [ScheduleController::class, 'store'])->name('admin.scheduleCreate');
     Route::put('/schedule-update', [ScheduleController::class, 'update'])->name('admin.scheduleUpdate');
-    Route::get('/schedule-delete', [ScheduleController::class, 'destroy'])->name('admin.scheduleDelete');
+    Route::delete('/schedule-delete/{id}', [ScheduleController::class, 'destroy'])->name('admin.scheduleDelete');
     Route::get('/schedules-search', [ScheduleController::class, 'search'])->name('schedules.search');
 
     //user

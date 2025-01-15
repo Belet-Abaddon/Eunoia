@@ -285,7 +285,7 @@
                                                 <td class="p-4 text-sm text-gray-900">
                                                     {{ $schedule->updated_at }}
                                                 </td>
-                                                <td class="p-4 whitespace-nowrap space-x-2">
+                                                <td class="p-4 whitespace-nowrap flex items-center space-x-2">
                                                     <button type="button"
                                                         onclick="openModal('{{ $schedule->id }}', '{{ $schedule->therapist_id }}', '{{ $schedule->start_time }}', '{{ $schedule->end_time }}', '{{ $schedule->date }}')"
                                                         class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
@@ -300,17 +300,21 @@
                                                         </svg>
                                                         Edit schedule
                                                     </button>
-
-                                                    <button type="button" onclick="openingModal('{{ $schedule->id }}')"
-                                                        class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
-                                                        <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
-                                                            xmlns="http://www.w3.org/2000/svg">
-                                                            <path fill-rule="evenodd"
-                                                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                                clip-rule="evenodd"></path>
-                                                        </svg>
-                                                        Delete schedule
-                                                    </button>
+                                                    <form action="{{ route('admin.scheduleDelete', $schedule->id) }}" method="POST"
+                                                        onsubmit="return confirm('Are you sure you want to delete this therapist schedule?');">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
+                                                            <svg class="mr-2 h-5 w-5" fill="currentColor"
+                                                                viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                                    clip-rule="evenodd"></path>
+                                                            </svg>
+                                                            Delete schedule
+                                                        </button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -551,52 +555,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Delete User Modal -->
-                    @foreach ($schedules as $schedule)
-                        <div class="hidden overflow-x-hidden overflow-y-auto fixed top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center h-modal sm:h-full"
-                            id="delete-user-modal-{{ $schedule->id }}">
-                            <div class="relative w-full max-w-md px-4 h-full md:h-auto">
-                                <!-- Modal content -->
-                                <div class="bg-white rounded-lg shadow relative">
-                                    <!-- Modal header -->
-                                    <div class="flex justify-end p-2">
-                                        <button type="button" onclick="closeingModal('{{ $schedule->id }}')"
-                                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center">
-                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd"
-                                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                                    clip-rule="evenodd"></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                    <!-- Modal body -->
-                                    <div class="p-6 pt-0 text-center">
-                                        <svg class="w-20 h-20 text-red-600 mx-auto" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                        </svg>
-                                        <h3 class="text-xl font-normal text-gray-500 mt-5 mb-6">Are you sure you want to
-                                            delete
-                                            this user?</h3>
-                                        <a href="{{ route('admin.scheduleDelete', ['id' => $schedule->id]) }}"
-                                            class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-base inline-flex items-center px-3 py-2.5 text-center mr-2">
-                                            Yes, I'm sure
-                                        </a>
-                                        <a href="#"
-                                            class="text-gray-900 bg-white hover:bg-gray-100 focus:ring-4 focus:ring-cyan-200 border border-gray-200 font-medium inline-flex items-center rounded-lg text-base px-3 py-2.5 text-center"
-                                            data-modal-toggle="delete-user-modal">
-                                            No, cancel
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-
-
             </main>
             <p class="text-center text-sm text-gray-500 my-10">
                 &copy; 2024 Eunoia Online. All Rights Reserved.

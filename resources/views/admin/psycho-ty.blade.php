@@ -350,7 +350,7 @@
                                 <form action="{{ route('admin.psychoTyUpdate') }}" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <div class="grid grid-cols-6 gap-6">t
+                                    <div class="grid grid-cols-6 gap-6">
                                         <input type="hidden" name="id" id="model-id" value="">
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="caption"

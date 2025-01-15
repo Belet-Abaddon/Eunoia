@@ -99,7 +99,8 @@
                                         onclick="editComment({{ $comment->id }}, '{{ $comment->comment }}')">
                                         Edit
                                     </button>
-                                    <form action="{{ route('comment.destroy', $comment->id) }}" method="POST">
+                                    <form action="{{ route('comment.destroy', $comment->id) }}" method="POST"
+                                    onsubmit="return confirm('Are you sure you want to delete this comment?');">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="text-red-500 hover:text-red-700">

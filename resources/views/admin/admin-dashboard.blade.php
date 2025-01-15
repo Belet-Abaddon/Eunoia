@@ -249,7 +249,7 @@
 
                         <!-- Second Chart (the bar chart for psychotherapy type data) -->
                         <div class="w-1/2 p-4">
-                            <h3 class="text-lg font-semibold text-center">Psychotherapy Type Bar Chart</h3>
+                            <h3 class="text-lg font-semibold text-center">Psychological Type Bar Chart</h3>
                             <canvas id="existingChart" class="chart-size"></canvas>
                         </div>
                     </div>
