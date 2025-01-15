@@ -415,7 +415,9 @@
                     </div>
                 </div>
             </main>
-
+            <p class="text-center text-sm text-gray-500 my-10">
+                &copy; 2024 Eunoia Online. All Rights Reserved.
+            </p>
         </div>
 
     </div>
