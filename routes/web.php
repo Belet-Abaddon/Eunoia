@@ -46,14 +46,14 @@ Route::middleware('auth')->group(callback: function () {
     Route::get('/psycho-ty', [PhychotherapyTypeController::class, 'show'])->name('admin.psychoTyList');
     Route::post('/psycho-ty-create', [PhychotherapyTypeController::class, 'store'])->name('admin.psychoTyCreate');
     Route::put('/psycho-ty-update', [PhychotherapyTypeController::class, 'update'])->name('admin.psychoTyUpdate');
-    Route::get('/psycho-ty-delete/{id}', [PhychotherapyTypeController::class, 'destroy'])->name('admin.phychoTyDelete');
+    Route::delete('/psycho-ty-delete/{id}', [PhychotherapyTypeController::class, 'destroy'])->name('admin.phychoTyDelete');
     Route::get('/search', [PhychotherapyTypeController::class, 'search'])->name('search');
 
     //question
     Route::get('/question', [QuestionController::class, 'show'])->name('admin.questionList');
     Route::post('/question-create', [QuestionController::class, 'store'])->name('admin.questionCreate');
     Route::put('/question-update', [QuestionController::class, 'update'])->name('admin.questionUpdate');
-    Route::get('/question-delete/{id}', [QuestionController::class, 'destroy'])->name('admin.questionDelete');
+    Route::delete('/question-delete/{id}', [QuestionController::class, 'destroy'])->name('admin.questionDelete');
     Route::get('/questions-search', [QuestionController::class, 'search'])->name('question.search');
 
     //therapist

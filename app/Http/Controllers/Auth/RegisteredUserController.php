@@ -203,5 +203,5 @@ class RegisteredUserController extends Controller
 
         return view('admin.user-list', compact('users'));
     }
-
+    
 }

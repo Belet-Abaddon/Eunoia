@@ -286,8 +286,9 @@
                                                     {{ $schedule->updated_at }}
                                                 </td>
                                                 <td class="p-4 whitespace-nowrap flex items-center space-x-2">
-                                                    <button type="button"
+                                                <button type="button" data-modal-toggle="user-modal"
                                                         onclick="openModal('{{ $schedule->id }}', '{{ $schedule->therapist_id }}', '{{ $schedule->start_time }}', '{{ $schedule->end_time }}', '{{ $schedule->date }}')"
+                                                        data-modal-toggle="user-modal"
                                                         class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2 text-center">
                                                         <svg class="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 20 20"
                                                             xmlns="http://www.w3.org/2000/svg">
@@ -605,19 +606,6 @@
         function closeModal() {
             document.getElementById('user-modal').classList.add('hidden');
         }
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            function openingModal(id) {
-                console.log('Opening modal for ID:', id); // Check if the function is called
-                document.getElementById('delete-user-modal-' + id).classList.remove('hidden');
-            }
-            function closeingModal(id) {
-                document.getElementById('delete-user-modal-' + id).classList.add('hidden');
-            }
-            window.openingModal = openingModal;
-            window.closeingModal = closeingModal;
-        });
     </script>
 </body>
 

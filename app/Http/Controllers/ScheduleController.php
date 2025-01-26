@@ -20,15 +20,7 @@ class ScheduleController extends Controller
     }
     public function store(Request $request)
     {
-        // Validate the input fields
-        // $validatedData = $request->validate([
-        //     'therapist_id' => 'required|exists:users,id',
-        //     'date' => 'required|in:Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday',
-        //     'start_time' => 'required|date_format:H:i',
-        //     'end_time' => 'required|date_format:H:i|after:start_time',
-        //     'zoom_link' => 'required|url',
-        // ]);
-
+        
         // Create a new schedule
         Schedule::create([
             'therapist_id' => $request['therapist_id'],

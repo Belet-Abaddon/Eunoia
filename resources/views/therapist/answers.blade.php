@@ -94,8 +94,8 @@
                 labels: ['Achieved', 'Remaining'],
                 datasets: [{
                     data: [percentage, 100 - percentage],
-                    backgroundColor: ['#0d98ba', '#e5e7eb'], // Light Green and Light Red
-                    hoverBackgroundColor: ['#5EC9CC', '#e5e7eb'] // Slightly Darker Green and Red for Hover
+                    backgroundColor: ['#0d98ba', '#e5e7eb'], 
+                    hoverBackgroundColor: ['#5EC9CC', '#e5e7eb'] 
                 }]
             },
             options: {
